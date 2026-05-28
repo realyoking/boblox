@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Roblox Hub & Tower of Hell</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #0e1015;
+            font-family: 'Arial Black', Arial, sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+        }
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        /* --- HOME PAGE MENU --- */
+        #home-page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #191b24;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            color: white;
+            padding: 20px;
+        }
+        #home-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #2a2e3d;
+            padding-bottom: 15px;
+        }
+        #home-logo {
+            font-size: 26px;
+            letter-spacing: -1px;
+            color: #ffffff;
+        }
+        .robux-display {
+            background: #222531;
+            border: 1px solid #3a3f55;
+            border-radius: 6px;
+            padding: 6px 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            color: #00e676;
+        }
+        .robux-display span {
+            background: #00e676;
+            color: black;
+            border-radius: 3px;
+            padding: 1px 5px;
+            font-weight: 900;
+            font-size: 11px;
+        }
+        #home-main {
+            display: flex;
+            flex: 1;
+            gap: 20px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+        .menu-box {
+            background: #222531;
+            border: 1px solid #2a2e3d;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        #game-select-section {
+            flex: 1;
+        }
+        #avatar-edit-section {
+            width: 300px;
+        }
+        .game-card {
+            background: #191b24;
+            border: 1px solid #3a3f55;
+            border-radius: 8px;
+            padding: 12px;
+            width: 180px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .game-thumb {
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(45deg, #ff3366, #ff9800);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+        #btn-play {
+            background: #00e676;
+            color: black;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .input-group {
+            margin-bottom: 12px;
+            font-family: Arial, sans-serif;
+        }
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #b0b5c6;
+            margin-bottom: 4px;
+        }
+        .input-group input {
+            width: 100%;
+            background: #191b24;
+            border: 1px solid #3a3f55;
+            color: white;
+            padding: 7px;
+            box-sizing: border-box;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+        }
+        .color-box {
+            height: 28px;
+            border-radius: 4px;
+            border: 1px solid #3a3f55;
+            cursor: pointer;
+        }
+        #btn-bubox-gen {
+            background: #0074ff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: auto;
+            cursor: pointer;
+        }
+
+        /* --- IN-GAME HUD SYSTEM --- */
+        #game-ui {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+            box-sizing: border-box;
+            padding: 15px;
+            display: none;
+        }
+        #btn-leave {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 30, 30, 0.8);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 12px;
+            pointer-events: auto;
+        }
+        .control-zone {
+            position: absolute;
+            bottom: 35px;
+            pointer-events: auto;
+            touch-action: none;
+        }
+        #joystick-zone {
+            left: 35px;
+            width: 120px;
+            height: 120px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #joystick-node {
+            width: 46px;
+            height: 46px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+        }
+        #jump-btn {
+            right: 35px;
+            width: 85px;
+            height: 85px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 4px solid rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            color: white;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #height-meter {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 14px;
+            border-radius: 4px;
+            color: #ff3366;
+            font-size: 14px;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+    <!-- HOME PAGE -->
+    <div id="home-page">
+        <div id="home-header">
+            <div id="home-logo"><b>ROBLOX</b></div>
+            <div class="robux-display">
+                <span>R$</span> <div id="hub-robux-val">0</div>
+            </div>
+        </div>
+
+        <div id="home-main">
+            <div class="menu-box" id="game-select-section">
+                <h2 style="margin: 0 0 15px 0; font-size: 18px;">Games</h2>
+                <div class="game-card" id="card-toh">
+                    <div class="game-thumb"><b>TOWER OF HELL</b></div>
+                    <div style="font-size: 13px; margin-bottom: 8px;">Tower of Hell</div>
+                    <button id="btn-play">PLAY</button>
+                </div>
+            </div>
+
+            <div class="menu-box" id="avatar-edit-section">
+                <h2 style="margin: 0 0 15px 0; font-size: 18px;">Avatar Editor</h2>
+                
+                <div class="input-group">
+                    <label>Shirt Texture Image URL:</label>
+                    <input type="text" id="shirt-url" placeholder="Paste link here...">
+                </div>
+
+                <div class="input-group">
+                    <label>Pants Texture Image URL:</label>
+                    <input type="text" id="pants-url" placeholder="Paste link here...">
+                </div>
+
+                <div class="input-group">
+                    <label>Body Skin Color:</label>
+                    <div class="color-palette">
+                        <div class="color-box" style="background:#e5c158;" data-color="0xe5c158"></div>
+                        <div class="color-box" style="background:#ffcd03;" data-color="0xffcd03"></div>
+                        <div class="color-box" style="background:#e0a96d;" data-color="0xe0a96d"></div>
+                        <div class="color-box" style="background:#a36c4c;" data-color="0xa36c4c"></div>
+                        <div class="color-box" style="background:#7c5436;" data-color="0x7c5436"></div>
+                    </div>
+                </div>
+
+                <button id="btn-bubox-gen">Claim 25,000 Bubox</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAME HUD UI -->
+    <div id="game-ui">
+        <button id="btn-leave">Leave Game</button>
+        <div id="height-meter">FLOOR <span id="lbl-floor">1</span></div>
+
+        <div id="joystick-zone" class="control-zone">
+            <div id="joystick-node"></div>
+        </div>
+        <div id="jump-btn" class="control-zone">JUMP</div>
+    </div>
+
+    <script>
+        // --- SCENE BUILD ENGINE ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xb0cfff); // Brighter classic Roblox sky
+        scene.fog = new THREE.FogExp2(0xb0cfff, 0.015);
+
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        document.body.appendChild(renderer.domElement);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+        directionalLight.position.set(20, 50, 20);
+        scene.add(directionalLight);
+
+        // --- GLOBAL STORAGE ---
+        let isPlaying = false;
+        let robuxCount = 0;
+        let skinHex = 0xffcd03;
+
+        const textureLoader = new THREE.TextureLoader();
+        const matBaseplate = new THREE.MeshStandardMaterial({ color: 0x2e632e, roughness: 0.8 });
+        const matLava = new THREE.MeshStandardMaterial({ color: 0xff0000, emissive: 0xff1100 });
+        
+        let matSkin = new THREE.MeshStandardMaterial({ color: skinHex, roughness: 0.6 });
+        let matTorso = new THREE.MeshStandardMaterial({ color: 0x0055ff, roughness: 0.6 });
+        let matLegs = new THREE.MeshStandardMaterial({ color: 0x2bbb2b, roughness: 0.6 });
+
+        // --- NOOB RIG GENERATOR ---
+        const playerGroup = new THREE.Group();
+        scene.add(playerGroup);
+
+        const torso = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.2, 0.5), matTorso);
+        torso.position.y = 1.35; torso.castShadow = true; playerGroup.add(torso);
+
+        const head = new THREE.Mesh(new THREE.BoxGeometry(0.64, 0.64, 0.64), matSkin);
+        head.position.y = 0.92; torso.add(head);
+
+        const eyeMat = new THREE.MeshBasicMaterial({color: 0x111111});
+        const eyeL = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.07, 0.02), eyeMat); eyeL.position.set(-0.14, 0.08, 0.33);
+        const eyeR = eyeL.clone(); eyeR.position.x = 0.14; head.add(eyeL, eyeR);
+        const mouth = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.04, 0.02), eyeMat); mouth.position.set(0, -0.12, 0.33); head.add(mouth);
+
+        const leftArmPivot = new THREE.Group(); leftArmPivot.position.set(-0.7, 0.4, 0);
+        const armL = new THREE.Mesh(new THREE.BoxGeometry(0.38, 1.1, 0.38), matSkin); armL.position.y = -0.45; leftArmPivot.add(armL); torso.add(leftArmPivot);
+
+        const rightArmPivot = new THREE.Group(); rightArmPivot.position.set(0.7, 0.4, 0);
+        const armR = armL.clone(); rightArmPivot.add(armR); torso.add(rightArmPivot);
+
+        const leftLegPivot = new THREE.Group(); leftLegPivot.position.set(-0.26, -0.6, 0);
+        const legL = new THREE.Mesh(new THREE.BoxGeometry(0.44, 1.1, 0.44), matLegs); legL.position.y = -0.45; leftLegPivot.add(legL); torso.add(leftLegPivot);
+
+        const rightLegPivot = new THREE.Group(); rightLegPivot.position.set(0.26, -0.6, 0);
+        const legR = legL.clone(); rightLegPivot.add(legR); torso.add(rightLegPivot);
+
+        // --- FIXED COMPACT MAP DESIGN (TIGHT CONNECTIONS) ---
+        const platforms = []; const killBlocks = [];
+
+        function addBlock(x, y, z, w, h, d, material, type = "normal") {
+            const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), material);
+            mesh.position.set(x, y, z);
+            scene.add(mesh);
+            const box = new THREE.Box3().setFromObject(mesh);
+            if (type === "kill") killBlocks.push({ box });
+            else platforms.push({ box, type, topY: y + h/2 });
+        }
+
+        // Spawn Baseplate Floor
+        addBlock(0, -0.5, 0, 60, 1, 60, matBaseplate);
+
+        // Cylindrical Shell Framework Boundary
+        const wallRing = new THREE.Mesh(
+            new THREE.CylinderGeometry(10, 10, 42, 20, 1, true),
+            new THREE.MeshStandardMaterial({ color: 0xeeeeee, side: THREE.BackSide, roughness: 0.6 })
+        );
+        wallRing.position.set(0, 21, 0);
+        scene.add(wallRing);
+
+        // TIGHT & CRISP PATHWAYS (NO LARGE GAPS)
+        addBlock(0, 0.5, 6, 4, 1, 4, new THREE.MeshStandardMaterial({color: 0x333333})); // Entry pad
+        
+        // Floor 1 Setup
+        addBlock(0, 3.5, 2, 8, 0.6, 3, new THREE.MeshStandardMaterial({color: 0x00bcd4}));
+        addBlock(-4, 6.5, -2, 4, 0.6, 4, new THREE.MeshStandardMaterial({color: 0x00bcd4}));
+        addBlock(0, 9.5, -5, 5, 0.6, 5, new THREE.MeshStandardMaterial({color: 0x00bcd4}));
+        addBlock(4, 11.5, -1, 3, 0.2, 3, matLava, "kill"); // Floor 1 hazard
+
+        // Floor 2 Setup
+        addBlock(5, 13.5, 4, 4, 0.6, 4, new THREE.MeshStandardMaterial({color: 0xffeb3b}));
+        addBlock(0, 16.5, 5, 5, 0.6, 3, new THREE.MeshStandardMaterial({color: 0xffeb3b}));
+        addBlock(-5, 19.5, 2, 4, 0.6, 4, new THREE.MeshStandardMaterial({color: 0xffeb3b}));
+        addBlock(-2, 22.0, -3, 6, 0.5, 2, new THREE.MeshStandardMaterial({color: 0xffeb3b}));
+        addBlock(-2, 22.4, -3, 4, 0.2, 0.6, matLava, "kill"); // Center laser stringer
+
+        // Floor 3 Setup
+        addBlock(3, 25.0, -6, 3, 0.6, 3, new THREE.MeshStandardMaterial({color: 0xe91e63}));
+        addBlock(4, 28.5, 0, 3, 0.6, 3, new THREE.MeshStandardMaterial({color: 0xe91e63}));
+        addBlock(0, 31.5, 4, 3, 0.6, 3, new THREE.MeshStandardMaterial({color: 0xe91e63}));
+        addBlock(-4, 34.5, 0, 3, 0.6, 3, new THREE.MeshStandardMaterial({color: 0xe91e63}));
+
+        // Finish Deck Base Top
+        addBlock(0, 38.0, -2, 7, 0.8, 7, new THREE.MeshStandardMaterial({color: 0x00e676}), "goal");
+
+        // --- POINTER AND INTERACTION PHYSICS CAMERA ---
+        let camYaw = Math.PI; let camPitch = 0.2; const camDistance = 7.5;
+        let joyTouchId = null; let camTouchId = null;
+        let lastTx = 0; let lastTy = 0;
+        let joyVec = { x: 0, y: 0 };
+        let joyActive = false; let jumpInput = false;
+
+        const jZone = document.getElementById('joystick-zone');
+        const jNode = document.getElementById('joystick-node');
+        const jBtn = document.getElementById('jump-btn');
+
+        window.addEventListener('touchstart', (e) => {
+            if (!isPlaying) return;
+            e.preventDefault();
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                const t = e.changedTouches[i];
+                const rJ = jBtn.getBoundingClientRect();
+                if (t.clientX >= rJ.left && t.clientX <= rJ.right && t.clientY >= rJ.top && t.clientY <= rJ.bottom) {
+                    jumpInput = true; continue;
+                }
+                const rC = jZone.getBoundingClientRect();
+                if (t.clientX >= rC.left && t.clientX <= rC.right && t.clientY >= rC.top && t.clientY <= rC.bottom) {
+                    joyTouchId = t.identifier; joyActive = true;
+                    readJoy(t, rC); continue;
+                }
+                if (camTouchId === null) {
+                    camTouchId = t.identifier; lastTx = t.clientX; lastTy = t.clientY;
+                }
+            }
+        }, { passive: false });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isPlaying) return;
+            e.preventDefault();
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                const t = e.changedTouches[i];
+                if (joyActive && t.identifier === joyTouchId) readJoy(t, jZone.getBoundingClientRect());
+                if (t.identifier === camTouchId) {
+                    camYaw -= (t.clientX - lastTx) * 0.008;
+                    camPitch = Math.max(-0.3, Math.min(1.3, camPitch + (t.clientY - lastTy) * 0.008));
+                    lastTx = t.clientX; lastTy = t.clientY;
+                }
+            }
+        }, { passive: false });
+
+        window.addEventListener('touchend', (e) => {
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                const t = e.changedTouches[i];
+                if (t.identifier === joyTouchId) {
+                    joyTouchId = null; joyActive = false; joyVec = { x: 0, y: 0 };
+                    jNode.style.transform = 'translate(0px, 0px)';
+                }
+                if (t.identifier === camTouchId) camTouchId = null;
+            }
+        });
+
+        function readJoy(t, r) {
+            const dx = t.clientX - (r.left + r.width/2); const dy = t.clientY - (r.top + r.height/2);
+            const d = Math.min(Math.sqrt(dx*dx + dy*dy), 46);
+            const a = Math.atan2(dy, dx);
+            const mx = Math.cos(a) * d; const my = Math.sin(a) * d;
+            jNode.style.transform = `translate(${mx}px, ${my}px)`;
+            joyVec.x = mx / 46; joyVec.y = my / 46;
+        }
+
+        // --- MENU HOME LOGIC HUB PLATFORM ---
+        document.getElementById('btn-bubox-gen').addEventListener('click', () => {
+            robuxCount += 25000;
+            document.getElementById('hub-robux-val').innerText = robuxCount.toLocaleString();
+        });
+
+        document.getElementById('shirt-url').addEventListener('input', (e) => {
+            if (e.target.value) textureLoader.load(e.target.value, (tx) => { torso.material = new THREE.MeshStandardMaterial({map: tx}); });
+        });
+
+        document.getElementById('pants-url').addEventListener('input', (e) => {
+            if (e.target.value) textureLoader.load(e.target.value, (tx) => {
+                legL.material = new THREE.MeshStandardMaterial({map: tx});
+                legR.material = new THREE.MeshStandardMaterial({map: tx});
+            });
+        });
+
+        document.querySelectorAll('.color-box').forEach(box => {
+            box.addEventListener('click', (e) => {
+                skinHex = parseInt(e.target.getAttribute('data-color'), 16);
+                matSkin.color.setHex(skinHex);
+                armL.material = matSkin; armR.material = matSkin; head.material = matSkin;
+            });
+        });
+
+        // Toggle Switch Screens
+        document.getElementById('btn-play').addEventListener('click', () => {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('game-ui').style.display = 'block';
+            isPlaying = true;
+            resetPlayer();
+        });
+
+        document.getElementById('btn-leave').addEventListener('click', () => {
+            document.getElementById('game-ui').style.display = 'none';
+            document.getElementById('home-page').style.display = 'flex';
+            isPlaying = false;
+        });
+
+        // --- ENGINE PHYSICAL KINETICS EXECUTION ---
+        const pPos = new THREE.Vector3(0, 2, 6);
+        const pVel = new THREE.Vector3();
+        const gravity = -28; const runSpeed = 7.5; const leapPower = 11.2;
+        let grounded = false; let animationTime = 0;
+        const deltaClock = new THREE.Clock();
+
+        function resetPlayer() {
+            pPos.set(0, 2, 6);
+            pVel.set(0, 0, 0);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const dt = Math.min(deltaClock.getDelta(), 0.1);
+
+            if (!isPlaying) {
+                // Static Home Spinning Presentation loop logic
+                playerGroup.position.set(0, 1.2, 0);
+                playerGroup.rotation.y += dt * 0.6;
+                camera.position.set(0, 2.4, 3.8);
+                camera.lookAt(0, 2.2, 0);
+                renderer.render(scene, camera);
+                return;
+            }
+
+            animationTime += dt * 12;
+            let mX = joyActive ? joyVec.x : 0;
+            let mZ = joyActive ? joyVec.y : 0;
+
+            const cForward = new THREE.Vector3(Math.sin(camYaw), 0, Math.cos(camYaw)).normalize();
+            const cRight = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), cForward).normalize();
+
+            const move = new THREE.Vector3();
+            move.addScaledVector(cForward, -mZ); move.addScaledVector(cRight, -mX);
+            if (move.length() > 1) move.normalize();
+
+            pVel.x = move.x * runSpeed;
+            pVel.z = move.z * runSpeed;
+            pVel.y += gravity * dt;
+
+            if (jumpInput) {
+                if (grounded) { pVel.y = leapPower; grounded = false; }
+                jumpInput = false;
+            }
+
+            pPos.addScaledVector(pVel, dt);
+            if (pPos.y < -8) resetPlayer();
+
+            // Box Mapping Boundary
+            const b = new THREE.Box3(
+                new THREE.Vector3(pPos.x - 0.45, pPos.y, pPos.z - 0.25),
+                new THREE.Vector3(pPos.x + 0.45, pPos.y + 1.9, pPos.z + 0.25)
+            );
+            grounded = false;
+
+            for (let l of killBlocks) {
+                if (b.intersectsBox(l.box)) { resetPlayer(); break; }
+            }
+
+            for (let p of platforms) {
+                if (b.intersectsBox(p.box)) {
+                    const ox = Math.min(b.max.x, p.box.max.x) - Math.max(b.min.x, p.box.min.x);
+                    const oy = Math.min(b.max.y, p.box.max.y) - Math.max(b.min.y, p.box.min.y);
+                    const oz = Math.min(b.max.z, p.box.max.z) - Math.max(b.min.z, p.box.min.z);
+
+                    if (oy < ox && oy < oz) {
+                        if (pVel.y <= 0 && b.min.y + oy/2 > p.box.max.y - 0.2) {
+                            pPos.y += oy; pVel.y = 0; grounded = true;
+                            if (p.type === "goal") {
+                                robuxCount += 100000;
+                                document.getElementById('hub-robux-val').innerText = robuxCount.toLocaleString();
+                                document.getElementById('game-ui').style.display = 'none';
+                                document.getElementById('home-page').style.display = 'flex';
+                                isPlaying = false;
+                            }
+                        } else if (pVel.y > 0) { pPos.y -= oy; pVel.y = 0; }
+                    } else if (ox < oz) {
+                        pPos.x += (b.min.x + b.max.x)/2 < (p.box.min.x + p.box.max.x)/2 ? -ox : ox;
+                    } else {
+                        pPos.z += (b.min.z + b.max.z)/2 < (p.box.min.z + p.box.max.z)/2 ? -oz : oz;
+                    }
+                    b.set(new THREE.Vector3(pPos.x - 0.45, pPos.y, pPos.z - 0.25), new THREE.Vector3(pPos.x + 0.45, pPos.y + 1.9, pPos.z + 0.25));
+                }
+            }
+
+            // Sync Elevation Label Counter Floors
+            document.getElementById('lbl-floor').innerText = Math.min(3, Math.max(1, Math.floor(pPos.y / 11) + 1));
+
+            playerGroup.position.copy(pPos);
+            if (Math.abs(pVel.x) > 0.1 || Math.abs(pVel.z) > 0.1) playerGroup.rotation.y = Math.atan2(pVel.x, pVel.z);
+
+            // Limb Animation Actions
+            if (!grounded) {
+                leftArmPivot.rotation.x = -0.5; rightArmPivot.rotation.x = 0.5;
+            } else if (Math.abs(pVel.x) > 0.2 || Math.abs(pVel.z) > 0.2) {
+                const w = Math.sin(animationTime * 1.4);
+                leftArmPivot.rotation.x = w * 0.7; rightArmPivot.rotation.x = -w * 0.7;
+                leftLegPivot.rotation.x = -w * 0.7; rightLegPivot.rotation.x = w * 0.7;
+            } else {
+                leftArmPivot.rotation.x = 0; rightArmPivot.rotation.x = 0;
+                leftLegPivot.rotation.x = 0; rightLegPivot.rotation.x = 0;
+            }
+
+            camera.position.x = pPos.x - camDistance * Math.sin(camYaw) * Math.cos(camPitch);
+            camera.position.y = pPos.y + camDistance * Math.sin(camPitch) + 1.1;
+            camera.position.z = pPos.z - camDistance * Math.cos(camYaw) * Math.cos(camPitch);
+            camera.lookAt(pPos.x, pPos.y + 0.9, pPos.z);
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        animate();
+    </script>
+</body>
+</html>
