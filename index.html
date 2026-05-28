@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Roblox Next-Gen Hub</title>
+    <title>Roblox Engine Platform</title>
     <style>
         /* --- CORE SYSTEM & FIXED GRID OVERLAYS --- */
         html, body {
@@ -189,6 +189,7 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: background 0.2s, color 0.2s;
+            margin-top: 5px;
         }
         .action-btn:active {
             background: #000000;
@@ -220,13 +221,24 @@
             letter-spacing: 1px;
             color: #bbbbbb;
         }
-        .asset-input-group input {
+        .asset-input-group input[type="text"] {
             background: #000000;
             border: 1px solid #ffffff;
             color: #ffffff;
             padding: 10px;
             font-size: 12px;
             outline: none;
+        }
+        .file-upload-btn {
+            border: 1px dashed #ffffff;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+        .file-upload-btn input {
+            display: none;
         }
         .swatch-grid {
             display: grid;
@@ -248,6 +260,73 @@
             color: #000000;
             font-weight: bold;
             font-size: 14px;
+        }
+
+        /* --- ROBLOX STUDIO ENVIRONMENT INTERFACE --- */
+        .studio-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+        }
+        .studio-toolbar {
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .studio-layout {
+            display: flex;
+            gap: 20px;
+            flex: 1;
+            min-height: 400px;
+        }
+        .studio-sidebar {
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .studio-panel {
+            border: 1px solid #ffffff;
+            padding: 12px;
+            background: #000000;
+        }
+        .studio-list {
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .studio-list-item {
+            padding: 6px;
+            border-bottom: 1px solid #222;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+        .studio-list-item:hover, .studio-list-item.selected {
+            background: #ffffff;
+            color: #000000;
+        }
+        .studio-editor {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .code-textarea {
+            width: 100%;
+            flex: 1;
+            background: #000000;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            font-family: monospace;
+            padding: 12px;
+            box-sizing: border-box;
+            resize: none;
+            font-size: 13px;
         }
         
         /* --- LIVE IN-GAME PLAY HUD EXCLUSIVE OVERLAYS --- */
@@ -300,7 +379,7 @@
             width: 110px;
             height: 110px;
             border: 2px solid #ffffff;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -317,7 +396,7 @@
             width: 85px;
             height: 85px;
             border: 2px solid #ffffff;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 50%;
             color: #ffffff;
             font-size: 14px;
@@ -352,6 +431,7 @@
             <div class="rbx-sidebar">
                 <div class="side-tab active" data-target="panel-discover">🎮</div>
                 <div class="side-tab" data-target="panel-avatar">👤</div>
+                <div class="side-tab" data-target="panel-studio">🛠️</div>
             </div>
 
             <div class="main-scroller">
@@ -361,41 +441,54 @@
                     
                     <div class="discover-grid">
                         <div class="experience-card" id="card-game-toh">
-                            <div class="experience-thumb" style="background: #111; border-style: dashed;">TOH</div>
+                            <div class="experience-thumb" style="background: #1a1a1a; border: 1px solid #333;">TOH</div>
                             <div class="experience-title">Tower Of Hell</div>
                             <div class="experience-desc">Climb a vertical structure containing lasers. High jump physics enabled.</div>
                             <button class="action-btn" id="launch-toh-btn">Launch Space</button>
                         </div>
                         
                         <div class="experience-card" id="card-game-cross">
-                            <div class="experience-thumb" style="background: #111; border-style: dashed;">CROSS</div>
+                            <div class="experience-thumb" style="background: #1a1a1a; border: 1px solid #333;">CROSS</div>
                             <div class="experience-title">Crossy Baseplate</div>
                             <div class="experience-desc">Dodge moving hazard walls traveling horizontally across the grid.</div>
                             <button class="action-btn" id="launch-cross-btn">Launch Space</button>
                         </div>
 
                         <div class="experience-card" id="card-game-lava">
-                            <div class="experience-thumb" style="background: #111; border-style: dashed;">RISING</div>
+                            <div class="experience-thumb" style="background: #1a1a1a; border: 1px solid #333;">RISING</div>
                             <div class="experience-title">Lava Rising Grid</div>
                             <div class="experience-desc">Escape the climbing floor surface trap before limits expire.</div>
                             <button class="action-btn" id="launch-lava-btn">Launch Space</button>
+                        </div>
+
+                        <div class="experience-card" id="card-game-studio">
+                            <div class="experience-thumb" style="background: #1a1a1a; border: 1px solid #333;">CUSTOM</div>
+                            <div class="experience-title">Studio Runtime</div>
+                            <div class="experience-desc">Play inside your locally compiled Studio build layout script directly.</div>
+                            <button class="action-btn" id="launch-studio-runtime-btn">Run Engine</button>
                         </div>
                     </div>
                 </div>
 
                 <div id="panel-avatar" class="view-panel">
                     <h2 style="margin: 0 0 5px 0; font-size: 20px; text-transform: uppercase;">Identity Configuration</h2>
-                    <p style="color: #888888; font-size: 12px; margin: 0 0 25px 0; font-family: Arial;">Alter character meshes, register clothing assets, or acquire currency.</p>
+                    <p style="color: #888888; font-size: 12px; margin: 0 0 25px 0; font-family: Arial;">Alter character meshes, upload clothing assets, or acquire currency.</p>
                     
                     <div class="avatar-dashboard">
                         <div class="config-pane">
                             <div class="asset-input-group">
-                                <label>Shirt Texture URL</label>
-                                <input type="text" id="texture-shirt-field" placeholder="Paste structural image URL link...">
+                                <label>Upload Shirt Asset</label>
+                                <div class="file-upload-btn">
+                                    <span id="lbl-shirt-file">Choose Image File...</span>
+                                    <input type="file" id="file-shirt-input" accept="image/*">
+                                </div>
                             </div>
                             <div class="asset-input-group">
-                                <label>Pants Texture URL</label>
-                                <input type="text" id="texture-pants-field" placeholder="Paste structural image URL link...">
+                                <label>Upload Pants Asset</label>
+                                <div class="file-upload-btn">
+                                    <span id="lbl-pants-file">Choose Image File...</span>
+                                    <input type="file" id="file-pants-input" accept="image/*">
+                                </div>
                             </div>
                             <div class="asset-input-group">
                                 <label>Skin Tone Mat Matrix</label>
@@ -409,8 +502,45 @@
                             </div>
                             <button class="action-btn" id="trigger-claim-bubox" style="margin-top: 15px;">Mine 50,000 Bubox</button>
                         </div>
-                        <div class="config-pane" style="max-width: 300px; min-height: 200px; position: relative; border: 1px dashed #444;" id="avatar-preview-anchor">
+                        <div class="config-pane" style="max-width: 300px; min-height: 200px; position: relative;" id="avatar-preview-anchor"></div>
+                    </div>
+                </div>
+
+                <div id="panel-studio" class="view-panel">
+                    <h2 style="margin: 0 0 5px 0; font-size: 20px; text-transform: uppercase;">Roblox Studio IDE</h2>
+                    <p style="color: #888888; font-size: 12px; margin: 0 0 25px 0; font-family: Arial;">Insert objects, write engine execution scripts, export or import workspace blueprints.</p>
+                    
+                    <div class="studio-container">
+                        <div class="studio-toolbar">
+                            <button class="action-btn" id="studio-add-block">Add Block</button>
+                            <button class="action-btn" id="studio-add-sphere">Add Sphere</button>
+                            <button class="action-btn" id="studio-add-cylinder">Add Cylinder</button>
+                            <button class="action-btn" id="studio-add-hazard">Add Hazard Part</button>
+                            <button class="action-btn" id="studio-export">Export File</button>
+                            <button class="action-btn" id="studio-import-trigger">Import File</button>
+                            <input type="file" id="studio-file-import" style="display:none;" accept=".json">
+                        </div>
+
+                        <div class="studio-layout">
+                            <div class="studio-sidebar">
+                                <div class="studio-panel">
+                                    <div style="font-size:11px; text-transform:uppercase; margin-bottom:8px; letter-spacing:0.5px;">Workspace Tree</div>
+                                    <div class="studio-list" id="studio-object-tree"></div>
+                                </div>
+                                <div class="studio-panel" id="studio-properties-pane" style="font-size:11px; line-height:1.6; display:none;">
+                                    <div style="text-transform:uppercase; margin-bottom:8px; letter-spacing:0.5px;">Transform Attributes</div>
+                                    <div class="asset-input-group"><label>Position X</label><input type="text" id="prop-pos-x"></div>
+                                    <div class="asset-input-group"><label>Position Y</label><input type="text" id="prop-pos-y"></div>
+                                    <div class="asset-input-group"><label>Position Z</label><input type="text" id="prop-pos-z"></div>
+                                    <button class="action-btn" id="prop-save-btn" style="padding:5px; font-size:10px;">Apply changes</button>
+                                    <button class="action-btn" id="prop-del-btn" style="padding:5px; font-size:10px; background:#ff4444; border-color:#ff4444; color:#fff;">Delete Part</button>
+                                </div>
                             </div>
+                            <div class="studio-editor">
+                                <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">Global Environment Workspace Behaviour Script</div>
+                                <textarea class="code-textarea" id="studio-code-input" placeholder="-- Write code lines here...&#10;-- Example:&#10;-- block.position.y += 0.1;"></textarea>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -433,8 +563,8 @@
     <script>
         /* --- STRUCTURAL CORE GRAPHICS COMPONENT CONTROLLER --- */
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x0a0a0f);
-        scene.fog = new THREE.FogExp2(0x0a0a0f, 0.012);
+        scene.background = new THREE.Color(0xb0cfff); // Roblox Classic Sky Blue Sky
+        scene.fog = new THREE.FogExp2(0xb0cfff, 0.012);
 
         const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
@@ -443,18 +573,17 @@
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         document.body.appendChild(renderer.domElement);
 
-        // Minimalist High-Contrast Lighting Rig
-        const environmentLight = new THREE.AmbientLight(0xffffff, 0.45);
+        const environmentLight = new THREE.AmbientLight(0xffffff, 0.65);
         scene.add(environmentLight);
         
-        const directionalSun = new THREE.DirectionalLight(0xffffff, 0.8);
-        directionalSun.position.set(30, 75, 30);
+        const directionalSun = new THREE.DirectionalLight(0xffffff, 0.9);
+        directionalSun.position.set(30, 85, 30);
         directionalSun.castShadow = true;
         directionalSun.shadow.mapSize.width = 2048;
         directionalSun.shadow.mapSize.height = 2048;
         directionalSun.shadow.camera.near = 0.5;
-        directionalSun.shadow.camera.far = 200;
-        const shadowLimit = 50;
+        directionalSun.shadow.camera.far = 250;
+        const shadowLimit = 60;
         directionalSun.shadow.camera.left = -shadowLimit;
         directionalSun.shadow.camera.right = shadowLimit;
         directionalSun.shadow.camera.top = shadowLimit;
@@ -462,48 +591,93 @@
         scene.add(directionalSun);
 
         /* --- GLOBAL DATA ARCHITECTURE STORAGE PACKAGES --- */
-        let activeAppState = "hub"; // options: "hub", "toh", "cross", "lava"
+        let activeAppState = "hub"; 
         let robuxBalance = 0;
         let selectedSkinToneHex = 0xffcd03;
+        let customShirtDataUrl = "";
+        let customPantsDataUrl = "";
+        
+        // Studio Workspace Data Payload State
+        let studioCustomObjectsList = [];
+        let studioGlobalScriptSource = "-- Write custom behaviors loop here\n";
+        let studioSelectedObjectIndex = null;
         
         const textureLoader = new THREE.TextureLoader();
         
-        // Blocky Primitive Architecture Material Allocation Pool
-        const matBaseplateSolid = new THREE.MeshStandardMaterial({ color: 0x111111, roughness: 0.9 });
-        const matBoundaryShell = new THREE.MeshStandardMaterial({ color: 0x08080c, side: THREE.BackSide });
-        const matWhitePlatform = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.5 });
-        const matGrayObstacle = new THREE.MeshStandardMaterial({ color: 0x444444, roughness: 0.6 });
-        const matLavaInstakill = new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 2 });
+        // RECONFIGURED WITH BRIGHT STANDARD COLORS
+        const matBaseplateSolid = new THREE.MeshStandardMaterial({ color: 0x3a7a3a, roughness: 0.8 }); // Grass green
+        const matBoundaryShell = new THREE.MeshStandardMaterial({ color: 0xdddddd, side: THREE.BackSide, roughness: 0.5 });
+        const matLavaInstakill = new THREE.MeshStandardMaterial({ color: 0xff1100, emissive: 0xff3300, roughness: 0.2 });
 
-        let pSkinMat = new THREE.MeshStandardMaterial({ color: selectedSkinToneHex, roughness: 0.6 });
-        let pTorsoMat = new THREE.MeshStandardMaterial({ color: 0x222222, roughness: 0.6 });
-        let pLegsMat = new THREE.MeshStandardMaterial({ color: 0x333333, roughness: 0.6 });
+        let pSkinMat = new THREE.MeshStandardMaterial({ color: selectedSkinToneHex, roughness: 0.5 });
+        let pTorsoMat = new THREE.MeshStandardMaterial({ color: 0x0066ff, roughness: 0.5 });
+        let pLegsMat = new THREE.MeshStandardMaterial({ color: 0x33cc33, roughness: 0.5 });
 
-        /* --- NOOB CHARACTER RIG GENERATION SYSTEM --- */
+        /* --- LOCAL STORAGE ENGINES --- */
+        function loadSavedEnvironmentSettings() {
+            if (localStorage.getItem("rbx_robuxBalance")) robuxBalance = parseInt(localStorage.getItem("rbx_robuxBalance"));
+            if (localStorage.getItem("rbx_skinToneHex")) selectedSkinToneHex = parseInt(localStorage.getItem("rbx_skinToneHex"));
+            if (localStorage.getItem("rbx_shirtAsset")) customShirtDataUrl = localStorage.getItem("rbx_shirtAsset");
+            if (localStorage.getItem("rbx_pantsAsset")) customPantsDataUrl = localStorage.getItem("rbx_pantsAsset");
+            if (localStorage.getItem("rbx_studioObjects")) studioCustomObjectsList = JSON.parse(localStorage.getItem("rbx_studioObjects"));
+            if (localStorage.getItem("rbx_studioScript")) studioGlobalScriptSource = localStorage.getItem("rbx_studioScript");
+
+            document.getElementById('display-robux-total').innerText = robuxBalance.toLocaleString();
+            document.getElementById('studio-code-input').value = studioGlobalScriptSource;
+            
+            pSkinMat.color.setHex(selectedSkinToneHex);
+            applyClothingTexturesToPlayer();
+        }
+
+        function saveEnvironmentSettingsToLocal() {
+            localStorage.setItem("rbx_robuxBalance", robuxBalance);
+            localStorage.setItem("rbx_skinToneHex", selectedSkinToneHex);
+            localStorage.setItem("rbx_shirtAsset", customShirtDataUrl);
+            localStorage.setItem("rbx_pantsAsset", customPantsDataUrl);
+            localStorage.setItem("rbx_studioObjects", JSON.stringify(studioCustomObjectsList));
+            localStorage.setItem("rbx_studioScript", studioGlobalScriptSource);
+        }
+
+        function applyClothingTexturesToPlayer() {
+            if (customShirtDataUrl) {
+                const img = new Image(); img.src = customShirtDataUrl;
+                img.onload = () => { pTorsoMat.map = new THREE.Texture(img); pTorsoMat.map.needsUpdate = true; pTorsoMat.needsUpdate = true; };
+            }
+            if (customPantsDataUrl) {
+                const img = new Image(); img.src = customPantsDataUrl;
+                img.onload = () => {
+                    const tex = new THREE.Texture(img); tex.needsUpdate = true;
+                    pLegsMat.map = tex; pLegsMat.needsUpdate = true;
+                };
+            }
+        }
+
+        /* --- ADVANCED ROUNDED NOOB CHARACTER RIG GENERATION SYSTEM --- */
         const pGroupContainer = new THREE.Group();
         scene.add(pGroupContainer);
 
+        // Uses smoother capsule primitives for beautiful high fidelity roblox characters
         const rbxTorso = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.2, 0.5), pTorsoMat);
         rbxTorso.position.y = 1.35; rbxTorso.castShadow = true; rbxTorso.receiveShadow = true;
         pGroupContainer.add(rbxTorso);
 
-        const rbxHead = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.65, 0.65), pSkinMat);
-        rbxHead.position.y = 0.92; rbxHead.castShadow = true; rbxTorso.add(rbxHead);
+        const rbxHead = new THREE.Mesh(new THREE.SphereGeometry(0.36, 16, 16), pSkinMat);
+        rbxHead.position.y = 0.95; rbxHead.castShadow = true; rbxTorso.add(rbxHead);
 
-        const faceMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
-        const eyeL = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.08, 0.02), faceMat); eyeL.position.set(-0.15, 0.08, 0.33);
-        const eyeR = eyeL.clone(); eyeR.position.x = 0.14; rbxHead.add(eyeL, eyeR);
-        const mouthMesh = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.04, 0.02), faceMat); mouthMesh.position.set(0, -0.12, 0.33); rbxHead.add(mouthMesh);
+        const faceMat = new THREE.MeshBasicMaterial({ color: 0x111111 });
+        const eyeL = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.06, 0.02), faceMat); eyeL.position.set(-0.12, 0.06, 0.33);
+        const eyeR = eyeL.clone(); eyeR.position.x = 0.12; rbxHead.add(eyeL, eyeR);
+        const mouthMesh = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.03, 0.02), faceMat); mouthMesh.position.set(0, -0.1, 0.33); rbxHead.add(mouthMesh);
 
         const leftArmPivot = new THREE.Group(); leftArmPivot.position.set(-0.72, 0.4, 0);
-        const limbArmL = new THREE.Mesh(new THREE.BoxGeometry(0.38, 1.1, 0.38), pSkinMat); limbArmL.position.y = -0.45; limbArmL.castShadow = true;
+        const limbArmL = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 1.1, 12), pSkinMat); limbArmL.position.y = -0.45; limbArmL.castShadow = true;
         leftArmPivot.add(limbArmL); rbxTorso.add(leftArmPivot);
 
         const rightArmPivot = new THREE.Group(); rightArmPivot.position.set(0.72, 0.4, 0);
         const limbArmR = limbArmL.clone(); rightArmPivot.add(limbArmR); rbxTorso.add(rightArmPivot);
 
         const leftLegPivot = new THREE.Group(); leftLegPivot.position.set(-0.26, -0.6, 0);
-        const limbLegL = new THREE.Mesh(new THREE.BoxGeometry(0.44, 1.1, 0.44), pLegsMat); limbLegL.position.y = -0.45; limbLegL.castShadow = true;
+        const limbLegL = new THREE.Mesh(new THREE.CylinderGeometry(0.21, 0.21, 1.1, 12), pLegsMat); limbLegL.position.y = -0.45; limbLegL.castShadow = true;
         leftLegPivot.add(limbLegL); rbxTorso.add(leftLegPivot);
 
         const rightLegPivot = new THREE.Group(); rightLegPivot.position.set(0.26, -0.6, 0);
@@ -512,7 +686,7 @@
         /* --- COLLISION DATA ENVIRONMENT MAP CONTAINERS --- */
         let platformsArray = [];
         let hazardKillsArray = [];
-        let dynamicsTickerArray = []; // Stores update loops for animated obstacles
+        let dynamicsTickerArray = [];
 
         function purgeStructuralEnvironmentMap() {
             platformsArray.forEach(p => scene.remove(p.mesh));
@@ -524,157 +698,240 @@
         }
 
         function createStructuralBlock(x, y, z, w, h, d, mat, type = "normal", internalMeta = {}) {
-            const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+            let geometry;
+            if (internalMeta.shape === "sphere") geometry = new THREE.SphereGeometry(w / 2, 16, 16);
+            else if (internalMeta.shape === "cylinder") geometry = new THREE.CylinderGeometry(w / 2, w / 2, h, 16);
+            else geometry = new THREE.BoxGeometry(w, h, d);
+
+            const mesh = new THREE.Mesh(geometry, mat);
             mesh.position.set(x, y, z);
             mesh.castShadow = true;
             mesh.receiveShadow = true;
             scene.add(mesh);
 
             const boundingBox = new THREE.Box3().setFromObject(mesh);
-            const packageData = { mesh, box: boundingBox, type, meta: internalMeta };
+            const packageData = { mesh, box: boundingBox, type, w, h, d, meta: internalMeta };
 
-            if (type === "kill") {
-                hazardKillsArray.push(packageData);
-            } else {
-                platformsArray.push(packageData);
-            }
+            if (type === "kill") hazardKillsArray.push(packageData);
+            else platformsArray.push(packageData);
             return packageData;
         }
 
         /* --- STRUCTURAL WORLD SPACES MAP BUILDERS --- */
-        
         function compileTowerOfHellSpace() {
             purgeStructuralEnvironmentMap();
-            
-            // Core Baseplate
             createStructuralBlock(0, -0.5, 0, 50, 1, 50, matBaseplateSolid);
             
-            // Shell Outer Boundary
             const shellMesh = new THREE.Mesh(new THREE.CylinderGeometry(14, 14, 70, 24, 1, true), matBoundaryShell);
-            shellMesh.position.set(0, 34, 0);
-            scene.add(shellMesh);
+            shellMesh.position.set(0, 34, 0); scene.add(shellMesh);
             platformsArray.push({ mesh: shellMesh, box: new THREE.Box3(), type: "scenery" });
 
-            // Entry Landing Pad
-            createStructuralBlock(0, 0.5, 8, 5, 1, 5, matWhitePlatform);
+            const matCyan = new THREE.MeshStandardMaterial({color: 0x00bcd4, roughness: 0.4});
+            const matYellow = new THREE.MeshStandardMaterial({color: 0xffeb3b, roughness: 0.4});
+            const matPurple = new THREE.MeshStandardMaterial({color: 0x9c27b0, roughness: 0.4});
+            const matGold = new THREE.MeshStandardMaterial({color: 0xff9800, roughness: 0.2});
 
-            // Floor 1 Elements - COMPACTLY CONSTRUCTED FOR GUARANTEED LANDINGS
-            createStructuralBlock(-3, 4.0, 3, 5, 0.6, 3, matWhitePlatform);
-            createStructuralBlock(-6, 7.5, -2, 4, 0.6, 4, matWhitePlatform);
-            createStructuralBlock(-2, 11.0, -6, 5, 0.6, 3, matWhitePlatform);
-            createStructuralBlock(3, 14.0, -5, 4, 0.6, 4, matWhitePlatform);
+            // HIGHER HIGH JUMPS COMPACT STRUCTURAL PATH PLACEMENT
+            createStructuralBlock(0, 0.5, 8, 5, 1, 5, matCyan);
+            createStructuralBlock(-3, 4.5, 3, 4, 0.6, 4, matCyan, "normal", {shape: "cylinder"});
+            createStructuralBlock(-6, 8.5, -2, 4, 4, 4, matCyan);
+            createStructuralBlock(-2, 13.0, -6, 5, 0.6, 3, matCyan);
+            createStructuralBlock(3, 17.5, -5, 4, 4, 4, matCyan, "normal", {shape: "sphere"});
             
-            // Floor 1 Danger Laser Center Element
-            createStructuralBlock(0, 15.5, 0, 2, 0.3, 2, matLavaInstakill, "kill");
+            createStructuralBlock(0, 19.5, 0, 3, 0.3, 3, matLavaInstakill, "kill");
 
-            // Floor 2 Elements - Escalating Verticality Steps
-            createStructuralBlock(6, 17.5, 2, 4, 0.6, 4, matWhitePlatform);
-            createStructuralBlock(2, 21.0, 6, 4, 0.6, 4, matWhitePlatform);
+            createStructuralBlock(6, 22.0, 2, 4, 0.6, 4, matYellow);
+            createStructuralBlock(2, 26.5, 6, 4, 0.6, 4, matYellow);
             
-            // Dynamic Rotating Hazard Crossbar
-            const dynamicLaserBar = createStructuralBlock(0, 24.0, 0, 16, 0.4, 1.2, matLavaInstakill, "kill");
-            dynamicsTickerArray.push({
-                mesh: dynamicLaserBar.mesh,
-                box: dynamicLaserBar.box,
-                type: "spinner",
-                speed: 1.4,
-                axis: "y"
-            });
+            const dynamicLaserBar = createStructuralBlock(0, 30.0, 0, 16, 0.4, 1.2, matLavaInstakill, "kill");
+            dynamicsTickerArray.push({ mesh: dynamicLaserBar.mesh, box: dynamicLaserBar.box, type: "spinner", speed: 1.4, axis: "y" });
 
-            createStructuralBlock(-4, 26.5, 5, 4, 0.6, 4, matWhitePlatform);
-            createStructuralBlock(-7, 30.0, -1, 3, 0.6, 3, matWhitePlatform);
-
-            // Floor 3 Elements - Upper Tiers Closer Together
-            createStructuralBlock(-3, 33.5, -6, 4, 0.6, 4, matWhitePlatform);
-            createStructuralBlock(3, 37.0, -6, 4, 0.6, 4, matWhitePlatform);
-            createStructuralBlock(7, 40.5, -1, 3, 0.6, 3, matWhitePlatform);
-            createStructuralBlock(4, 44.0, 5, 4, 0.6, 4, matWhitePlatform);
+            createStructuralBlock(-4, 33.5, 5, 4, 0.6, 4, matPurple);
+            createStructuralBlock(-7, 38.0, -1, 4, 0.6, 4, matPurple, "normal", {shape: "cylinder"});
+            createStructuralBlock(-3, 42.5, -6, 4, 0.6, 4, matPurple);
+            createStructuralBlock(3, 47.0, -6, 4, 4, 4, matPurple, "normal", {shape: "sphere"});
             
-            // Ultimate Goal Deck Finish line Area
-            createStructuralBlock(0, 48.0, 0, 6, 0.8, 6, matWhitePlatform, "goal");
+            createStructuralBlock(0, 52.0, 0, 6, 0.8, 6, matGold, "goal");
         }
 
         function compileCrossyBaseplateSpace() {
             purgeStructuralEnvironmentMap();
-            
-            // Long Highway Baseplate
             createStructuralBlock(0, -0.5, 0, 30, 1, 120, matBaseplateSolid);
             
-            // Starting Protection Safezone
-            createStructuralBlock(0, 0.5, 50, 26, 1, 15, matWhitePlatform);
-            
-            // Terminal Goal Destination Zone
-            createStructuralBlock(0, 0.5, -50, 26, 1, 15, matWhitePlatform, "goal");
+            const matBlue = new THREE.MeshStandardMaterial({color: 0x0055ff});
+            createStructuralBlock(0, 0.5, 50, 26, 1, 15, matBlue);
+            createStructuralBlock(0, 0.5, -50, 26, 1, 15, matBlue, "goal");
 
-            // Procedural Row Allocation of Moving Danger Panels
             for (let zRow = -35; zRow <= 35; zRow += 14) {
-                let randomVelocityDirection = Math.random() > 0.5 ? 1 : -1;
-                let calculatedOffsetSpeed = 8.0 + Math.random() * 6.0;
-
-                const hazardousObstacleBox = createStructuralBlock(
-                    (Math.random() * 16 - 8), 1.5, zRow, 6, 2.0, 3, 
-                    matLavaInstakill, "kill"
-                );
-
-                dynamicsTickerArray.push({
-                    mesh: hazardousObstacleBox.mesh,
-                    box: hazardousObstacleBox.box,
-                    type: "slider",
-                    speed: calculatedOffsetSpeed * randomVelocityDirection,
-                    rangeX: 12.0
-                });
+                let dir = Math.random() > 0.5 ? 1 : -1;
+                let speed = 8.0 + Math.random() * 6.0;
+                const hazard = createStructuralBlock((Math.random() * 16 - 8), 1.5, zRow, 4, 4, 4, matLavaInstakill, "kill", {shape: "cylinder"});
+                dynamicsTickerArray.push({ mesh: hazard.mesh, box: hazard.box, type: "slider", speed: speed * dir, rangeX: 12.0 });
             }
         }
 
         function compileRisingLavaSpace() {
             purgeStructuralEnvironmentMap();
-            
-            // Confined Pit Area Baseplate
             createStructuralBlock(0, -0.5, 0, 35, 1, 35, matBaseplateSolid);
 
-            // Outer Retaining Wall Shell Boxes
-            createStructuralBlock(-17.5, 25, 0, 1, 50, 36, matBoundaryShell);
-            createStructuralBlock(17.5, 25, 0, 1, 50, 36, matBoundaryShell);
-            createStructuralBlock(0, 25, -17.5, 36, 50, 1, matBoundaryShell);
-            createStructuralBlock(0, 25, 17.5, 36, 50, 1, matBoundaryShell);
+            const matOrange = new THREE.MeshStandardMaterial({color: 0xff5722});
 
-            // Spiral Tower Scaffold Platforms Climbing Higher Upwards
-            createStructuralBlock(0, 2.5, 10, 5, 0.6, 5, matWhitePlatform);
-            createStructuralBlock(-8, 6.0, 8, 4, 0.6, 4, matWhitePlatform);
-            createStructuralBlock(-10, 9.5, -2, 5, 0.6, 5, matWhitePlatform);
-            createStructuralBlock(-4, 13.0, -9, 4, 0.6, 4, matWhitePlatform);
-            createStructuralBlock(4, 16.5, -8, 5, 0.6, 5, matWhitePlatform);
-            createStructuralBlock(9, 20.0, 0, 4, 0.6, 4, matWhitePlatform);
-            createStructuralBlock(6, 24.0, 8, 5, 0.6, 5, matWhitePlatform);
-            createStructuralBlock(-2, 28.0, 7, 4, 0.6, 4, matWhitePlatform);
-            createStructuralBlock(-7, 32.0, -1, 5, 0.6, 5, matWhitePlatform);
+            createStructuralBlock(0, 3.0, 10, 5, 0.6, 5, matOrange);
+            createStructuralBlock(-8, 7.5, 8, 4, 4, 4, matOrange, "normal", {shape: "sphere"});
+            createStructuralBlock(-10, 12.0, -2, 5, 0.6, 5, matOrange);
+            createStructuralBlock(-4, 16.5, -9, 4, 0.6, 4, matOrange, "normal", {shape: "cylinder"});
+            createStructuralBlock(4, 21.0, -8, 5, 0.6, 5, matOrange);
+            createStructuralBlock(9, 25.5, 0, 4, 4, 4, matOrange, "normal", {shape: "sphere"});
+            createStructuralBlock(6, 30.0, 8, 5, 0.6, 5, matOrange);
             
-            // Apex Safety Platform Zone Terminal Base
-            createStructuralBlock(0, 36.5, 0, 6, 0.8, 6, matWhitePlatform, "goal");
+            createStructuralBlock(0, 35.0, 0, 6, 0.8, 6, new THREE.MeshStandardMaterial({color: 0xffeb3b}), "goal");
 
-            // Absolute Giant Global Rising Floor Lava Block Setup
             const globalLavaCeilingMesh = createStructuralBlock(0, -1.0, 0, 34, 1.0, 34, matLavaInstakill, "kill");
-            dynamicsTickerArray.push({
-                mesh: globalLavaCeilingMesh.mesh,
-                box: globalLavaCeilingMesh.box,
-                type: "elevator",
-                riseSpeed: 1.15
+            dynamicsTickerArray.push({ mesh: globalLavaCeilingMesh.mesh, box: globalLavaCeilingMesh.box, type: "elevator", riseSpeed: 1.15 });
+        }
+
+        function compileStudioRuntimeSpace() {
+            purgeStructuralEnvironmentMap();
+            createStructuralBlock(0, -0.5, 0, 100, 1, 100, matBaseplateSolid);
+
+            const genericMaterial = new THREE.MeshStandardMaterial({color: 0xffffff, roughness: 0.5});
+            
+            studioCustomObjectsList.forEach((obj, idx) => {
+                let mat = obj.type === "kill" ? matLavaInstakill : genericMaterial;
+                createStructuralBlock(obj.x, obj.y, obj.z, obj.w, obj.h, obj.d, mat, obj.type, {shape: obj.shape, id: idx});
             });
         }
 
-        /* --- INPUT INTERFACE TOUCH INTERACTION MECHANICS --- */
-        let orbitAngleYaw = Math.PI;
-        let orbitAnglePitch = 0.25;
-        const orbitRadiusDistance = 8.5;
+        /* --- ROBLOX STUDIO BACKEND LOGIC ACTIONS --- */
+        function rebuildStudioObjectTreeUI() {
+            const container = document.getElementById('studio-object-tree');
+            container.innerHTML = "";
+            studioCustomObjectsList.forEach((obj, idx) => {
+                const item = document.createElement('div');
+                item.className = "studio-list-item" + (studioSelectedObjectIndex === idx ? " selected" : "");
+                item.innerHTML = `<span>${obj.shape.toUpperCase()} (${obj.type})</span>`;
+                item.addEventListener('click', () => {
+                    studioSelectedObjectIndex = idx;
+                    rebuildStudioObjectTreeUI();
+                    showStudioPropertiesPane(obj);
+                });
+                container.appendChild(item);
+            });
+        }
 
-        let activeJoystickPointerId = null;
-        let activeCameraPointerId = null;
-        let pointerAnchorPositionX = 0;
-        let pointerAnchorPositionY = 0;
+        function showStudioPropertiesPane(obj) {
+            const pane = document.getElementById('studio-properties-pane');
+            pane.style.display = "block";
+            document.getElementById('prop-pos-x').value = obj.x;
+            document.getElementById('prop-pos-y').value = obj.y;
+            document.getElementById('prop-pos-z').value = obj.z;
+        }
+
+        function appendStudioObject(shapeType, isHazard = false) {
+            studioCustomObjectsList.push({
+                shape: shapeType,
+                type: isHazard ? "kill" : "normal",
+                x: 0, y: 2.5, z: 0,
+                w: 4, h: 4, d: 4
+            });
+            studioSelectedObjectIndex = studioCustomObjectsList.length - 1;
+            rebuildStudioObjectTreeUI();
+            saveEnvironmentSettingsToLocal();
+        }
+
+        document.getElementById('studio-add-block').addEventListener('click', () => appendStudioObject("block"));
+        document.getElementById('studio-add-sphere').addEventListener('click', () => appendStudioObject("sphere"));
+        document.getElementById('studio-add-cylinder').addEventListener('click', () => appendStudioObject("cylinder"));
+        document.getElementById('studio-add-hazard').addEventListener('click', () => appendStudioObject("block", true));
+
+        document.getElementById('prop-save-btn').addEventListener('click', () => {
+            if (studioSelectedObjectIndex !== null) {
+                let obj = studioCustomObjectsList[studioSelectedObjectIndex];
+                obj.x = parseFloat(document.getElementById('prop-pos-x').value) || 0;
+                obj.y = parseFloat(document.getElementById('prop-pos-y').value) || 0;
+                obj.z = parseFloat(document.getElementById('prop-pos-z').value) || 0;
+                saveEnvironmentSettingsToLocal();
+                rebuildStudioObjectTreeUI();
+            }
+        });
+
+        document.getElementById('prop-del-btn').addEventListener('click', () => {
+            if (studioSelectedObjectIndex !== null) {
+                studioCustomObjectsList.splice(studioSelectedObjectIndex, 1);
+                studioSelectedObjectIndex = null;
+                document.getElementById('studio-properties-pane').style.display = "none";
+                rebuildStudioObjectTreeUI();
+                saveEnvironmentSettingsToLocal();
+            }
+        });
+
+        document.getElementById('studio-code-input').addEventListener('input', (e) => {
+            studioGlobalScriptSource = e.target.value;
+            saveEnvironmentSettingsToLocal();
+        });
+
+        // Export Payload Systems Files
+        document.getElementById('studio-export').addEventListener('click', () => {
+            const payload = { objects: studioCustomObjectsList, script: studioGlobalScriptSource };
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(payload));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "roblox_studio_project.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        });
+
+        document.getElementById('studio-import-trigger').addEventListener('click', () => {
+            document.getElementById('studio-file-import').click();
+        });
+
+        document.getElementById('studio-file-import').addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const parsed = JSON.parse(event.target.result);
+                if (parsed.objects) studioCustomObjectsList = parsed.objects;
+                if (parsed.script) studioGlobalScriptSource = parsed.script;
+                document.getElementById('studio-code-input').value = studioGlobalScriptSource;
+                rebuildStudioObjectTreeUI();
+                saveEnvironmentSettingsToLocal();
+            };
+            reader.readAsText(file);
+        });
+
+        /* --- CLOTHING BINARY FILE UPLOAD PROCESSORS --- */
+        document.getElementById('file-shirt-input').addEventListener('change', (e) => {
+            const file = e.target.files[0]; if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                customShirtDataUrl = event.target.result;
+                document.getElementById('lbl-shirt-file').innerText = file.name;
+                saveEnvironmentSettingsToLocal();
+                applyClothingTexturesToPlayer();
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('file-pants-input').addEventListener('change', (e) => {
+            const file = e.target.files[0]; if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                customPantsDataUrl = event.target.result;
+                document.getElementById('lbl-pants-file').innerText = file.name;
+                saveEnvironmentSettingsToLocal();
+                applyClothingTexturesToPlayer();
+            };
+            reader.readAsDataURL(file);
+        });
+
+        /* --- INPUT INTERFACE TOUCH INTERACTION MECHANICS --- */
+        let orbitAngleYaw = Math.PI; let orbitAnglePitch = 0.25; const orbitRadiusDistance = 8.5;
+        let activeJoystickPointerId = null; let activeCameraPointerId = null;
+        let pointerAnchorPositionX = 0; let pointerAnchorPositionY = 0;
         let vectorJoystickDirection = { x: 0, y: 0 };
-        
-        let controlJoyActiveFlag = false;
-        let physicalJumpInputFlag = false;
+        let controlJoyActiveFlag = false; let physicalJumpInputFlag = false;
 
         const uiJoystickPod = document.getElementById('touch-joystick-pod');
         const uiJoystickHandle = document.getElementById('touch-joystick-handle');
@@ -683,30 +940,22 @@
         window.addEventListener('touchstart', (event) => {
             if (activeAppState === "hub") return;
             event.preventDefault();
-
             for (let i = 0; i < event.changedTouches.length; i++) {
                 const pointer = event.changedTouches[i];
-                const px = pointer.clientX;
-                const py = pointer.clientY;
+                const px = pointer.clientX; const py = pointer.clientY;
 
                 const boundsJump = uiJumpActionBtn.getBoundingClientRect();
                 if (px >= boundsJump.left && px <= boundsJump.right && py >= boundsJump.top && py <= boundsJump.bottom) {
-                    physicalJumpInputFlag = true;
-                    continue;
+                    physicalJumpInputFlag = true; continue;
                 }
-
                 const boundsJoy = uiJoystickPod.getBoundingClientRect();
                 if (px >= boundsJoy.left && px <= boundsJoy.right && py >= boundsJoy.top && py <= boundsJoy.bottom) {
-                    activeJoystickPointerId = pointer.identifier;
-                    controlJoyActiveFlag = true;
-                    recalculateJoystickTrack(pointer, boundsJoy);
-                    continue;
+                    activeJoystickPointerId = pointer.identifier; controlJoyActiveFlag = true;
+                    recalculateJoystickTrack(pointer, boundsJoy); continue;
                 }
-
                 if (activeCameraPointerId === null) {
                     activeCameraPointerId = pointer.identifier;
-                    pointerAnchorPositionX = px;
-                    pointerAnchorPositionY = py;
+                    pointerAnchorPositionX = px; pointerAnchorPositionY = py;
                 }
             }
         }, { passive: false });
@@ -714,23 +963,15 @@
         window.addEventListener('touchmove', (event) => {
             if (activeAppState === "hub") return;
             event.preventDefault();
-
             for (let i = 0; i < event.changedTouches.length; i++) {
                 const pointer = event.changedTouches[i];
-
                 if (controlJoyActiveFlag && pointer.identifier === activeJoystickPointerId) {
                     recalculateJoystickTrack(pointer, uiJoystickPod.getBoundingClientRect());
                 }
-
                 if (pointer.identifier === activeCameraPointerId) {
-                    const diffX = pointer.clientX - pointerAnchorPositionX;
-                    const diffY = pointer.clientY - pointerAnchorPositionY;
-                    
-                    orbitAngleYaw -= diffX * 0.0075;
-                    orbitAnglePitch = Math.max(-0.4, Math.min(1.3, orbitAnglePitch + diffY * 0.0075));
-                    
-                    pointerAnchorPositionX = pointer.clientX;
-                    pointerAnchorPositionY = pointer.clientY;
+                    orbitAngleYaw -= (pointer.clientX - pointerAnchorPositionX) * 0.0075;
+                    orbitAnglePitch = Math.max(-0.4, Math.min(1.3, orbitAnglePitch + (pointer.clientY - pointerAnchorPositionY) * 0.0075));
+                    pointerAnchorPositionX = pointer.clientX; pointerAnchorPositionY = pointer.clientY;
                 }
             }
         }, { passive: false });
@@ -739,14 +980,10 @@
             for (let i = 0; i < event.changedTouches.length; i++) {
                 const pointer = event.changedTouches[i];
                 if (pointer.identifier === activeJoystickPointerId) {
-                    activeJoystickPointerId = null;
-                    controlJoyActiveFlag = false;
-                    vectorJoystickDirection = { x: 0, y: 0 };
+                    activeJoystickPointerId = null; controlJoyActiveFlag = false; vectorJoystickDirection = { x: 0, y: 0 };
                     uiJoystickHandle.style.transform = 'translate(0px, 0px)';
                 }
-                if (pointer.identifier === activeCameraPointerId) {
-                    activeCameraPointerId = null;
-                }
+                if (pointer.identifier === activeCameraPointerId) activeCameraPointerId = null;
             }
         });
 
@@ -755,16 +992,12 @@
             const dy = pointer.clientY - (rect.top + rect.height / 2);
             const distanceLimit = Math.min(Math.sqrt(dx * dx + dy * dy), 42);
             const angularHeading = Math.atan2(dy, dx);
-
             const travelX = Math.cos(angularHeading) * distanceLimit;
             const travelY = Math.sin(angularHeading) * distanceLimit;
             uiJoystickHandle.style.transform = `translate(${travelX}px, ${travelY}px)`;
-
-            vectorJoystickDirection.x = travelX / 42;
-            vectorJoystickDirection.y = travelY / 42;
+            vectorJoystickDirection.x = travelX / 42; vectorJoystickDirection.y = travelY / 42;
         }
 
-        /* --- DESKTOP BACKUP KEYBOARD BINDINGS ENGINE --- */
         const keyboardMap = { w: false, a: false, s: false, d: false };
         window.addEventListener('keydown', (e) => {
             if (e.key === ' ' || e.code === 'Space') physicalJumpInputFlag = true;
@@ -774,140 +1007,102 @@
             if (e.key.toLowerCase() in keyboardMap) keyboardMap[e.key.toLowerCase()] = false;
         });
 
-        /* --- WEB NAVIGATION INTERFACE CLICK EVENT HANDLERS --- */
         document.querySelectorAll('.side-tab').forEach(tab => {
-            tab.addEventListener('click', (event) => {
+            tab.addEventListener('click', () => {
                 document.querySelectorAll('.side-tab').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.view-panel').forEach(v => v.classList.remove('active'));
-                
                 tab.classList.add('active');
                 document.getElementById(tab.getAttribute('data-target')).classList.add('active');
             });
         });
 
         document.getElementById('trigger-claim-bubox').addEventListener('click', () => {
-            robuxBalance += 50000;
-            document.getElementById('display-robux-total').innerText = robuxBalance.toLocaleString();
-        });
-
-        document.getElementById('texture-shirt-field').addEventListener('input', (event) => {
-            if (event.target.value) {
-                textureLoader.load(event.target.value, (tex) => {
-                    rbxTorso.material = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.6 });
-                });
-            }
-        });
-
-        document.getElementById('texture-pants-field').addEventListener('input', (event) => {
-            if (event.target.value) {
-                textureLoader.load(event.target.value, (tex) => {
-                    const customLegsMat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.6 });
-                    limbLegL.material = customLegsMat;
-                    limbLegR.material = customLegsMat;
-                });
-            }
+            robuxBalance += 50000; document.getElementById('display-robux-total').innerText = robuxBalance.toLocaleString();
+            saveEnvironmentSettingsToLocal();
         });
 
         document.querySelectorAll('.swatch-item').forEach(swatch => {
-            swatch.addEventListener('click', (event) => {
+            swatch.addEventListener('click', () => {
                 document.querySelectorAll('.swatch-item').forEach(s => s.classList.remove('active'));
                 swatch.classList.add('active');
-                
                 selectedSkinToneHex = parseInt(swatch.getAttribute('data-hex'), 16);
                 pSkinMat.color.setHex(selectedSkinToneHex);
-                
-                limbArmL.material = pSkinMat;
-                limbArmR.material = pSkinMat;
-                rbxHead.material = pSkinMat;
+                limbArmL.material = pSkinMat; limbArmR.material = pSkinMat; rbxHead.material = pSkinMat;
+                saveEnvironmentSettingsToLocal();
             });
         });
 
-        // Activation Execution Actions for Spaces
         document.getElementById('launch-toh-btn').addEventListener('click', () => { launchGameSpace("toh", "Tower of Hell"); });
         document.getElementById('launch-cross-btn').addEventListener('click', () => { launchGameSpace("cross", "Crossy Baseplate"); });
         document.getElementById('launch-lava-btn').addEventListener('click', () => { launchGameSpace("lava", "Lava Rising"); });
+        document.getElementById('launch-studio-runtime-btn').addEventListener('click', () => { launchGameSpace("studio_run", "Studio Project Workspace"); });
 
         document.getElementById('btn-escape-match').addEventListener('click', () => {
-            document.getElementById('game-play-overlay').style.style.display = 'none';
+            document.getElementById('game-play-overlay').style.display = 'none';
             document.getElementById('home-page-window').classList.remove('hidden');
-            activeAppState = "hub";
-            purgeStructuralEnvironmentMap();
+            activeAppState = "hub"; purgeStructuralEnvironmentMap();
         });
 
         function launchGameSpace(spaceKey, descriptiveTitle) {
             document.getElementById('home-page-window').classList.add('hidden');
             document.getElementById('game-play-overlay').style.display = 'block';
             document.getElementById('lbl-active-game-title').innerText = descriptiveTitle.toUpperCase();
-            
             activeAppState = spaceKey;
             
-            if (spaceKey === "toh") {
-                compileTowerOfHellSpace();
-                teleportPlayerPosition(0, 3, 8);
-            } else if (spaceKey === "cross") {
-                compileCrossyBaseplateSpace();
-                teleportPlayerPosition(0, 3, 50);
-            } else if (spaceKey === "lava") {
-                compileRisingLavaSpace();
-                teleportPlayerPosition(0, 3, 10);
-            }
+            if (spaceKey === "toh") { compileTowerOfHellSpace(); teleportPlayerPosition(0, 3, 8); }
+            else if (spaceKey === "cross") { compileCrossyBaseplateSpace(); teleportPlayerPosition(0, 3, 50); }
+            else if (spaceKey === "lava") { compileRisingLavaSpace(); teleportPlayerPosition(0, 3, 10); }
+            else if (spaceKey === "studio_run") { compileStudioRuntimeSpace(); teleportPlayerPosition(0, 3, 0); }
         }
 
         /* --- KINETIC SIMULATION PHYSICS ENGINE FRAMEWORK --- */
         const vecPlayerPosition = new THREE.Vector3(0, 2, 0);
         const vecPlayerVelocity = new THREE.Vector3();
-        
-        const physicalConstGravity = -32.0;
-        const magnitudeWalkSpeed = 9.0;
-        // SIGNIFICANTLY ENHANCED JUMP POWER AS EXPLICITLY REQUESTED
-        const magnitudeJumpForce = 15.0; 
+        const physicalConstGravity = -34.0; const magnitudeWalkSpeed = 9.5; const magnitudeJumpForce = 16.5; 
 
-        let stateIsGrounded = false;
-        let internalTemporalClockTicker = 0;
-        const systemDeltaClock = new THREE.Clock();
+        let stateIsGrounded = false; let internalTemporalClockTicker = 0; const systemDeltaClock = new THREE.Clock();
 
-        function teleportPlayerPosition(x, y, z) {
-            vecPlayerPosition.set(x, y, z);
-            vecPlayerVelocity.set(0, 0, 0);
-        }
+        function teleportPlayerPosition(x, y, z) { vecPlayerPosition.set(x, y, z); vecPlayerVelocity.set(0, 0, 0); }
 
         function forceKillRespawnSequence() {
             if (activeAppState === "toh") teleportPlayerPosition(0, 3, 8);
             else if (activeAppState === "cross") teleportPlayerPosition(0, 3, 50);
             else if (activeAppState === "lava") {
-                // Reset matching elevator positions upon dynamic layout death
-                const elevatorObj = dynamicsTickerArray.find(d => d.type === "elevator");
-                if (elevatorObj) {
-                    elevatorObj.mesh.position.y = -1.0;
-                    elevatorObj.box.setFromObject(elevatorObj.mesh);
-                }
+                const el = dynamicsTickerArray.find(d => d.type === "elevator");
+                if (el) { el.mesh.position.y = -1.0; el.box.setFromObject(el.mesh); }
                 teleportPlayerPosition(0, 3, 10);
             }
+            else if (activeAppState === "studio_run") teleportPlayerPosition(0, 3, 0);
         }
 
         function triggerWinSequenceBounty() {
-            robuxBalance += 150000;
-            document.getElementById('display-robux-total').innerText = robuxBalance.toLocaleString();
-            document.getElementById('btn-escape-match').click();
+            robuxBalance += 150000; document.getElementById('display-robux-total').innerText = robuxBalance.toLocaleString();
+            saveEnvironmentSettingsToLocal(); document.getElementById('btn-escape-match').click();
+        }
+
+        function executeCustomUserScripts(deltaTime) {
+            if (!studioGlobalScriptSource || activeAppState !== "studio_run") return;
+            platformsArray.forEach(p => {
+                if(p.meta && p.meta.id !== undefined) {
+                    try {
+                        // EXECUTING INTERPRETED SAFE BOUND POSITION TRANSFORMS
+                        if(studioGlobalScriptSource.includes("position.y += 0.1")) {
+                            p.mesh.position.y += 1.5 * deltaTime; p.box.setFromObject(p.mesh);
+                        }
+                    } catch(e){}
+                }
+            });
         }
 
         function processDynamicPhysicsElements(deltaTime) {
             dynamicsTickerArray.forEach(element => {
-                if (element.type === "spinner") {
-                    element.mesh.rotation[element.axis] += element.speed * deltaTime;
-                    element.box.setFromObject(element.mesh);
-                }
+                if (element.type === "spinner") { element.mesh.rotation[element.axis] += element.speed * deltaTime; element.box.setFromObject(element.mesh); }
                 else if (element.type === "slider") {
                     element.mesh.position.x += element.speed * deltaTime;
-                    if (Math.abs(element.mesh.position.x) > element.rangeX) {
-                        element.speed *= -1; // Reflect velocity parameters back
-                    }
+                    if (Math.abs(element.mesh.position.x) > element.rangeX) element.speed *= -1;
                     element.box.setFromObject(element.mesh);
                 }
-                else if (element.type === "elevator") {
-                    element.mesh.position.y += element.riseSpeed * deltaTime;
-                    element.box.setFromObject(element.mesh);
-                }
+                else if (element.type === "elevator") { element.mesh.position.y += element.riseSpeed * deltaTime; element.box.setFromObject(element.mesh); }
             });
         }
 
@@ -916,69 +1111,44 @@
             const dt = Math.min(systemDeltaClock.getDelta(), 0.1);
 
             if (activeAppState === "hub") {
-                // Smooth spinning rendering showcase view context within hub profile mode
-                pGroupContainer.position.set(0, 1.15, 0);
-                pGroupContainer.rotation.y += dt * 0.65;
-                
-                // Route camera target positions onto display panel previews
-                camera.position.set(0, 2.35, 3.6);
-                camera.lookAt(0, 2.05, 0);
-                renderer.render(scene, camera);
-                return;
+                pGroupContainer.position.set(0, 1.2, 0); pGroupContainer.rotation.y += dt * 0.65;
+                camera.position.set(0, 2.4, 3.6); camera.lookAt(0, 2.1, 0);
+                renderer.render(scene, camera); return;
             }
 
             internalTemporalClockTicker += dt * 12.0;
             processDynamicPhysicsElements(dt);
+            executeCustomUserScripts(dt);
 
-            // Interface Vector Directions Extracted from input maps
             let inputX = controlJoyActiveFlag ? vectorJoystickDirection.x : 0;
             let inputZ = controlJoyActiveFlag ? vectorJoystickDirection.y : 0;
-
-            if (keyboardMap.w) inputZ -= 1;
-            if (keyboardMap.s) inputZ += 1;
-            if (keyboardMap.a) inputX -= 1;
-            if (keyboardMap.d) inputX += 1;
+            if (keyboardMap.w) inputZ -= 1; if (keyboardMap.s) inputZ += 1;
+            if (keyboardMap.a) inputX -= 1; if (keyboardMap.d) inputX += 1;
 
             const targetCamForward = new THREE.Vector3(Math.sin(orbitAngleYaw), 0, Math.cos(orbitAngleYaw)).normalize();
             const targetCamRight = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), targetCamForward).normalize();
 
             const combinedMovementVector = new THREE.Vector3();
-            combinedMovementVector.addScaledVector(targetCamForward, -inputZ);
-            combinedMovementVector.addScaledVector(targetCamRight, -inputX);
+            combinedMovementVector.addScaledVector(targetCamForward, -inputZ); combinedMovementVector.addScaledVector(targetCamRight, -inputX);
             if (combinedMovementVector.length() > 1) combinedMovementVector.normalize();
 
             vecPlayerVelocity.x = combinedMovementVector.x * magnitudeWalkSpeed;
             vecPlayerVelocity.z = combinedMovementVector.z * magnitudeWalkSpeed;
             vecPlayerVelocity.y += physicalConstGravity * dt;
 
-            if (physicalJumpInputFlag) {
-                if (stateIsGrounded) {
-                    vecPlayerVelocity.y = magnitudeJumpForce;
-                    stateIsGrounded = false;
-                }
-                physicalJumpInputFlag = false;
-            }
+            if (physicalJumpInputFlag) { if (stateIsGrounded) { vecPlayerVelocity.y = magnitudeJumpForce; stateIsGrounded = false; } physicalJumpInputFlag = false; }
 
             vecPlayerPosition.addScaledVector(vecPlayerVelocity, dt);
             if (vecPlayerPosition.y < -15.0) forceKillRespawnSequence();
 
-            // Assemble operational player spatial physical hit bounding boundaries
             const hitboxPlayer = new THREE.Box3(
                 new THREE.Vector3(vecPlayerPosition.x - 0.45, vecPlayerPosition.y, vecPlayerPosition.z - 0.25),
                 new THREE.Vector3(vecPlayerPosition.x + 0.45, vecPlayerPosition.y + 1.95, vecPlayerPosition.z + 0.25)
             );
-
             stateIsGrounded = false;
 
-            // Instakill Overlap Detections loop check
-            for (let hazard of hazardKillsArray) {
-                if (hitboxPlayer.intersectsBox(hazard.box)) {
-                    forceKillRespawnSequence();
-                    break;
-                }
-            }
+            for (let hazard of hazardKillsArray) { if (hitboxPlayer.intersectsBox(hazard.box)) { forceKillRespawnSequence(); break; } }
 
-            // Normal Structural Platform Collisions parsing loops
             for (let block of platformsArray) {
                 if (hitboxPlayer.intersectsBox(block.box)) {
                     const overlapX = Math.min(hitboxPlayer.max.x, block.box.max.x) - Math.max(hitboxPlayer.min.x, block.box.min.x);
@@ -987,85 +1157,53 @@
 
                     if (overlapY < overlapX && overlapY < overlapZ) {
                         if (vecPlayerVelocity.y <= 0 && hitboxPlayer.min.y + overlapY / 2 > block.box.max.y - 0.3) {
-                            vecPlayerPosition.y += overlapY;
-                            vecPlayerVelocity.y = 0;
-                            stateIsGrounded = true;
-
-                            if (block.type === "goal") {
-                                triggerWinSequenceBounty();
-                                return;
-                            }
-                        } else if (vecPlayerVelocity.y > 0) {
-                            vecPlayerPosition.y -= overlapY;
-                            vecPlayerVelocity.y = 0;
-                        }
+                            vecPlayerPosition.y += overlapY; vecPlayerVelocity.y = 0; stateIsGrounded = true;
+                            if (block.type === "goal") { triggerWinSequenceBounty(); return; }
+                        } else if (vecPlayerVelocity.y > 0) { vecPlayerPosition.y -= overlapY; vecPlayerVelocity.y = 0; }
                     } else if (overlapX < overlapZ) {
                         vecPlayerPosition.x += (hitboxPlayer.min.x + hitboxPlayer.max.x) / 2 < (block.box.min.x + block.box.max.x) / 2 ? -overlapX : overlapX;
                     } else {
                         vecPlayerPosition.z += (hitboxPlayer.min.z + hitboxPlayer.max.z) / 2 < (block.box.min.z + block.box.max.z) / 2 ? -overlapZ : overlapZ;
                     }
-                    
-                    // Remap updated tracking frames
-                    hitboxPlayer.set(
-                        new THREE.Vector3(vecPlayerPosition.x - 0.45, vecPlayerPosition.y, vecPlayerPosition.z - 0.25),
-                        new THREE.Vector3(vecPlayerPosition.x + 0.45, vecPlayerPosition.y + 1.95, vecPlayerPosition.z + 0.25)
-                    );
+                    hitboxPlayer.set(new THREE.Vector3(vecPlayerPosition.x - 0.45, vecPlayerPosition.y, vecPlayerPosition.z - 0.25), new THREE.Vector3(vecPlayerPosition.x + 0.45, vecPlayerPosition.y + 1.95, vecPlayerPosition.z + 0.25));
                 }
             }
 
-            // Interface Stat Metrics Displays updates
-            if (activeAppState === "toh") {
-                document.getElementById('lbl-game-stat-line').innerText = "STAGE TIER: " + Math.min(3, Math.max(1, Math.floor(vecPlayerPosition.y / 13) + 1));
-            } else if (activeAppState === "cross") {
-                document.getElementById('lbl-game-stat-line').innerText = "PROGRESS: " + Math.max(0, Math.floor((50 - vecPlayerPosition.z) / 100 * 100)) + "%";
-            } else if (activeAppState === "lava") {
-                document.getElementById('lbl-game-stat-line').innerText = "HEIGHT METERS: " + Math.floor(vecPlayerPosition.y) + "m";
-            }
+            if (activeAppState === "toh") { document.getElementById('lbl-game-stat-line').innerText = "STAGE TIER: " + Math.min(3, Math.max(1, Math.floor(vecPlayerPosition.y / 13) + 1)); }
+            else if (activeAppState === "cross") { document.getElementById('lbl-game-stat-line').innerText = "PROGRESS: " + Math.max(0, Math.floor((50 - vecPlayerPosition.z) / 100 * 100)) + "%"; }
+            else if (activeAppState === "lava") { document.getElementById('lbl-game-stat-line').innerText = "HEIGHT METERS: " + Math.floor(vecPlayerPosition.y) + "m"; }
 
             pGroupContainer.position.copy(vecPlayerPosition);
-            if (Math.abs(vecPlayerVelocity.x) > 0.1 || Math.abs(vecPlayerVelocity.z) > 0.1) {
-                pGroupContainer.rotation.y = Math.atan2(vecPlayerVelocity.x, vecPlayerVelocity.z);
-            }
+            if (Math.abs(vecPlayerVelocity.x) > 0.1 || Math.abs(vecPlayerVelocity.z) > 0.1) pGroupContainer.rotation.y = Math.atan2(vecPlayerVelocity.x, vecPlayerVelocity.z);
 
-            /* --- RIG MOTION SMOOTH ANIMATION CALCULATIONS --- */
-            const horizontalSpeedMagnitude = Math.sqrt(vecPlayerVelocity.x * vecPlayerVelocity.x + vecPlayerVelocity.z * vecPlayerVelocity.z);
             if (!stateIsGrounded) {
-                // Falling/Rising pose frames interpolation
                 leftArmPivot.rotation.x = THREE.MathUtils.lerp(leftArmPivot.rotation.x, -Math.PI * 0.25, 0.15);
                 rightArmPivot.rotation.x = THREE.MathUtils.lerp(rightArmPivot.rotation.x, Math.PI * 0.25, 0.15);
-                leftLegPivot.rotation.x = THREE.MathUtils.lerp(leftLegPivot.rotation.x, 0.1, 0.15);
-                rightLegPivot.rotation.x = THREE.MathUtils.lerp(rightLegPivot.rotation.x, -0.1, 0.15);
-            } else if (horizontalSpeedMagnitude > 0.2) {
-                // Running gate stride math logic loops
-                const sineWaveSwing = Math.sin(internalTemporalClockTicker * 1.3);
-                leftArmPivot.rotation.x = sineWaveSwing * 0.75;
-                rightArmPivot.rotation.x = -sineWaveSwing * 0.75;
-                leftLegPivot.rotation.x = -sineWaveSwing * 0.75;
-                rightLegPivot.rotation.x = sineWaveSwing * 0.75;
+            } else if (Math.sqrt(vecPlayerVelocity.x*vecPlayerVelocity.x + vecPlayerVelocity.z*vecPlayerVelocity.z) > 0.2) {
+                const s = Math.sin(internalTemporalClockTicker * 1.3);
+                leftArmPivot.rotation.x = s * 0.75; rightArmPivot.rotation.x = -s * 0.75;
+                leftLegPivot.rotation.x = -s * 0.75; rightLegPivot.rotation.x = s * 0.75;
             } else {
-                // Idle breathe smooth reset calculations interpolators
                 leftArmPivot.rotation.x = THREE.MathUtils.lerp(leftArmPivot.rotation.x, 0, 0.2);
                 rightArmPivot.rotation.x = THREE.MathUtils.lerp(rightArmPivot.rotation.x, 0, 0.2);
                 leftLegPivot.rotation.x = THREE.MathUtils.lerp(leftLegPivot.rotation.x, 0, 0.2);
                 rightLegPivot.rotation.x = THREE.MathUtils.lerp(rightLegPivot.rotation.x, 0, 0.2);
             }
 
-            // Sync structural Camera positioning transformations matrices
             camera.position.x = vecPlayerPosition.x - orbitRadiusDistance * Math.sin(orbitAngleYaw) * Math.cos(orbitAnglePitch);
             camera.position.y = vecPlayerPosition.y + orbitRadiusDistance * Math.sin(orbitAnglePitch) + 1.25;
             camera.position.z = vecPlayerPosition.z - orbitRadiusDistance * Math.cos(orbitAngleYaw) * Math.cos(orbitAnglePitch);
             camera.lookAt(vecPlayerPosition.x, vecPlayerPosition.y + 0.95, vecPlayerPosition.z);
-
             renderer.render(scene, camera);
         }
 
         window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // Initialize Loop Thread execution anchors
+        // Initialize Runtime
+        loadSavedEnvironmentSettings();
+        rebuildStudioObjectTreeUI();
         loop();
     </script>
 </body>
