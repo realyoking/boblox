@@ -12,7 +12,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            background-color: #000000;
+            background-color: #f3f4f6; /* Studio gray */
             font-family: "Gotham SSm A", "Gotham SSm B", "Helvetica Neue", Helvetica, Arial, sans-serif;
             user-select: none;
             -webkit-user-select: none;
@@ -29,19 +29,19 @@
             z-index: 1;
         }
         
-        /* --- ULTRA MINIMALIST BLACK & WHITE ROBLOX UI VIBES --- */
+        /* --- ROBLOX LIGHT STYLING (NORMAL WORKSPACE FEEL) --- */
         .rbx-window {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000000;
+            background: #fafafa;
             z-index: 100;
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
-            color: #ffffff;
+            color: #111111;
             opacity: 1;
             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease;
         }
@@ -57,8 +57,8 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 25px;
-            background: #000000;
-            border-bottom: 1px solid #ffffff;
+            background: #ffffff;
+            border-bottom: 1px solid #dddddd;
             height: 65px;
             box-sizing: border-box;
         }
@@ -67,6 +67,7 @@
             font-weight: 900;
             letter-spacing: 1.5px;
             text-transform: uppercase;
+            color: #000000;
         }
         .rbx-right-deck {
             display: flex;
@@ -74,7 +75,7 @@
             gap: 20px;
         }
         .currency-panel {
-            border: 1px solid #ffffff;
+            border: 1px solid #000000;
             padding: 5px 12px;
             border-radius: 0;
             display: flex;
@@ -82,10 +83,11 @@
             gap: 8px;
             font-size: 14px;
             font-weight: bold;
-            background: #000000;
+            background: #ffffff;
+            color: #000000;
         }
         .currency-icon {
-            border: 1px solid #ffffff;
+            border: 1px solid #000000;
             padding: 0 4px;
             font-weight: 900;
             font-size: 10px;
@@ -96,36 +98,39 @@
             display: flex;
             flex: 1;
             overflow: hidden;
-            background: #000000;
+            background: #ffffff;
         }
         .rbx-sidebar {
             width: 80px;
-            border-right: 1px solid #ffffff;
+            border-right: 1px solid #dddddd;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding-top: 20px;
             gap: 25px;
+            background: #fdfdfd;
         }
         .side-tab {
             width: 45px;
             height: 45px;
-            border: 1px solid #ffffff;
+            border: 1px solid #000000;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: background 0.2s ease, color 0.2s ease;
+            background: #ffffff;
         }
         .side-tab.active {
-            background: #ffffff;
-            color: #000000;
+            background: #000000;
+            color: #ffffff;
         }
         .main-scroller {
             flex: 1;
             padding: 30px;
             overflow-y: auto;
             box-sizing: border-box;
+            background: #f5f6f8;
         }
         .view-panel {
             display: none;
@@ -135,7 +140,7 @@
             display: block;
         }
         
-        /* --- GAME EXPERIENCE CARDS LAYOUT GRID --- */
+        /* --- EXPERIENCE MATRIX --- */
         .discover-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -143,28 +148,31 @@
             margin-top: 15px;
         }
         .experience-card {
-            border: 1px solid #ffffff;
-            background: #000000;
+            border: 1px solid #cccccc;
+            background: #ffffff;
             padding: 12px;
             display: flex;
             flex-direction: column;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            color: #222222;
         }
         .experience-card:hover {
             transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
         }
         .experience-thumb {
             width: 100%;
             height: 130px;
-            border: 1px solid #ffffff;
+            border: 1px solid #cccccc;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
             font-size: 13px;
-            background: #000000;
+            background: #eaeaea;
+            color: #333333;
         }
         .experience-title {
             font-size: 14px;
@@ -174,15 +182,15 @@
         }
         .experience-desc {
             font-size: 11px;
-            color: #aaaaaa;
+            color: #666666;
             line-height: 1.5;
             margin-bottom: 12px;
             font-family: Arial, sans-serif;
         }
         .action-btn {
-            background: #ffffff;
-            color: #000000;
-            border: 1px solid #ffffff;
+            background: #000000;
+            color: #ffffff;
+            border: 1px solid #000000;
             padding: 10px;
             font-weight: 900;
             font-size: 12px;
@@ -194,8 +202,8 @@
             line-height: 1.5;
         }
         .action-btn:active {
-            background: #000000;
-            color: #ffffff;
+            background: #ffffff;
+            color: #000000;
         }
         
         /* --- AVATAR CATALOG CUSTOMIZER CONTROLS --- */
@@ -222,25 +230,26 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #bbbbbb;
+            color: #555555;
+            font-weight: bold;
         }
-        .asset-input-group input[type="text"] {
-            background: #000000;
-            border: 1px solid #ffffff;
-            color: #ffffff;
+        .asset-input-group input[type="text"], .asset-input-group input[type="password"], .asset-input-group select {
+            background: #ffffff;
+            border: 1px solid #cccccc;
+            color: #111111;
             padding: 10px;
             font-size: 12px;
             outline: none;
         }
         .file-upload-btn {
-            border: 1px dashed #ffffff;
+            border: 1px dashed #999999;
             padding: 12px;
             text-align: center;
             cursor: pointer;
             font-size: 12px;
             text-transform: uppercase;
-            background: #000000;
-            color: #ffffff;
+            background: #ffffff;
+            color: #333333;
             display: block;
         }
         .file-upload-btn input {
@@ -253,7 +262,7 @@
         }
         .swatch-item {
             height: 32px;
-            border: 1px solid #ffffff;
+            border: 1px solid #cccccc;
             cursor: pointer;
             position: relative;
         }
@@ -268,40 +277,69 @@
             font-size: 14px;
         }
 
+        /* --- MARKETPLACE SYSTEM --- */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .market-card {
+            border: 1px solid #cccccc;
+            background: #ffffff;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #222222;
+        }
+        .market-item-title {
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .market-price {
+            font-size: 12px;
+            color: #00aa44;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
         /* --- ROBLOX STUDIO ENVIRONMENT INTERFACE --- */
         .studio-container {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
             height: 100%;
         }
         .studio-toolbar {
             display: flex;
             gap: 10px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #e0e0e0;
             padding-bottom: 15px;
             flex-wrap: wrap;
         }
         .studio-layout {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             flex: 1;
-            min-height: 400px;
+            min-height: 500px;
         }
         .studio-sidebar {
-            width: 220px;
+            width: 240px;
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
         .studio-panel {
-            border: 1px solid #ffffff;
+            border: 1px solid #cccccc;
             padding: 12px;
-            background: #000000;
+            background: #ffffff;
             line-height: 1.5;
+            color: #222222;
         }
         .studio-list {
-            max-height: 200px;
+            max-height: 180px;
             overflow-y: auto;
             font-family: monospace;
             font-size: 12px;
@@ -309,14 +347,14 @@
         }
         .studio-list-item {
             padding: 6px;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid #eeeeee;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
         }
         .studio-list-item:hover, .studio-list-item.selected {
-            background: #ffffff;
-            color: #000000;
+            background: #000000;
+            color: #ffffff;
         }
         .studio-editor {
             flex: 1;
@@ -327,15 +365,37 @@
         .code-textarea {
             width: 100%;
             flex: 1;
-            background: #000000;
-            border: 1px solid #ffffff;
-            color: #ffffff;
+            background: #ffffff;
+            border: 1px solid #cccccc;
+            color: #222222;
             font-family: monospace;
             padding: 12px;
             box-sizing: border-box;
             resize: none;
             font-size: 13px;
             line-height: 1.5;
+        }
+        
+        /* --- INTEGRATED PREVIEW CONTAINER --- */
+        .unity-viewport-frame {
+            width: 100%;
+            height: 320px;
+            border: 1px solid #cccccc;
+            background: #eaeaea;
+            position: relative;
+            overflow: hidden;
+        }
+        .unity-viewport-caption {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            background: rgba(255,255,255,0.9);
+            color: #000;
+            padding: 2px 6px;
+            font-size: 10px;
+            text-transform: uppercase;
+            z-index: 5;
+            border: 1px solid #ccc;
         }
         
         /* --- LIVE IN-GAME PLAY HUD EXCLUSIVE OVERLAYS --- */
@@ -345,7 +405,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 10;
+            z-index: 1000;
             pointer-events: none;
             display: none;
             box-sizing: border-box;
@@ -356,9 +416,9 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            background: #000000;
-            color: #ffffff;
-            border: 1px solid #ffffff;
+            background: #ffffff;
+            color: #000000;
+            border: 1px solid #000000;
             padding: 8px 16px;
             font-size: 12px;
             font-weight: bold;
@@ -370,16 +430,52 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: #000000;
-            border: 1px solid #ffffff;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #cccccc;
             padding: 8px 16px;
-            color: #ffffff;
+            color: #111111;
             font-size: 13px;
             text-align: right;
             line-height: 1.5;
         }
         
-        /* --- MOBILE TOUCH CONTROLS GENERATOR SYSTEMS --- */
+        /* --- CHAT BOX SIMULATOR --- */
+        .engine-chat-box {
+            position: absolute;
+            bottom: 180px;
+            left: 20px;
+            width: 260px;
+            height: 120px;
+            background: rgba(255,255,255,0.85);
+            border: 1px solid #ccc;
+            padding: 6px;
+            overflow-y: auto;
+            font-size: 11px;
+            font-family: Arial, sans-serif;
+            pointer-events: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            color: #000;
+        }
+        
+        /* --- TOAST SYSTEM --- */
+        .toast-holder {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #fff;
+            border: 1px solid #000;
+            padding: 10px 20px;
+            color: #000;
+            font-size: 12px;
+            z-index: 10000;
+            display: none;
+            text-transform: uppercase;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- MOBILE TOUCH CONTROLS --- */
         .mobile-touch-rig {
             position: absolute;
             bottom: 40px;
@@ -390,8 +486,8 @@
             left: 40px;
             width: 110px;
             height: 110px;
-            border: 2px solid #ffffff;
-            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #000000;
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -400,25 +496,117 @@
         #touch-joystick-handle {
             width: 40px;
             height: 40px;
-            background: #ffffff;
+            background: #000000;
             border-radius: 50%;
         }
         #touch-jump-action {
             right: 40px;
             width: 85px;
             height: 85px;
-            border: 2px solid #ffffff;
-            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #000000;
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 50%;
-            color: #ffffff;
+            color: #000000;
             font-size: 14px;
             font-weight: 900;
             display: flex;
             align-items: center;
             justify-content: center;
         }
+
+        /* --- DRAGGABLE & EXPANDED IPAD READY HACK PANEL --- */
+        #btn-trigger-admin-gate {
+            background: #ff3b30;
+            color: #fff;
+            border: none;
+            padding: 5px 12px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+        .admin-modal-backdrop {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 5000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .admin-modal-backdrop.active {
+            opacity: 1; pointer-events: auto;
+        }
+        .admin-dialog-box {
+            background: #ffffff;
+            border: 2px solid #000000;
+            padding: 25px;
+            width: 320px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .admin-dashboard-view {
+            position: absolute;
+            top: 100px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.98);
+            border: 2px solid #ff3b30;
+            padding: 0;
+            z-index: 2000;
+            pointer-events: auto;
+            display: none;
+            flex-direction: column;
+            width: 310px;
+            max-height: 480px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            touch-action: none; /* Crucial for custom iPad dragging drag handle execution */
+        }
+        .admin-drag-handle {
+            background: #ff3b30;
+            color: white;
+            padding: 8px 12px;
+            font-weight: 900;
+            font-size: 11px;
+            text-transform: uppercase;
+            cursor: move;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .admin-scroll-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .admin-control-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .admin-control-row input[type="range"], .admin-control-row input[type="number"] {
+            width: 100px;
+        }
+        .admin-section-title {
+            font-size: 10px;
+            color: #777;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 2px;
+            margin-top: 5px;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
         
-        /* --- ANIMATION TRANSITION FRAMES --- */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(4px); }
             to { opacity: 1; transform: translateY(0); }
@@ -428,13 +616,132 @@
 </head>
 <body>
 
+    <!-- NOTIFICATION SYSTEM -->
+    <div id="toast-notif" class="toast-holder">System Updated</div>
+
+    <!-- ADMIN AUTHLOCK GATEWAY DIALOG -->
+    <div class="admin-modal-backdrop" id="admin-auth-lock-overlay">
+        <div class="admin-dialog-box">
+            <div style="font-weight: 900; font-size: 14px; text-transform: uppercase; border-bottom: 1px solid #000; padding-bottom: 5px;">Unlock Engine Admin Console</div>
+            <div class="asset-input-group">
+                <label>Enter Passcode Key</label>
+                <input type="password" id="admin-passcode-field" placeholder="••••">
+            </div>
+            <div style="display:flex; gap: 10px; justify-content: flex-end;">
+                <button class="action-btn" id="admin-cancel-btn" style="padding: 6px 12px; background:#ccc; border-color:#ccc; color:#000;">Abort</button>
+                <button class="action-btn" id="admin-submit-btn" style="padding: 6px 12px;">Decrypt</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LIVE RUNTIME DRAGGABLE HACK INTERFACE (IPAD READY SUPPORT VIA DRAG HANDLE) -->
+    <div class="admin-dashboard-view" id="live-hud-admin-panel">
+        <div class="admin-drag-handle" id="admin-panel-drag-bar">
+            <span>Matrix Controller Menu</span>
+            <span style="font-size:9px; background:rgba(0,0,0,0.2); padding:2px 4px;">Drag Me</span>
+        </div>
+        <div class="admin-scroll-body">
+            <div class="admin-section-title">Core Engine Override Modifications</div>
+            <div class="admin-control-row">
+                <label>Walk Velocity</label>
+                <input type="number" id="adm-speed-override" value="10.5" step="1">
+            </div>
+            <div class="admin-control-row">
+                <label>Leap Kinetic Power</label>
+                <input type="number" id="adm-jump-override" value="16.5" step="1">
+            </div>
+            <div class="admin-control-row">
+                <label>Matrix Flight Mode</label>
+                <input type="checkbox" id="adm-fly-toggle">
+            </div>
+
+            <!-- NEW FEATURES #1-#7: ENHANCED ADMIN HACKS CONTROLS -->
+            <div class="admin-section-title">New Exploit Suite Modules</div>
+            <div class="admin-control-row">
+                <label>Noclip Mod (Pass blocks)</label>
+                <input type="checkbox" id="adm-noclip-toggle">
+            </div>
+            <div class="admin-control-row">
+                <label>Infinite Double Jump</label>
+                <input type="checkbox" id="adm-infjump-toggle">
+            </div>
+            <div class="admin-control-row">
+                <label>Blink Teleport (Forward)</label>
+                <button class="action-btn" id="adm-blink-btn" style="padding:3px 8px; font-size:10px; margin:0;">Flash</button>
+            </div>
+            <div class="admin-control-row">
+                <label>God Mode Armor</label>
+                <input type="checkbox" id="adm-god-toggle">
+            </div>
+            <div class="admin-control-row">
+                <label>Kill Nearby Game Bots</label>
+                <button class="action-btn" id="adm-killbots-btn" style="padding:3px 8px; font-size:10px; margin:0;">Wipe</button>
+            </div>
+            <div class="admin-control-row">
+                <label>Robux Local Visual Glitch</label>
+                <button class="action-btn" id="adm-robuxglitch-btn" style="padding:3px 8px; font-size:10px; margin:0;">Add 1M</button>
+            </div>
+            <div class="admin-control-row">
+                <label>Magnet Pull Goal Node</label>
+                <input type="checkbox" id="adm-magnet-toggle">
+            </div>
+
+            <div class="admin-section-title">Environment Projections</div>
+            <div class="admin-control-row" style="flex-direction:column; align-items:flex-start; gap:4px;">
+                <label>Inject Skybox Overlay Map</label>
+                <label class="file-upload-btn" for="adm-sky-upload" style="padding:4px; font-size:10px; width:100%; box-sizing:border-box;">Upload Image Map</label>
+                <input type="file" id="adm-sky-upload" accept="image/*" style="display:none;">
+            </div>
+            <div class="admin-control-row" style="flex-direction:column; align-items:flex-start; gap:4px;">
+                <label>Spawn Floating Decal Block</label>
+                <label class="file-upload-btn" for="adm-decal-upload" style="padding:4px; font-size:10px; width:100%; box-sizing:border-box;">Upload Texture File</label>
+                <input type="file" id="adm-decal-upload" accept="image/*" style="display:none;">
+            </div>
+            <div class="admin-control-row" style="flex-direction:column; align-items:flex-start; gap:4px;">
+                <label>Frequency Audio Wave</label>
+                <select id="adm-sound-generator-select" style="width:100%; padding:4px; font-size:10px;">
+                    <option value="none">Silence Output Engine</option>
+                    <option value="pulse">Synthesizer Pulse Track</option>
+                    <option value="ambient">RTX Dynamic Space Resonance</option>
+                </select>
+            </div>
+
+            <!-- NEW FEATURES #8-#12: RTX ADVANCED LIGHT CONTROL MATRIX -->
+            <div class="admin-section-title">Fidelity Custom Glow System</div>
+            <div class="admin-control-row">
+                <label>RTX Solar Ray Exposure</label>
+                <input type="range" id="adm-rtx-exposure" min="0.5" max="3.0" step="0.1" value="1.35">
+            </div>
+            <div class="admin-control-row">
+                <label>Bloom Aura Glow Intensity</label>
+                <input type="range" id="adm-rtx-glow" min="0.0" max="5.0" step="0.2" value="1.2">
+            </div>
+            <div class="admin-control-row">
+                <label>Shadow Blur Cascade Softness</label>
+                <input type="checkbox" id="adm-rtx-shadows" checked>
+            </div>
+            <div class="admin-control-row">
+                <label>Time Shift Ambient Cycle</label>
+                <input type="range" id="adm-rtx-time" min="0" max="360" value="0">
+            </div>
+            <div class="admin-control-row">
+                <label>Fog Horizon Vapor Density</label>
+                <input type="range" id="adm-rtx-fog" min="0.001" max="0.03" step="0.001" value="0.004">
+            </div>
+
+            <button class="action-btn" id="adm-close-flyout" style="padding:6px; font-size:10px; background:#000; color:#fff; width:100%; margin-top:10px;">Minimize HUD</button>
+        </div>
+    </div>
+
+    <!-- MAIN INTERACTIVE DESKTOP SHELL HUB -->
     <div id="home-page-window" class="rbx-window">
         <div class="rbx-navbar">
-            <div class="rbx-logo"><b>Roblox</b> Engine</div>
+            <div class="rbx-logo"><b>Roblox</b> Engine platform</div>
             <div class="rbx-right-deck">
+                <button id="btn-trigger-admin-gate">Access Matrix Panel</button>
                 <div class="currency-panel">
                     <span class="currency-icon">R$</span>
-                    <div id="display-robux-total">0</div>
+                    <div id="display-robux-total">1000</div>
                 </div>
             </div>
         </div>
@@ -444,37 +751,75 @@
                 <div class="side-tab active" data-target="panel-discover">🎮</div>
                 <div class="side-tab" data-target="panel-avatar">👤</div>
                 <div class="side-tab" data-target="panel-studio">🛠️</div>
+                <div class="side-tab" data-target="panel-market">🛒</div>
             </div>
 
             <div class="main-scroller">
+                <!-- VIEW 1: DISCOVER GAMES -->
                 <div id="panel-discover" class="view-panel active">
                     <h2 style="margin: 0 0 5px 0; font-size: 20px; text-transform: uppercase;">Experiences</h2>
-                    <p style="color: #888888; font-size: 12px; margin: 0 0 25px 0; font-family: Arial; line-height: 1.5;">Select an active project workspace to load physics engine.</p>
+                    <p style="color: #666666; font-size: 12px; margin: 0 0 25px 0; font-family: Arial; line-height: 1.5;">Select physics module to compile engine workspace runtime.</p>
                     
                     <div class="discover-grid">
                         <div class="experience-card" id="card-game-toh">
-                            <div class="experience-thumb" style="background: #1a1a1a; border: 1px solid #333;">TOH</div>
-                            <div class="experience-title">Tower Of Hell</div>
-                            <div class="experience-desc">Climb a vertical structure containing lasers. High jump physics enabled.</div>
+                            <div class="experience-thumb">TOH</div>
+                            <div class="experience-title">Tower Of Hell (Balanced)</div>
+                            <div class="experience-desc">Climb structures safely. Structural sizes re-optimized for flawless jump scaling. Includes server bot competitors.</div>
                             <button class="action-btn" id="launch-toh-btn">Launch Space</button>
                         </div>
                         
                         <div class="experience-card" id="card-game-cross">
-                            <div class="experience-thumb" style="background: #1a1a1a; border: 1px solid #333;">CROSS</div>
+                            <div class="experience-thumb">CROSS</div>
                             <div class="experience-title">Crossy Baseplate</div>
-                            <div class="experience-desc">Dodge moving hazard walls traveling horizontally across the grid.</div>
+                            <div class="experience-desc">Dodge physics hazard structures scrolling horizontally through space alongside bot survivors.</div>
                             <button class="action-btn" id="launch-cross-btn">Launch Space</button>
                         </div>
 
                         <div class="experience-card" id="card-game-lava">
-                            <div class="experience-thumb" style="background: #1a1a1a; border: 1px solid #333;">RISING</div>
+                            <div class="experience-thumb">RISING</div>
                             <div class="experience-title">Lava Rising Grid</div>
-                            <div class="experience-desc">Escape the climbing floor surface trap before limits expire.</div>
+                            <div class="experience-desc">Escalating liquid platform challenge. Re-scaled with fine-tuned jump parameters and bot tracking.</div>
                             <button class="action-btn" id="launch-lava-btn">Launch Space</button>
                         </div>
 
+                        <div class="experience-card" id="card-game-speedrun">
+                            <div class="experience-thumb" style="color: #00aa44;">TIMER</div>
+                            <div class="experience-title">Speedrun Linear Circuit</div>
+                            <div class="experience-desc">Race against live timing metrics and rival ghosts tracking player milestones with checkpoints.</div>
+                            <button class="action-btn" id="launch-speedrun-btn">Launch Space</button>
+                        </div>
+
+                        <div class="experience-card" id="card-game-city">
+                            <div class="experience-thumb" style="color: #bfa100;">CITY</div>
+                            <div class="experience-title">Cross City Exploration</div>
+                            <div class="experience-desc">Non-obby flat world sandbox grid populated with physics blocks, speed coils, and roaming local citizen bots.</div>
+                            <button class="action-btn" id="launch-city-btn">Launch Space</button>
+                        </div>
+
+                        <!-- NEW PLAYABLE REPERTOIRE MODULES & BOTS -->
+                        <div class="experience-card" id="card-game-garden">
+                            <div class="experience-thumb" style="color: #008800; background: #e0f5e0;">GARDEN</div>
+                            <div class="experience-title">Grow a Garden Tycoon</div>
+                            <div class="experience-desc">Step on plots to plant and harvest glowing matrix vegetation. Farm cash with helper gathering bots!</div>
+                            <button class="action-btn" id="launch-garden-btn">Launch Space</button>
+                        </div>
+
+                        <div class="experience-card" id="card-game-npc">
+                            <div class="experience-thumb" style="color: #4a00e0; background: #e8e0f5;">NPC RUN</div>
+                            <div class="experience-title">NPC Rogue Encounter</div>
+                            <div class="experience-desc">Navigate a deadly grid populated with smart chasing hostile security bot units. Escape or survive!</div>
+                            <button class="action-btn" id="launch-npc-btn">Launch Space</button>
+                        </div>
+
+                        <div class="experience-card" id="card-game-die">
+                            <div class="experience-thumb" style="color: #d10000; background: #f5e0e0;">CHOOSE OR DIE</div>
+                            <div class="experience-title">Choose Block Or Die</div>
+                            <div class="experience-desc">The server randomly dissolves neon colored floor segments. Find the correct zone before bots fail!</div>
+                            <button class="action-btn" id="launch-die-btn">Launch Space</button>
+                        </div>
+
                         <div class="experience-card" id="card-game-studio">
-                            <div class="experience-thumb" style="background: #1a1a1a; border: 1px solid #333;">CUSTOM</div>
+                            <div class="experience-thumb">CUSTOM</div>
                             <div class="experience-title">Studio Runtime</div>
                             <div class="experience-desc">Play inside your locally compiled Studio build layout script directly.</div>
                             <button class="action-btn" id="launch-studio-runtime-btn">Run Engine</button>
@@ -482,76 +827,193 @@
                     </div>
                 </div>
 
+                <!-- VIEW 2: AVATAR CUSTOMIZER SUITE -->
                 <div id="panel-avatar" class="view-panel">
                     <h2 style="margin: 0 0 5px 0; font-size: 20px; text-transform: uppercase;">Identity Configuration</h2>
-                    <p style="color: #888888; font-size: 12px; margin: 0 0 25px 0; font-family: Arial; line-height: 1.5;">Alter character meshes, upload clothing assets, or acquire currency.</p>
+                    <p style="color: #666666; font-size: 12px; margin: 0 0 25px 0; font-family: Arial; line-height: 1.5;">Modify character mesh coloring and texture overlays across individual parts.</p>
                     
                     <div class="avatar-dashboard">
                         <div class="config-pane">
                             <div class="asset-input-group">
-                                <label>Upload Shirt Asset</label>
+                                <label>Target Customization Part</label>
+                                <select id="avatar-body-part-select">
+                                    <option value="head">Head Mesh</option>
+                                    <option value="torso">Torso Mesh</option>
+                                    <option value="leftArm">Left Arm</option>
+                                    <option value="rightArm">Right Arm</option>
+                                    <option value="leftLeg">Left Leg</option>
+                                    <option value="rightLeg">Right Leg</option>
+                                </select>
+                            </div>
+                            <div class="asset-input-group">
+                                <label>Assign Material Color Swatch</label>
+                                <div class="swatch-grid" id="avatar-dynamic-swatches">
+                                    <div class="swatch-item" style="background:#ffcd03;" data-hex="0xffcd03"></div>
+                                    <div class="swatch-item" style="background:#0066ff;" data-hex="0x0066ff"></div>
+                                    <div class="swatch-item" style="background:#33cc33;" data-hex="0x33cc33"></div>
+                                    <div class="swatch-item" style="background:#ffffff;" data-hex="0xffffff"></div>
+                                    <div class="swatch-item" style="background:#111111;" data-hex="0x111111"></div>
+                                    <div class="swatch-item" style="background:#ff3333;" data-hex="0xff3333"></div>
+                                    <div class="swatch-item" style="background:#a36c4c;" data-hex="0xa36c4c"></div>
+                                </div>
+                            </div>
+                            <div class="asset-input-group">
+                                <label>Upload Shirt Alpha Map Overlay</label>
                                 <label class="file-upload-btn" for="file-shirt-input">
-                                    <span id="lbl-shirt-file">Choose Image File...</span>
+                                    <span id="lbl-shirt-file">Choose Image Asset...</span>
                                 </label>
                                 <input type="file" id="file-shirt-input" accept="image/*">
                             </div>
                             <div class="asset-input-group">
-                                <label>Upload Pants Asset</label>
+                                <label>Upload Pants Alpha Map Overlay</label>
                                 <label class="file-upload-btn" for="file-pants-input">
-                                    <span id="lbl-pants-file">Choose Image File...</span>
+                                    <span id="lbl-pants-file">Choose Image Asset...</span>
                                 </label>
                                 <input type="file" id="file-pants-input" accept="image/*">
                             </div>
-                            <div class="asset-input-group">
-                                <label>Skin Tone Mat Matrix</label>
-                                <div class="swatch-grid">
-                                    <div class="swatch-item active" style="background:#ffcd03;" data-hex="0xffcd03"></div>
-                                    <div class="swatch-item" style="background:#ffffff;" data-hex="0xffffff"></div>
-                                    <div class="swatch-item" style="background:#e5c158;" data-hex="0xe5c158"></div>
-                                    <div class="swatch-item" style="background:#a36c4c;" data-hex="0xa36c4c"></div>
-                                    <div class="swatch-item" style="background:#111111;" data-hex="0x111111"></div>
-                                </div>
-                            </div>
-                            <button class="action-btn" id="trigger-claim-bubox" style="margin-top: 15px;">Mine 50,000 Bubox</button>
+                            <button class="action-btn" id="trigger-claim-bubox" style="margin-top: 15px;">Mine 50,000 Robux</button>
                         </div>
-                        <div class="config-pane" style="max-width: 300px; min-height: 200px; position: relative;" id="avatar-preview-anchor"></div>
+                        <div class="config-pane" style="max-width: 300px; min-height: 250px; position: relative;" id="avatar-preview-anchor"></div>
                     </div>
                 </div>
 
+                <!-- VIEW 3: ROBLOX STUDIO IDE -->
                 <div id="panel-studio" class="view-panel">
-                    <h2 style="margin: 0 0 5px 0; font-size: 20px; text-transform: uppercase;">Roblox Studio IDE</h2>
-                    <p style="color: #888888; font-size: 12px; margin: 0 0 25px 0; font-family: Arial; line-height: 1.5;">Insert objects, write engine execution scripts, export or import workspace blueprints.</p>
+                    <h2 style="margin: 0 0 5px 0; font-size: 20px; text-transform: uppercase;">Unity Studio Workspace</h2>
+                    <p style="color: #666666; font-size: 12px; margin: 0 0 15px 0; font-family: Arial; line-height: 1.5;">Fully integrated workspace editor. Design, adjust vector transform attributes, and test execution loop properties in real-time.</p>
                     
                     <div class="studio-container">
+                        <div class="unity-viewport-frame" id="unity-integrated-canvas-host">
+                            <div class="unity-viewport-caption">Integrated Scene Viewport (Drag with mouse/touch to check workspace)</div>
+                        </div>
+
                         <div class="studio-toolbar">
                             <button class="action-btn" id="studio-add-block">Add Block</button>
                             <button class="action-btn" id="studio-add-sphere">Add Sphere</button>
                             <button class="action-btn" id="studio-add-cylinder">Add Cylinder</button>
                             <button class="action-btn" id="studio-add-hazard">Add Hazard Part</button>
-                            <button class="action-btn" id="studio-export">Export File</button>
-                            <button class="action-btn" id="studio-import-trigger">Import File</button>
-                            <button class="action-btn" id="studio-preview-toggle" style="background: #00ff66; color: #000000;">Enter Preview Mode</button>
+                            <button class="action-btn" id="studio-export">Export Project</button>
+                            <button class="action-btn" id="studio-import-trigger">Import Project</button>
+                            <button class="action-btn" id="studio-preview-toggle" style="background: #00aa44; color: #fff; border-color: #00aa44;">Enter Workspace Camera Mode</button>
                             <input type="file" id="studio-file-import" style="display:none;" accept=".json">
                         </div>
 
                         <div class="studio-layout">
                             <div class="studio-sidebar">
                                 <div class="studio-panel">
-                                    <div style="font-size:11px; text-transform:uppercase; margin-bottom:8px; letter-spacing:0.5px;">Workspace Tree</div>
+                                    <div style="font-size:11px; text-transform:uppercase; margin-bottom:8px; letter-spacing:0.5px; font-weight: bold;">Hierarchy Tree</div>
                                     <div class="studio-list" id="studio-object-tree"></div>
                                 </div>
                                 <div class="studio-panel" id="studio-properties-pane" style="font-size:11px; line-height:1.5; display:none;">
-                                    <div style="text-transform:uppercase; margin-bottom:8px; letter-spacing:0.5px;">Transform Attributes</div>
+                                    <div style="text-transform:uppercase; margin-bottom:8px; letter-spacing:0.5px; font-weight: bold;">Inspector Properties</div>
                                     <div class="asset-input-group"><label>Position X</label><input type="text" id="prop-pos-x"></div>
                                     <div class="asset-input-group"><label>Position Y</label><input type="text" id="prop-pos-y"></div>
                                     <div class="asset-input-group"><label>Position Z</label><input type="text" id="prop-pos-z"></div>
-                                    <button class="action-btn" id="prop-save-btn" style="padding:5px; font-size:10px;">Apply changes</button>
-                                    <button class="action-btn" id="prop-del-btn" style="padding:5px; font-size:10px; background:#ff4444; border-color:#ff4444; color:#fff;">Delete Part</button>
+                                    <div class="asset-input-group">
+                                        <label>Part Material Attribute</label>
+                                        <select id="prop-part-material">
+                                            <option value="plastic">Smooth Plastic</option>
+                                            <option value="neon">Neon Light Matrix</option>
+                                            <option value="ice">Ice Friction Pad</option>
+                                        </select>
+                                    </div>
+                                    <button class="action-btn" id="prop-save-btn" style="padding:5px; font-size:10px;">Apply attributes</button>
+                                    <button class="action-btn" id="prop-del-btn" style="padding:5px; font-size:10px; background:#ff3b30; border-color:#ff3b30; color:#fff;">Delete Structure</button>
                                 </div>
                             </div>
                             <div class="studio-editor">
-                                <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.5px; line-height: 1.5;">Global Environment Workspace Behaviour Script</div>
+                                <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.5px; line-height: 1.5; font-weight: bold;">MonoBehaviour Update Execution Logic</div>
                                 <textarea class="code-textarea" id="studio-code-input" placeholder="-- Write code lines here...&#10;-- Example:&#10;-- block.position.y += 0.1;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW 4: ROBUX GEAR MARKETPLACE (EXPANDED STOCKS) -->
+                <div id="panel-market" class="view-panel">
+                    <h2 style="margin: 0 0 5px 0; font-size: 20px; text-transform: uppercase;">Robux Catalog Store</h2>
+                    <p style="color: #666666; font-size: 12px; margin: 0 0 25px 0; font-family: Arial; line-height: 1.5;">Exchange Robux balances to unlock advanced utility coils, gear packages, or character options.</p>
+                    <div class="market-grid">
+                        <div class="market-card">
+                            <div>
+                                <div class="market-item-title">Speed Coil Gear</div>
+                                <p style="font-size:10px; color:#555; margin:5px 0; line-height:1.5;">Increases walking velocity physics parameters to 19.5.</p>
+                            </div>
+                            <div>
+                                <div class="market-price">R$ 250</div>
+                                <button class="action-btn buy-market-item" data-item="speed_coil" data-price="250" style="width:100%; padding:5px; font-size:10px;">Acquire Item</button>
+                            </div>
+                        </div>
+                        <div class="market-card">
+                            <div>
+                                <div class="market-item-title">Gravity Coil Gear</div>
+                                <p style="font-size:10px; color:#555; margin:5px 0; line-height:1.5;">Reduces local gravity fall parameters to half rate.</p>
+                            </div>
+                            <div>
+                                <div class="market-price">R$ 400</div>
+                                <button class="action-btn buy-market-item" data-item="gravity_coil" data-price="400" style="width:100%; padding:5px; font-size:10px;">Acquire Item</button>
+                            </div>
+                        </div>
+                        <div class="market-card">
+                            <div>
+                                <div class="market-item-title">Neon Ambient Skin</div>
+                                <p style="font-size:10px; color:#555; margin:5px 0; line-height:1.5;">Causes parts to reflect high fidelity light source fields.</p>
+                            </div>
+                            <div>
+                                <div class="market-price">R$ 1,200</div>
+                                <button class="action-btn buy-market-item" data-item="neon_skin" data-price="1200" style="width:100%; padding:5px; font-size:10px;">Acquire Item</button>
+                            </div>
+                        </div>
+                        
+                        <!-- NEW FEATURES #13-#20: EXTENSIVE MARKETPLACE CATALOG INVENTORY ITEMS -->
+                        <div class="market-card">
+                            <div>
+                                <div class="market-item-title">Hyper Laser Pistol</div>
+                                <p style="font-size:10px; color:#555; margin:5px 0; line-height:1.5;">Classic vaporizing arm gear. Instantly targets hostiles.</p>
+                            </div>
+                            <div>
+                                <div class="market-price">R$ 2,500</div>
+                                <button class="action-btn buy-market-item" data-item="hyperlaser" data-price="2500" style="width:100%; padding:5px; font-size:10px;">Acquire Item</button>
+                            </div>
+                        </div>
+                        <div class="market-card">
+                            <div>
+                                <div class="market-item-title">Golden Crown uff</div>
+                                <p style="font-size:10px; color:#555; margin:5px 0; line-height:1.5;">Gives an exclusive glowing structural overhead crown asset.</p>
+                            </div>
+                            <div>
+                                <div class="market-price">R$ 5,000</div>
+                                <button class="action-btn buy-market-item" data-item="gold_crown" data-price="5000" style="width:100%; padding:5px; font-size:10px;">Acquire Item</button>
+                            </div>
+                        </div>
+                        <div class="market-card">
+                            <div>
+                                <div class="market-item-title">Jetpack Flight Rig</div>
+                                <p style="font-size:10px; color:#555; margin:5px 0; line-height:1.5;">Enables airborne thrusters module inside any active zone.</p>
+                            </div>
+                            <div>
+                                <div class="market-price">R$ 8,000</div>
+                                <button class="action-btn buy-market-item" data-item="jetpack_rig" data-price="8000" style="width:100%; padding:5px; font-size:10px;">Acquire Item</button>
+                            </div>
+                        </div>
+                        <div class="market-card">
+                            <div>
+                                <div class="market-item-title">Super Super Happy Face</div>
+                                <p style="font-size:10px; color:#555; margin:5px 0; line-height:1.5;">Replaces original face block geometry decals with a smiling expression.</p>
+                            </div>
+                            <div>
+                                <div class="market-price">R$ 45,000</div>
+                                <button class="action-btn buy-market-item" data-item="happy_face" data-price="45000" style="width:100%; padding:5px; font-size:10px;">Acquire Item</button>
+                            </div>
+                        </div>
+                        <div class="market-card">
+                            <div>
+                                <div class="market-item-title">Valkyrie Helm</div>
+                                <p style="font-size:10px; color:#555; margin:5px 0; line-height:1.5;">Legendary combat mesh ornament featuring metallic high shine highlights.</p>
+                            </div>
+                            <div>
+                                <div class="market-price">R$ 75,000</div>
+                                <button class="action-btn buy-market-item" data-item="valk_helm" data-price="75000" style="width:100%; padding:5px; font-size:10px;">Acquire Item</button>
                             </div>
                         </div>
                     </div>
@@ -560,11 +1022,19 @@
         </div>
     </div>
 
+    <!-- IN-GAME VIEWPORT HUD RECONSTRUCTION OVERLAYS -->
     <div id="game-play-overlay">
         <button id="btn-escape-match" style="pointer-events: auto;">Disconnect</button>
         <div class="live-metrics-panel">
             <div style="font-weight: 900;" id="lbl-active-game-title">TOWER OF HELL</div>
             <div id="lbl-game-stat-line">FLOOR: 1</div>
+            <div id="lbl-game-extra-stat" style="font-size:11px; font-weight:bold; color:#0055ff; margin-top:2px;">BOTS ACTIVE: 4</div>
+            <div id="lbl-game-timer-line" style="font-family:monospace; margin-top:4px; display:none; color:#00aa44;">TIME: 0.00s</div>
+        </div>
+
+        <!-- SIMULATED MULTIPLAYER SOCIAL ENGINE CHAT MATRIX -->
+        <div class="engine-chat-box" id="runtime-sim-chat">
+            <div style="color:#666; font-style:italic;">Initializing communication server instance...</div>
         </div>
 
         <div id="touch-joystick-pod" class="mobile-touch-rig">
@@ -574,147 +1044,267 @@
     </div>
 
     <script>
-        /* --- STRUCTURAL CORE GRAPHICS COMPONENT CONTROLLER --- */
+        /* --- STRUCTURAL CORE GRAPHICS ENGINE WITH RE-ENGINEERED SUNNY RTX EFFECTS --- */
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xb0cfff); // Roblox Classic Sky Blue Sky
-        scene.fog = new THREE.FogExp2(0xb0cfff, 0.012);
+        scene.background = new THREE.Color(0xbadaeb); // Warm, beautiful clear blue sky fill
+        scene.fog = new THREE.FogExp2(0xbadaeb, 0.004);
 
-        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+        const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
+        
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.shadowMap.enabled = true;
         renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.35; // Bright sun presence mapping exposure
         document.body.appendChild(renderer.domElement);
 
+        // RTX Lighting Overhaul: Sun & Atmospheric Specular Glow Rings
         const environmentLight = new THREE.AmbientLight(0xffffff, 0.65);
         scene.add(environmentLight);
         
-        const directionalSun = new THREE.DirectionalLight(0xffffff, 0.9);
-        directionalSun.position.set(30, 85, 30);
+        const directionalSun = new THREE.DirectionalLight(0xfff8e7, 1.8); // Powerful warm white solar ray
+        directionalSun.position.set(60, 130, 45);
         directionalSun.castShadow = true;
-        directionalSun.shadow.mapSize.width = 2048;
-        directionalSun.shadow.mapSize.height = 2048;
+        directionalSun.shadow.mapSize.width = 4048;
+        directionalSun.shadow.mapSize.height = 4048;
         directionalSun.shadow.camera.near = 0.5;
-        directionalSun.shadow.camera.far = 250;
-        const shadowLimit = 60;
+        directionalSun.shadow.camera.far = 350;
+        const shadowLimit = 120;
         directionalSun.shadow.camera.left = -shadowLimit;
         directionalSun.shadow.camera.right = shadowLimit;
         directionalSun.shadow.camera.top = shadowLimit;
         directionalSun.shadow.camera.bottom = -shadowLimit;
+        directionalSun.shadow.bias = -0.0003;
         scene.add(directionalSun);
+
+        // RTX High-Shine Glow Target Cluster points
+        const rtxGlowPointLight = new THREE.PointLight(0xffffff, 1.2, 80);
+        rtxGlowPointLight.position.set(0, 20, 0);
+        scene.add(rtxGlowPointLight);
+
+        // Create a massive visible solar sphere for true spatial context
+        const sunGeo = new THREE.SphereGeometry(6, 16, 16);
+        const sunMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+        const sunVisualMesh = new THREE.Mesh(sunGeo, sunMat);
+        sunVisualMesh.position.set(120, 200, 90);
+        scene.add(sunVisualMesh);
+
+        /* --- AUDIO SYNTHESIZER DRIVER MATRIX SYSTEM --- */
+        let audioContextInstance = null;
+        let audioOscillatorNode = null;
+        let audioGainNode = null;
+
+        function initializeAudioSystemEngine(typePattern) {
+            if (audioContextInstance === null) {
+                audioContextInstance = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            stopAudioSystemEngine();
+            if (typePattern === "none") return;
+
+            audioOscillatorNode = audioContextInstance.createOscillator();
+            audioGainNode = audioContextInstance.createGain();
+
+            if (typePattern === "pulse") {
+                audioOscillatorNode.type = 'triangle';
+                audioOscillatorNode.frequency.setValueAtTime(261.63, audioContextInstance.currentTime); // C4 note frequency loop
+                audioGainNode.gain.setValueAtTime(0.08, audioContextInstance.currentTime);
+            } else if (typePattern === "ambient") {
+                audioOscillatorNode.type = 'sine';
+                audioOscillatorNode.frequency.setValueAtTime(110.00, audioContextInstance.currentTime); // Sub-bass drone hum
+                audioGainNode.gain.setValueAtTime(0.15, audioContextInstance.currentTime);
+            }
+
+            audioOscillatorNode.connect(audioGainNode);
+            audioGainNode.connect(audioContextInstance.destination);
+            audioOscillatorNode.start();
+        }
+
+        function stopAudioSystemEngine() {
+            if (audioOscillatorNode) {
+                try { audioOscillatorNode.stop(); } catch(e){}
+                audioOscillatorNode.disconnect();
+                audioOscillatorNode = null;
+            }
+        }
 
         /* --- GLOBAL DATA ARCHITECTURE STORAGE PACKAGES --- */
         let activeAppState = "hub"; 
         let isStudioPreviewActive = false;
-        let robuxBalance = 0;
-        let selectedSkinToneHex = 0xffcd03;
+        let robuxBalance = 1500;
+        
+        // Admin Dynamic Override Variable Hooks
+        let adminOverrideWalkSpeed = null;
+        let adminOverrideJumpForce = null;
+        let adminFlightModeState = false;
+        let adminActiveDecalTexture = null;
+
+        // NEW HACK MODULE BINARY STATES
+        let hackNoclipActive = false;
+        let hackInfJumpActive = false;
+        let hackGodModeActive = false;
+        let hackMagnetGoalActive = false;
+
+        let skinToneHexConfig = {
+            head: 0xffcd03,
+            torso: 0x0066ff,
+            leftArm: 0xffcd03,
+            rightArm: 0xffcd03,
+            leftLeg: 0x33cc33,
+            rightLeg: 0x33cc33
+        };
+        
         let customShirtDataUrl = "";
         let customPantsDataUrl = "";
+        let ownedInventoryGears = [];
         
-        // Studio Workspace Data Payload State
+        // Studio Payload Arrays
         let studioCustomObjectsList = [];
         let studioGlobalScriptSource = "-- Write custom behaviors loop here\n";
         let studioSelectedObjectIndex = null;
         
-        const textureLoader = new THREE.TextureLoader();
-        
-        // RECONFIGURED WITH BRIGHT STANDARD COLORS
-        const matBaseplateSolid = new THREE.MeshStandardMaterial({ color: 0x3a7a3a, roughness: 0.8 }); // Grass green
-        const matBoundaryShell = new THREE.MeshStandardMaterial({ color: 0xdddddd, side: THREE.BackSide, roughness: 0.5 });
-        const matLavaInstakill = new THREE.MeshStandardMaterial({ color: 0xff1100, emissive: 0xff3300, roughness: 0.2 });
+        // Re-optimized Materials with high specular properties (RTX Shine Mode updates)
+        const matBaseplateSolid = new THREE.MeshStandardMaterial({ color: 0xdddddd, roughness: 0.15, metalness: 0.4 }); // Lighter floor base plate 
+        const matBoundaryShell = new THREE.MeshStandardMaterial({ color: 0xeaeaea, side: THREE.BackSide, roughness: 0.2 });
+        const matLavaInstakill = new THREE.MeshStandardMaterial({ color: 0xff2200, emissive: 0xff3311, roughness: 0.05, metalness: 0.9 });
+        const matNeonMaterial = new THREE.MeshStandardMaterial({ color: 0x00ffcc, emissive: 0x00ffaa, roughness: 0.01, metalness: 0.2 });
+        const matIceMaterial = new THREE.MeshStandardMaterial({ color: 0xbbeeff, roughness: 0.01, metalness: 0.95, transparent: true, opacity: 0.9 });
 
-        let pSkinMat = new THREE.MeshStandardMaterial({ color: selectedSkinToneHex, roughness: 0.5 });
-        let pTorsoMat = new THREE.MeshStandardMaterial({ color: 0x0066ff, roughness: 0.5 });
-        let pLegsMat = new THREE.MeshStandardMaterial({ color: 0x33cc33, roughness: 0.5 });
+        // TYCOON / EXTRA GAME SPECIFIC MATERIALS
+        const matDirtMaterial = new THREE.MeshStandardMaterial({ color: 0x5a3d28, roughness: 0.9 });
+        const matPlantMaterial = new THREE.MeshStandardMaterial({ color: 0x33ff33, emissive: 0x11aa11, roughness: 0.3 });
 
-        /* --- LOCAL STORAGE ENGINES --- */
+        let partMaterialsMap = {
+            head: new THREE.MeshStandardMaterial({ color: skinToneHexConfig.head, roughness: 0.2, metalness: 0.1 }),
+            torso: new THREE.MeshStandardMaterial({ color: skinToneHexConfig.torso, roughness: 0.2, metalness: 0.1 }),
+            leftArm: new THREE.MeshStandardMaterial({ color: skinToneHexConfig.leftArm, roughness: 0.2, metalness: 0.1 }),
+            rightArm: new THREE.MeshStandardMaterial({ color: skinToneHexConfig.rightArm, roughness: 0.2, metalness: 0.1 }),
+            leftLeg: new THREE.MeshStandardMaterial({ color: skinToneHexConfig.leftLeg, roughness: 0.2, metalness: 0.1 }),
+            rightLeg: new THREE.MeshStandardMaterial({ color: skinToneHexConfig.rightLeg, roughness: 0.2, metalness: 0.1 })
+        };
+
+        /* --- TOAST DISPATCHER --- */
+        function triggerSystemUINotification(textMessage) {
+            const el = document.getElementById('toast-notif');
+            el.innerText = textMessage.toUpperCase();
+            el.style.display = 'block';
+            setTimeout(() => { el.style.display = 'none'; }, 2500);
+        }
+
+        /* --- LOCAL STORAGE SAVES MANAGEMENT --- */
         function loadSavedEnvironmentSettings() {
             if (localStorage.getItem("rbx_robuxBalance")) robuxBalance = parseInt(localStorage.getItem("rbx_robuxBalance"));
-            if (localStorage.getItem("rbx_skinToneHex")) selectedSkinToneHex = parseInt(localStorage.getItem("rbx_skinToneHex"));
+            if (localStorage.getItem("rbx_skinConfig_v2")) skinToneHexConfig = JSON.parse(localStorage.getItem("rbx_skinConfig_v2"));
             if (localStorage.getItem("rbx_shirtAsset")) customShirtDataUrl = localStorage.getItem("rbx_shirtAsset");
             if (localStorage.getItem("rbx_pantsAsset")) customPantsDataUrl = localStorage.getItem("rbx_pantsAsset");
             if (localStorage.getItem("rbx_studioObjects")) studioCustomObjectsList = JSON.parse(localStorage.getItem("rbx_studioObjects"));
             if (localStorage.getItem("rbx_studioScript")) studioGlobalScriptSource = localStorage.getItem("rbx_studioScript");
+            if (localStorage.getItem("rbx_gearsOwned")) ownedInventoryGears = JSON.parse(localStorage.getItem("rbx_gearsOwned"));
 
             document.getElementById('display-robux-total').innerText = robuxBalance.toLocaleString();
             document.getElementById('studio-code-input').value = studioGlobalScriptSource;
             
-            pSkinMat.color.setHex(selectedSkinToneHex);
+            Object.keys(partMaterialsMap).forEach(partKey => {
+                partMaterialsMap[partKey].color.setHex(skinToneHexConfig[partKey]);
+            });
             applyClothingTexturesToPlayer();
         }
 
         function saveEnvironmentSettingsToLocal() {
             localStorage.setItem("rbx_robuxBalance", robuxBalance);
-            localStorage.setItem("rbx_skinToneHex", selectedSkinToneHex);
+            localStorage.setItem("rbx_skinConfig_v2", JSON.stringify(skinToneHexConfig));
             localStorage.setItem("rbx_shirtAsset", customShirtDataUrl);
             localStorage.setItem("rbx_pantsAsset", customPantsDataUrl);
             localStorage.setItem("rbx_studioObjects", JSON.stringify(studioCustomObjectsList));
             localStorage.setItem("rbx_studioScript", studioGlobalScriptSource);
+            localStorage.setItem("rbx_gearsOwned", JSON.stringify(ownedInventoryGears));
         }
 
         function applyClothingTexturesToPlayer() {
             if (customShirtDataUrl) {
                 const img = new Image(); img.src = customShirtDataUrl;
-                img.onload = () => { pTorsoMat.map = new THREE.Texture(img); pTorsoMat.map.needsUpdate = true; pTorsoMat.needsUpdate = true; };
+                img.onload = () => { 
+                    const tex = new THREE.Texture(img); tex.needsUpdate = true;
+                    partMaterialsMap.torso.map = tex; partMaterialsMap.torso.needsUpdate = true;
+                };
             }
             if (customPantsDataUrl) {
                 const img = new Image(); img.src = customPantsDataUrl;
                 img.onload = () => {
                     const tex = new THREE.Texture(img); tex.needsUpdate = true;
-                    pLegsMat.map = tex; pLegsMat.needsUpdate = true;
+                    partMaterialsMap.leftLeg.map = tex; partMaterialsMap.leftLeg.needsUpdate = true;
+                    partMaterialsMap.rightLeg.map = tex; partMaterialsMap.rightLeg.needsUpdate = true;
                 };
             }
         }
 
-        /* --- ADVANCED ROUNDED NOOB CHARACTER RIG GENERATION SYSTEM --- */
+        /* --- AVATAR CHARACTER RIG ARCHITECTURE GENERATION MODULE --- */
         const pGroupContainer = new THREE.Group();
         scene.add(pGroupContainer);
 
-        // Uses smoother capsule primitives for beautiful high fidelity roblox characters
-        const rbxTorso = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.2, 0.5), pTorsoMat);
+        const rbxTorso = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.2, 0.6), partMaterialsMap.torso);
         rbxTorso.position.y = 1.35; rbxTorso.castShadow = true; rbxTorso.receiveShadow = true;
         pGroupContainer.add(rbxTorso);
 
-        const rbxHead = new THREE.Mesh(new THREE.SphereGeometry(0.36, 16, 16), pSkinMat);
+        const rbxHead = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.65, 0.65), partMaterialsMap.head);
         rbxHead.position.y = 0.95; rbxHead.castShadow = true; rbxTorso.add(rbxHead);
 
         const faceMat = new THREE.MeshBasicMaterial({ color: 0x111111 });
-        const eyeL = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.06, 0.02), faceMat); eyeL.position.set(-0.12, 0.06, 0.33);
-        const eyeR = eyeL.clone(); eyeR.position.x = 0.12; rbxHead.add(eyeL, eyeR);
-        const mouthMesh = new THREE.Mesh(new THREE.BoxGeometry(0.15, 0.03, 0.02), faceMat); mouthMesh.position.set(0, -0.1, 0.33); rbxHead.add(mouthMesh);
+        const eyeL = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.08, 0.02), faceMat); eyeL.position.set(-0.14, 0.1, 0.33);
+        const eyeR = eyeL.clone(); eyeR.position.x = 0.14; rbxHead.add(eyeL, eyeR);
+        const mouthMesh = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.04, 0.02), faceMat); mouthMesh.position.set(0, -0.12, 0.33); rbxHead.add(mouthMesh);
 
-        const leftArmPivot = new THREE.Group(); leftArmPivot.position.set(-0.72, 0.4, 0);
-        const limbArmL = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.18, 1.1, 12), pSkinMat); limbArmL.position.y = -0.45; limbArmL.castShadow = true;
+        const leftArmPivot = new THREE.Group(); leftArmPivot.position.set(-0.9, 0.3, 0);
+        const limbArmL = new THREE.Mesh(new THREE.BoxGeometry(0.5, 1.1, 0.5), partMaterialsMap.leftArm); limbArmL.position.y = -0.4; limbArmL.castShadow = true;
         leftArmPivot.add(limbArmL); rbxTorso.add(leftArmPivot);
 
-        const rightArmPivot = new THREE.Group(); rightArmPivot.position.set(0.72, 0.4, 0);
-        const limbArmR = limbArmL.clone(); rightArmPivot.add(limbArmR); rbxTorso.add(rightArmPivot);
+        const rightArmPivot = new THREE.Group(); rightArmPivot.position.set(0.9, 0.3, 0);
+        const limbArmR = new THREE.Mesh(new THREE.BoxGeometry(0.5, 1.1, 0.5), partMaterialsMap.rightArm); limbArmR.position.y = -0.4; limbArmR.castShadow = true;
+        rightArmPivot.add(limbArmR); rbxTorso.add(rightArmPivot);
 
-        const leftLegPivot = new THREE.Group(); leftLegPivot.position.set(-0.26, -0.6, 0);
-        const limbLegL = new THREE.Mesh(new THREE.CylinderGeometry(0.21, 0.21, 1.1, 12), pLegsMat); limbLegL.position.y = -0.45; limbLegL.castShadow = true;
+        const leftLegPivot = new THREE.Group(); leftLegPivot.position.set(-0.32, -0.6, 0);
+        const limbLegL = new THREE.Mesh(new THREE.BoxGeometry(0.55, 1.1, 0.55), partMaterialsMap.leftLeg); limbLegL.position.y = -0.4; limbLegL.castShadow = true;
         leftLegPivot.add(limbLegL); rbxTorso.add(leftLegPivot);
 
-        const rightLegPivot = new THREE.Group(); rightLegPivot.position.set(0.26, -0.6, 0);
-        const limbLegR = limbLegL.clone(); rightLegPivot.add(limbLegR); rbxTorso.add(rightLegPivot);
+        const rightLegPivot = new THREE.Group(); rightLegPivot.position.set(0.32, -0.6, 0);
+        const limbLegR = new THREE.Mesh(new THREE.BoxGeometry(0.55, 1.1, 0.55), partMaterialsMap.rightLeg); limbLegR.position.y = -0.4; limbLegR.castShadow = true;
+        rightLegPivot.add(limbLegR); rbxTorso.add(rightLegPivot);
 
-        /* --- COLLISION DATA ENVIRONMENT MAP CONTAINERS --- */
+        /* --- COLLISION DATA CONFIGURATIONS & SERVER BOTS MATRICES --- */
         let platformsArray = [];
         let hazardKillsArray = [];
         let dynamicsTickerArray = [];
+        let activeCheckpointsList = [];
+        let serverActiveBotsList = []; // Track multiplayer bot agents simulated in scene loops
+        let localPlayerActiveCheckpointIndex = -1;
+
+        // Tycoon internal tracker values
+        let tycoonGardenLevelCash = 0;
+        let tycoonPlotsMetadata = [];
+
+        // Die game segment tracker variables
+        let chooseOrDieSafeMaterialColor = null;
+        let chooseOrDieEvaluationTimer = 0;
 
         function purgeStructuralEnvironmentMap() {
             platformsArray.forEach(p => scene.remove(p.mesh));
             hazardKillsArray.forEach(h => scene.remove(h.mesh));
             dynamicsTickerArray.forEach(d => { if(d.mesh) scene.remove(d.mesh); });
+            activeCheckpointsList.forEach(c => scene.remove(c.mesh));
+            serverActiveBotsList.forEach(b => scene.remove(b.mesh));
+            
             platformsArray = [];
             hazardKillsArray = [];
             dynamicsTickerArray = [];
+            activeCheckpointsList = [];
+            serverActiveBotsList = [];
+            tycoonPlotsMetadata = [];
         }
 
         function createStructuralBlock(x, y, z, w, h, d, mat, type = "normal", internalMeta = {}) {
             let geometry;
-            if (internalMeta.shape === "sphere") geometry = new THREE.SphereGeometry(w / 2, 16, 16);
-            else if (internalMeta.shape === "cylinder") geometry = new THREE.CylinderGeometry(w / 2, w / 2, h, 16);
+            if (internalMeta.shape === "sphere") geometry = new THREE.SphereGeometry(w / 2, 24, 24);
+            else if (internalMeta.shape === "cylinder") geometry = new THREE.CylinderGeometry(w / 2, w / 2, h, 24);
             else geometry = new THREE.BoxGeometry(w, h, d);
 
             const mesh = new THREE.Mesh(geometry, mat);
@@ -727,96 +1317,262 @@
             const packageData = { mesh, box: boundingBox, type, w, h, d, meta: internalMeta };
 
             if (type === "kill") hazardKillsArray.push(packageData);
+            else if (type === "checkpoint") activeCheckpointsList.push(packageData);
             else platformsArray.push(packageData);
             return packageData;
         }
 
-        /* --- STRUCTURAL WORLD SPACES MAP BUILDERS --- */
+        /* --- MULTIPLAYER CLIENT BOT GENERATION FACTORY --- */
+        function spawnSimulatedServerBotAgent(x, y, z, coreBehaviorType) {
+            const botGroup = new THREE.Group();
+            const botMat = new THREE.MeshStandardMaterial({ color: Math.random() * 0xffffff, roughness: 0.4 });
+            const headMat = new THREE.MeshStandardMaterial({ color: 0xffcd03 });
+            
+            const torsoMesh = new THREE.Mesh(new THREE.BoxGeometry(1.1, 1.1, 0.5), botMat);
+            torsoMesh.position.y = 1.35;
+            const headMesh = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.6, 0.6), headMat);
+            headMesh.position.y = 0.9;
+            torsoMesh.add(headMesh);
+            botGroup.add(torsoMesh);
+            
+            botGroup.position.set(x, y, z);
+            scene.add(botGroup);
+            
+            serverActiveBotsList.push({
+                mesh: botGroup,
+                type: coreBehaviorType,
+                vel: new THREE.Vector3(),
+                timerOffset: Math.random() * 100,
+                targetIndex: 0,
+                alive: true
+            });
+        }
+
+        function populateMultiplayerBotsForMatch() {
+            document.getElementById('lbl-game-extra-stat').style.display = 'block';
+            document.getElementById('lbl-game-extra-stat').innerText = "BOTS ACTIVE: 4";
+            for(let i=0; i<4; i++) {
+                spawnSimulatedServerBotAgent((Math.random()*12 - 6), 2, vecPlayerPosition.z - (Math.random()*15 + 5), "competitor");
+            }
+        }
+
+        /* --- INTERACTIVE FLOATING ADMIN DECAL SPAWNER --- */
+        function spawnAdminUploadedDecalStructure(imageSourceUrl) {
+            const img = new Image(); img.src = imageSourceUrl;
+            img.onload = () => {
+                const tex = new THREE.Texture(img); tex.needsUpdate = true;
+                const decalMat = new THREE.MeshStandardMaterial({ map: tex, side: THREE.DoubleSide, transparent: true, roughness: 0.1 });
+                
+                const decalMesh = new THREE.Mesh(new THREE.PlaneGeometry(6, 6), decalMat);
+                decalMesh.position.set(vecPlayerPosition.x, vecPlayerPosition.y + 4, vecPlayerPosition.z - 5);
+                scene.add(decalMesh);
+                
+                triggerSystemUINotification("Admin Decal Node Spawned into World space");
+            };
+        }
+
+        /* --- EXPERIENCE MAP BUILDERS --- */
         function compileTowerOfHellSpace() {
             purgeStructuralEnvironmentMap();
-            createStructuralBlock(0, -0.5, 0, 50, 1, 50, matBaseplateSolid);
+            localPlayerActiveCheckpointIndex = -1;
+            createStructuralBlock(0, -0.5, 0, 60, 1, 60, matBaseplateSolid);
             
-            const shellMesh = new THREE.Mesh(new THREE.CylinderGeometry(14, 14, 70, 24, 1, true), matBoundaryShell);
-            shellMesh.position.set(0, 34, 0); scene.add(shellMesh);
-            platformsArray.push({ mesh: shellMesh, box: new THREE.Box3(), type: "scenery" });
+            const shellMesh = new THREE.Mesh(new THREE.CylinderGeometry(18, 18, 80, 32, 1, true), matBoundaryShell);
+            shellMesh.position.set(0, 39, 0); scene.add(shellMesh);
 
-            const matCyan = new THREE.MeshStandardMaterial({color: 0x00bcd4, roughness: 0.4});
-            const matYellow = new THREE.MeshStandardMaterial({color: 0xffeb3b, roughness: 0.4});
-            const matPurple = new THREE.MeshStandardMaterial({color: 0x9c27b0, roughness: 0.4});
-            const matGold = new THREE.MeshStandardMaterial({color: 0xff9800, roughness: 0.2});
+            const matCyan = new THREE.MeshStandardMaterial({color: 0x00f0ff, roughness: 0.1});
+            const matYellow = new THREE.MeshStandardMaterial({color: 0xffea00, roughness: 0.1});
 
-            // HIGHER HIGH JUMPS COMPACT STRUCTURAL PATH PLACEMENT
-            createStructuralBlock(0, 0.5, 8, 5, 1, 5, matCyan);
-            createStructuralBlock(-3, 4.5, 3, 4, 0.6, 4, matCyan, "normal", {shape: "cylinder"});
-            createStructuralBlock(-6, 8.5, -2, 4, 4, 4, matCyan);
-            createStructuralBlock(-2, 13.0, -6, 5, 0.6, 3, matCyan);
-            createStructuralBlock(3, 17.5, -5, 4, 4, 4, matCyan, "normal", {shape: "sphere"});
+            createStructuralBlock(0, 0.5, 10, 6, 0.8, 6, matCyan);
+            createStructuralBlock(-4, 3.2, 5, 5, 0.6, 5, matCyan, "normal", {shape: "cylinder"});
+            createStructuralBlock(-7, 6.0, -1, 5, 1.2, 5, matCyan);
+            createStructuralBlock(-2, 8.8, -6, 6, 0.6, 4, matCyan);
             
-            createStructuralBlock(0, 19.5, 0, 3, 0.3, 3, matLavaInstakill, "kill");
-
-            createStructuralBlock(6, 22.0, 2, 4, 0.6, 4, matYellow);
-            createStructuralBlock(2, 26.5, 6, 4, 0.6, 4, matYellow);
+            createStructuralBlock(4, 11.5, -4, 6, 0.5, 6, matYellow, "checkpoint", {id: 0});
+            createStructuralBlock(0, 14.2, 0, 4, 0.3, 4, matLavaInstakill, "kill");
+            createStructuralBlock(6, 17.0, 3, 5, 0.6, 5, matYellow);
+            createStructuralBlock(2, 19.8, 8, 5, 0.6, 5, matYellow, "normal", {shape: "sphere"});
             
-            const dynamicLaserBar = createStructuralBlock(0, 30.0, 0, 16, 0.4, 1.2, matLavaInstakill, "kill");
-            dynamicsTickerArray.push({ mesh: dynamicLaserBar.mesh, box: dynamicLaserBar.box, type: "spinner", speed: 1.4, axis: "y" });
+            const dynamicLaserBar = createStructuralBlock(0, 23.5, 0, 22, 0.5, 1.5, matLavaInstakill, "kill");
+            dynamicsTickerArray.push({ mesh: dynamicLaserBar.mesh, box: dynamicLaserBar.box, type: "spinner", speed: 1.0, axis: "y" });
 
-            createStructuralBlock(-4, 33.5, 5, 4, 0.6, 4, matPurple);
-            createStructuralBlock(-7, 38.0, -1, 4, 0.6, 4, matPurple, "normal", {shape: "cylinder"});
-            createStructuralBlock(-3, 42.5, -6, 4, 0.6, 4, matPurple);
-            createStructuralBlock(3, 47.0, -6, 4, 4, 4, matPurple, "normal", {shape: "sphere"});
-            
-            createStructuralBlock(0, 52.0, 0, 6, 0.8, 6, matGold, "goal");
+            createStructuralBlock(0, 28.0, 0, 8, 1.0, 8, new THREE.MeshStandardMaterial({color: 0xffaa00}), "goal");
+            populateMultiplayerBotsForMatch();
         }
 
         function compileCrossyBaseplateSpace() {
             purgeStructuralEnvironmentMap();
-            createStructuralBlock(0, -0.5, 0, 30, 1, 120, matBaseplateSolid);
+            localPlayerActiveCheckpointIndex = -1;
+            createStructuralBlock(0, -0.5, 0, 40, 1, 140, matBaseplateSolid);
             
-            const matBlue = new THREE.MeshStandardMaterial({color: 0x0055ff});
-            createStructuralBlock(0, 0.5, 50, 26, 1, 15, matBlue);
-            createStructuralBlock(0, 0.5, -50, 26, 1, 15, matBlue, "goal");
+            const matBlue = new THREE.MeshStandardMaterial({color: 0x0066ff, metalness: 0.5, roughness: 0.1});
+            createStructuralBlock(0, 0.5, 60, 36, 1, 15, matBlue);
+            createStructuralBlock(0, 0.5, -60, 36, 1, 15, matBlue, "goal");
 
-            for (let zRow = -35; zRow <= 35; zRow += 14) {
+            for (let zRow = -40; zRow <= 40; zRow += 16) {
                 let dir = Math.random() > 0.5 ? 1 : -1;
-                let speed = 8.0 + Math.random() * 6.0;
-                const hazard = createStructuralBlock((Math.random() * 16 - 8), 1.5, zRow, 4, 4, 4, matLavaInstakill, "kill", {shape: "cylinder"});
-                dynamicsTickerArray.push({ mesh: hazard.mesh, box: hazard.box, type: "slider", speed: speed * dir, rangeX: 12.0 });
+                let speed = 6.0 + Math.random() * 5.0;
+                const hazard = createStructuralBlock((Math.random() * 20 - 10), 1.5, zRow, 5, 3, 5, matLavaInstakill, "kill", {shape: "cylinder"});
+                dynamicsTickerArray.push({ mesh: hazard.mesh, box: hazard.box, type: "slider", speed: speed * dir, rangeX: 16.0 });
             }
+            populateMultiplayerBotsForMatch();
         }
 
         function compileRisingLavaSpace() {
             purgeStructuralEnvironmentMap();
-            createStructuralBlock(0, -0.5, 0, 35, 1, 35, matBaseplateSolid);
+            localPlayerActiveCheckpointIndex = -1;
+            createStructuralBlock(0, -0.5, 0, 45, 1, 45, matBaseplateSolid);
 
-            const matOrange = new THREE.MeshStandardMaterial({color: 0xff5722});
-
-            createStructuralBlock(0, 3.0, 10, 5, 0.6, 5, matOrange);
-            createStructuralBlock(-8, 7.5, 8, 4, 4, 4, matOrange, "normal", {shape: "sphere"});
-            createStructuralBlock(-10, 12.0, -2, 5, 0.6, 5, matOrange);
-            createStructuralBlock(-4, 16.5, -9, 4, 0.6, 4, matOrange, "normal", {shape: "cylinder"});
-            createStructuralBlock(4, 21.0, -8, 5, 0.6, 5, matOrange);
-            createStructuralBlock(9, 25.5, 0, 4, 4, 4, matOrange, "normal", {shape: "sphere"});
-            createStructuralBlock(6, 30.0, 8, 5, 0.6, 5, matOrange);
+            const matOrange = new THREE.MeshStandardMaterial({color: 0xff6600, roughness: 0.1});
             
-            createStructuralBlock(0, 35.0, 0, 6, 0.8, 6, new THREE.MeshStandardMaterial({color: 0xffeb3b}), "goal");
+            createStructuralBlock(0, 2.5, 12, 6, 0.6, 6, matOrange);
+            createStructuralBlock(-9, 5.2, 9, 5, 2.0, 5, matOrange, "normal", {shape: "sphere"});
+            createStructuralBlock(-11, 8.0, -2, 6, 0.6, 6, matOrange);
+            createStructuralBlock(-4, 11.0, -10, 5, 0.6, 5, matOrange, "normal", {shape: "cylinder"});
+            createStructuralBlock(5, 14.0, -8, 6, 0.6, 6, matOrange);
+            
+            createStructuralBlock(0, 19.0, 0, 8, 1.0, 8, new THREE.MeshStandardMaterial({color: 0x00ff66}), "goal");
 
-            const globalLavaCeilingMesh = createStructuralBlock(0, -1.0, 0, 34, 1.0, 34, matLavaInstakill, "kill");
-            dynamicsTickerArray.push({ mesh: globalLavaCeilingMesh.mesh, box: globalLavaCeilingMesh.box, type: "elevator", riseSpeed: 1.15 });
+            const globalLavaCeilingMesh = createStructuralBlock(0, -1.5, 0, 44, 1.0, 44, matLavaInstakill, "kill");
+            dynamicsTickerArray.push({ mesh: globalLavaCeilingMesh.mesh, box: globalLavaCeilingMesh.box, type: "elevator", riseSpeed: 0.75 });
+            populateMultiplayerBotsForMatch();
+        }
+
+        function compileSpeedrunSpace() {
+            purgeStructuralEnvironmentMap();
+            localPlayerActiveCheckpointIndex = -1;
+            document.getElementById('lbl-game-timer-line').style.display = 'block';
+            runGameSessionTimerStamp = 0;
+
+            createStructuralBlock(0, -0.5, 80, 30, 1, 40, matBaseplateSolid);
+            
+            const matTrack = new THREE.MeshStandardMaterial({color: 0xcccccc, metalness: 0.2, roughness: 0.2});
+            createStructuralBlock(0, -0.5, 20, 15, 1, 60, matTrack);
+            createStructuralBlock(0, 0.5, 40, 4, 0.5, 4, new THREE.MeshStandardMaterial({color: 0xff00ff}), "checkpoint", {id: 0});
+            createStructuralBlock(0, -0.5, -40, 15, 1, 40, matTrack);
+
+            createStructuralBlock(0, 0.5, -55, 6, 1, 6, new THREE.MeshStandardMaterial({color: 0x00ffff}), "goal");
+            populateMultiplayerBotsForMatch();
+        }
+
+        function compileCitySandboxSpace() {
+            purgeStructuralEnvironmentMap();
+            localPlayerActiveCheckpointIndex = -1;
+            createStructuralBlock(0, -0.5, 0, 250, 1, 250, new THREE.MeshStandardMaterial({color: 0xeeeeee, roughness: 0.3}));
+            
+            const matBuilding = new THREE.MeshStandardMaterial({color: 0xdddddd, metalness: 0.2, roughness: 0.2});
+            createStructuralBlock(-30, 10, -30, 15, 20, 15, matBuilding);
+            createStructuralBlock(40, 15, 20, 20, 30, 20, matBuilding);
+            createStructuralBlock(-20, 5, 40, 12, 10, 12, matBuilding);
+            createStructuralBlock(0, 1, -10, 8, 2, 8, matNeonMaterial);
+            
+            for(let i=0; i<6; i++) {
+                spawnSimulatedServerBotAgent((Math.random()*60 - 30), 1, (Math.random()*60 - 30), "roamer");
+            }
+        }
+
+        /* --- NEW ADDITIONAL GAME MODE MAP COMPILERS --- */
+        function compileGardenTycoonSpace() {
+            purgeStructuralEnvironmentMap();
+            tycoonGardenLevelCash = 0;
+            document.getElementById('lbl-game-extra-stat').style.display = 'block';
+            document.getElementById('lbl-game-extra-stat').innerText = "CASH: $0";
+
+            createStructuralBlock(0, -0.5, 0, 80, 1, 80, matBaseplateSolid);
+            
+            // Build 3 customizable dirt plots inside tycoon perimeter layout arrays
+            const coordinates = [-15, 0, 15];
+            coordinates.forEach((xOffset, index) => {
+                const blockRef = createStructuralBlock(xOffset, 0.1, -5, 8, 0.2, 8, matDirtMaterial, "tycoon_plot", {plotIndex: index, state: "empty"});
+                tycoonPlotsMetadata.push({
+                    block: blockRef,
+                    growthTimer: 0,
+                    stage: "empty",
+                    meshPlant: null
+                });
+            });
+
+            // Reinvestment core transaction collection button interface block
+            createStructuralBlock(0, 0.2, 15, 6, 0.4, 6, new THREE.MeshStandardMaterial({color: 0x00ff00}), "tycoon_claim");
+            
+            // Allocate helper farm gatherer bots directly inside layout parameters
+            spawnSimulatedServerBotAgent(-5, 1, -10, "gatherer");
+            spawnSimulatedServerBotAgent(5, 1, -10, "gatherer");
+        }
+
+        function compileNPCDeadlyEncounterSpace() {
+            purgeStructuralEnvironmentMap();
+            createStructuralBlock(0, -0.5, 0, 90, 1, 90, matBaseplateSolid);
+            
+            // Frame perimeter barrier panels
+            createStructuralBlock(0, 4, 45, 90, 8, 1, matBoundaryShell);
+            createStructuralBlock(0, 4, -45, 90, 8, 1, matBoundaryShell);
+
+            // Win zone extraction pad block
+            createStructuralBlock(0, 0.2, -35, 8, 0.2, 8, new THREE.MeshStandardMaterial({color: 0xffaa00}), "goal");
+
+            // Instantiation of hostile security killer tracking chaser bot profiles
+            for(let i=0; i<4; i++) {
+                spawnSimulatedServerBotAgent((Math.random()*40 - 20), 1, (Math.random()*30 - 35), "chaser");
+            }
+        }
+
+        function compileChooseOrDieSpace() {
+            purgeStructuralEnvironmentMap();
+            chooseOrDieEvaluationTimer = 3.5;
+            
+            // Base frame floor composed of 4 distinctive colored geometric tiles
+            const tileColors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00];
+            const tilePositions = [
+                {x: -12, z: -12}, {x: 12, z: -12},
+                {x: -12, z: 12},  {x: 12, z: 12}
+            ];
+
+            tilePositions.forEach((pos, idx) => {
+                const cHex = tileColors[idx];
+                createStructuralBlock(pos.x, -0.2, pos.z, 22, 0.8, 22, new THREE.MeshStandardMaterial({color: cHex, roughness: 0.1}), "choice_tile", {colorIndex: cHex});
+            });
+
+            const randomIdx = Math.floor(Math.random() * tileColors.length);
+            chooseOrDieSafeMaterialColor = tileColors[randomIdx];
+            
+            document.getElementById('lbl-game-extra-stat').style.display = 'block';
+            document.getElementById('lbl-game-extra-stat').innerText = "SAFE ZONE: SELECTING...";
+
+            // Distribute passive server survivor match participant bots
+            for(let i=0; i<5; i++) {
+                spawnSimulatedServerBotAgent((Math.random()*16 - 8), 1, (Math.random()*16 - 8), "survivor");
+            }
         }
 
         function compileStudioRuntimeSpace() {
             purgeStructuralEnvironmentMap();
-            createStructuralBlock(0, -0.5, 0, 100, 1, 100, matBaseplateSolid);
-
-            const genericMaterial = new THREE.MeshStandardMaterial({color: 0xffffff, roughness: 0.5});
+            createStructuralBlock(0, -0.5, 0, 120, 1, 120, matBaseplateSolid);
             
             studioCustomObjectsList.forEach((obj, idx) => {
-                let mat = obj.type === "kill" ? matLavaInstakill : genericMaterial;
+                let mat = matBaseplateSolid;
+                if(obj.material === "neon") mat = matNeonMaterial;
+                else if(obj.material === "ice") mat = matIceMaterial;
+                else if(obj.type === "kill") mat = matLavaInstakill;
+                
                 createStructuralBlock(obj.x, obj.y, obj.z, obj.w, obj.h, obj.d, mat, obj.type, {shape: obj.shape, id: idx});
             });
         }
 
-        /* --- ROBLOX STUDIO BACKEND LOGIC ACTIONS --- */
+        /* --- UNITY INTEGRATED ENGINE PANEL LOGIC VIEWPORT SYSTEMS --- */
+        let unityPanelSceneCamera, unityPanelRenderer;
+        function initializeIntegratedUnityViewport() {
+            const hostContainer = document.getElementById('unity-integrated-canvas-host');
+            unityPanelSceneCamera = new THREE.PerspectiveCamera(45, hostContainer.clientWidth / hostContainer.clientHeight, 0.1, 500);
+            unityPanelSceneCamera.position.set(25, 25, 45);
+            unityPanelSceneCamera.lookAt(0, 4, 0);
+
+            unityPanelRenderer = new THREE.WebGLRenderer({ antialias: true });
+            unityPanelRenderer.setSize(hostContainer.clientWidth, hostContainer.clientHeight);
+            hostContainer.appendChild(unityPanelRenderer.domElement);
+        }
+
+        /* --- STUDIO TREE INTERFACES --- */
         function rebuildStudioObjectTreeUI() {
             const container = document.getElementById('studio-object-tree');
             container.innerHTML = "";
@@ -831,9 +1587,7 @@
                 });
                 container.appendChild(item);
             });
-            if (activeAppState === "studio_preview") {
-                compileStudioRuntimeSpace();
-            }
+            compileStudioRuntimeSpace();
         }
 
         function showStudioPropertiesPane(obj) {
@@ -842,18 +1596,21 @@
             document.getElementById('prop-pos-x').value = obj.x;
             document.getElementById('prop-pos-y').value = obj.y;
             document.getElementById('prop-pos-z').value = obj.z;
+            document.getElementById('prop-part-material').value = obj.material || "plastic";
         }
 
         function appendStudioObject(shapeType, isHazard = false) {
             studioCustomObjectsList.push({
                 shape: shapeType,
                 type: isHazard ? "kill" : "normal",
-                x: vecPlayerPosition.x, y: 2.5, z: vecPlayerPosition.z - 5,
-                w: 4, h: 4, d: 4
+                x: 0, y: 2, z: 0,
+                w: 5, h: 5, d: 5,
+                material: "plastic"
             });
             studioSelectedObjectIndex = studioCustomObjectsList.length - 1;
             rebuildStudioObjectTreeUI();
             saveEnvironmentSettingsToLocal();
+            triggerSystemUINotification("Structure Instantiated via Hierarchy");
         }
 
         document.getElementById('studio-add-block').addEventListener('click', () => appendStudioObject("block"));
@@ -867,8 +1624,10 @@
                 obj.x = parseFloat(document.getElementById('prop-pos-x').value) || 0;
                 obj.y = parseFloat(document.getElementById('prop-pos-y').value) || 0;
                 obj.z = parseFloat(document.getElementById('prop-pos-z').value) || 0;
+                obj.material = document.getElementById('prop-part-material').value;
                 saveEnvironmentSettingsToLocal();
                 rebuildStudioObjectTreeUI();
+                triggerSystemUINotification("Inspector Properties Applied");
             }
         });
 
@@ -887,25 +1646,20 @@
             saveEnvironmentSettingsToLocal();
         });
 
-        // Export Payload Systems Files
         document.getElementById('studio-export').addEventListener('click', () => {
             const payload = { objects: studioCustomObjectsList, script: studioGlobalScriptSource };
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(payload));
             const downloadAnchor = document.createElement('a');
             downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", "roblox_studio_project.json");
+            downloadAnchor.setAttribute("download", "unity_studio_project.json");
             document.body.appendChild(downloadAnchor);
             downloadAnchor.click();
             downloadAnchor.remove();
         });
 
-        document.getElementById('studio-import-trigger').addEventListener('click', () => {
-            document.getElementById('studio-file-import').click();
-        });
-
+        document.getElementById('studio-import-trigger').addEventListener('click', () => { document.getElementById('studio-file-import').click(); });
         document.getElementById('studio-file-import').addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
+            const file = e.target.files[0]; if (!file) return;
             const reader = new FileReader();
             reader.onload = (event) => {
                 const parsed = JSON.parse(event.target.result);
@@ -914,35 +1668,31 @@
                 document.getElementById('studio-code-input').value = studioGlobalScriptSource;
                 rebuildStudioObjectTreeUI();
                 saveEnvironmentSettingsToLocal();
+                triggerSystemUINotification("Project Configuration Imported");
             };
             reader.readAsText(file);
         });
 
-        /* ENGINE PREVIEW TOGGLE SYSTEM */
         const previewToggleBtn = document.getElementById('studio-preview-toggle');
         previewToggleBtn.addEventListener('click', () => {
             if (!isStudioPreviewActive) {
-                // Enter Viewport Engine View mode
                 isStudioPreviewActive = true;
                 activeAppState = "studio_preview";
-                previewToggleBtn.innerText = "Exit Preview Mode";
-                previewToggleBtn.style.background = "#ff4444";
+                previewToggleBtn.innerText = "Exit Workspace Mode";
+                previewToggleBtn.style.background = "#ff3b30";
                 previewToggleBtn.style.color = "#ffffff";
-                
-                // Keep the UI fully interactive and running but compile the objects around
                 compileStudioRuntimeSpace();
             } else {
-                // Return to static setup build view mode
                 isStudioPreviewActive = false;
                 activeAppState = "hub";
-                previewToggleBtn.innerText = "Enter Preview Mode";
-                previewToggleBtn.style.background = "#00ff66";
-                previewToggleBtn.style.color = "#000000";
+                previewToggleBtn.innerText = "Enter Workspace Camera Mode";
+                previewToggleBtn.style.background = "#00aa44";
+                previewToggleBtn.style.color = "#ffffff";
                 purgeStructuralEnvironmentMap();
             }
         });
 
-        /* --- CLOTHING BINARY FILE UPLOAD PROCESSORS --- */
+        /* --- CLOTHING OVERLAY CONTROLLER --- */
         document.getElementById('file-shirt-input').addEventListener('change', (e) => {
             const file = e.target.files[0]; if (!file) return;
             const reader = new FileReader();
@@ -967,8 +1717,175 @@
             reader.readAsDataURL(file);
         });
 
-        /* --- INPUT INTERFACE TOUCH INTERACTION MECHANICS --- */
-        let orbitAngleYaw = Math.PI; let orbitAnglePitch = 0.25; const orbitRadiusDistance = 8.5;
+        /* --- CATALOG STORE TRANSACTION SYSTEMS --- */
+        document.querySelectorAll('.buy-market-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const itemKey = btn.getAttribute('data-item');
+                const price = parseInt(btn.getAttribute('data-price'));
+                if(ownedInventoryGears.includes(itemKey)) {
+                    triggerSystemUINotification("Item Status: Already Owned"); return;
+                }
+                if(robuxBalance >= price) {
+                    robuxBalance -= price;
+                    ownedInventoryGears.push(itemKey);
+                    document.getElementById('display-robux-total').innerText = robuxBalance.toLocaleString();
+                    saveEnvironmentSettingsToLocal();
+                    triggerSystemUINotification(`Unlocked: ${itemKey.replace('_',' ')}`);
+                } else {
+                    triggerSystemUINotification("Transaction Failed: Insufficient Robux");
+                }
+            });
+        });
+
+        /* --- IPAD READY TOUCH DRAGGABLE SYSTEM PLATFORM RIG --- */
+        const dragBarHandle = document.getElementById('admin-panel-drag-bar');
+        const dragTargetFrame = document.getElementById('live-hud-admin-panel');
+        let isDraggingAdminMenu = false;
+        let dragOffsetPositionX = 0;
+        let dragOffsetPositionY = 0;
+
+        function initiationDragHandler(clientX, clientY) {
+            isDraggingAdminMenu = true;
+            const rect = dragTargetFrame.getBoundingClientRect();
+            dragOffsetPositionX = clientX - rect.left;
+            dragOffsetPositionY = clientY - rect.top;
+        }
+
+        function movementDragHandler(clientX, clientY) {
+            if (!isDraggingAdminMenu) return;
+            let nx = clientX - dragOffsetPositionX;
+            let ny = clientY - dragOffsetPositionY;
+            dragTargetFrame.style.left = nx + 'px';
+            dragTargetFrame.style.top = ny + 'px';
+        }
+
+        dragBarHandle.addEventListener('mousedown', (e) => initiationDragHandler(e.clientX, e.clientY));
+        window.addEventListener('mousemove', (e) => movementDragHandler(e.clientX, e.clientY));
+        window.addEventListener('mouseup', () => isDraggingAdminMenu = false);
+
+        // iPad touch matching listener interfaces
+        dragBarHandle.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 0) initiationDragHandler(e.touches[0].clientX, e.touches[0].clientY);
+        });
+        window.addEventListener('touchmove', (e) => {
+            if (isDraggingAdminMenu && e.touches.length > 0) {
+                movementDragHandler(e.touches[0].clientX, e.touches[0].clientY);
+                e.preventDefault();
+            }
+        }, { passive: false });
+        window.addEventListener('touchend', () => isDraggingAdminMenu = false);
+
+        /* --- ADMIN EXPLOIT CHEATS EVENT BINDINGS --- */
+        const overlayGate = document.getElementById('admin-auth-lock-overlay');
+        const passcodeField = document.getElementById('admin-passcode-field');
+        const liveAdminHudPanel = document.getElementById('live-hud-admin-panel');
+
+        document.getElementById('btn-trigger-admin-gate').addEventListener('click', () => {
+            passcodeField.value = "";
+            overlayGate.classList.add('active');
+        });
+        document.getElementById('admin-cancel-btn').addEventListener('click', () => {
+            overlayGate.classList.remove('active');
+        });
+        document.getElementById('admin-submit-btn').addEventListener('click', () => {
+            if (passcodeField.value === "6767") {
+                overlayGate.classList.remove('active');
+                triggerSystemUINotification("Authentication Decrypted. Access Granted.");
+                liveAdminHudPanel.style.display = 'flex';
+            } else {
+                triggerSystemUINotification("Access Rejected: Invalid Key Token");
+            }
+        });
+
+        document.getElementById('adm-close-flyout').addEventListener('click', () => {
+            liveAdminHudPanel.style.display = 'none';
+        });
+
+        document.getElementById('adm-speed-override').addEventListener('input', (e) => {
+            adminOverrideWalkSpeed = parseFloat(e.target.value) || 10.5;
+        });
+        document.getElementById('adm-jump-override').addEventListener('input', (e) => {
+            adminOverrideJumpForce = parseFloat(e.target.value) || 16.5;
+        });
+        document.getElementById('adm-fly-toggle').addEventListener('change', (e) => {
+            adminFlightModeState = e.target.checked; if(adminFlightModeState) vecPlayerVelocity.y = 0;
+        });
+
+        // EXPLOTS EXECUTORS BINDINGS (#1-#7)
+        document.getElementById('adm-noclip-toggle').addEventListener('change', (e) => { hackNoclipActive = e.target.checked; });
+        document.getElementById('adm-infjump-toggle').addEventListener('change', (e) => { hackInfJumpActive = e.target.checked; });
+        document.getElementById('adm-god-toggle').addEventListener('change', (e) => { hackGodModeActive = e.target.checked; });
+        document.getElementById('adm-magnet-toggle').addEventListener('change', (e) => { hackMagnetGoalActive = e.target.checked; });
+        
+        document.getElementById('adm-blink-btn').addEventListener('click', () => {
+            const facingDir = new THREE.Vector3(Math.sin(orbitAngleYaw), 0, Math.cos(orbitAngleYaw)).normalize();
+            vecPlayerPosition.addScaledVector(facingDir, 12);
+            triggerSystemUINotification("Blink Teleported 12m Forward");
+        });
+        document.getElementById('adm-killbots-btn').addEventListener('click', () => {
+            serverActiveBotsList.forEach(bot => { bot.alive = false; scene.remove(bot.mesh); });
+            serverActiveBotsList = [];
+            document.getElementById('lbl-game-extra-stat').innerText = "BOTS ACTIVE: 0";
+            triggerSystemUINotification("All Active Session Bots Vaporized");
+        });
+        document.getElementById('adm-robuxglitch-btn').addEventListener('click', () => {
+            robuxBalance += 1000000;
+            document.getElementById('display-robux-total').innerText = robuxBalance.toLocaleString();
+            triggerSystemUINotification("Visual Buffer Exploit Glitched (+1M)");
+        });
+
+        // RTX MATRIX SLIDERS IMPLEMENTATIONS (#8-#12)
+        document.getElementById('adm-rtx-exposure').addEventListener('input', (e) => { renderer.toneMappingExposure = parseFloat(e.target.value); });
+        document.getElementById('adm-rtx-glow').addEventListener('input', (e) => { rtxGlowPointLight.intensity = parseFloat(e.target.value); });
+        document.getElementById('adm-rtx-fog').addEventListener('input', (e) => { scene.fog.density = parseFloat(e.target.value); });
+        document.getElementById('adm-rtx-shadows').addEventListener('change', (e) => { renderer.shadowMap.enabled = e.target.checked; scene.traverse(obj => { if(obj.material) obj.material.needsUpdate = true; }); });
+        document.getElementById('adm-rtx-time').addEventListener('input', (e) => {
+            let angle = (parseFloat(e.target.value) * Math.PI) / 180;
+            directionalSun.position.set(Math.cos(angle)*100, Math.sin(angle)*130, 45);
+            sunVisualMesh.position.set(Math.cos(angle)*150, Math.sin(angle)*200, 90);
+        });
+
+        document.getElementById('adm-sky-upload').addEventListener('change', (e) => {
+            const file = e.target.files[0]; if(!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const img = new Image(); img.src = event.target.result;
+                img.onload = () => {
+                    const tex = new THREE.Texture(img); tex.needsUpdate = true;
+                    scene.background = tex;
+                    triggerSystemUINotification("Custom Skybox Overlay Projected");
+                };
+            };
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('adm-decal-upload').addEventListener('change', (e) => {
+            const file = e.target.files[0]; if(!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => spawnAdminUploadedDecalStructure(event.target.result);
+            reader.readAsDataURL(file);
+        });
+
+        document.getElementById('adm-sound-generator-select').addEventListener('change', (e) => {
+            initializeAudioSystemEngine(e.target.value);
+            triggerSystemUINotification(`Audio output: ${e.target.value}`);
+        });
+
+        /* --- SYSTEM SOCIAL SIMULATING LOGICS --- */
+        const mockPhrasesPool = ["This map configuration is wild", "Check out my high shine material avatar", "RTX reflections look sleek", "Is speed coil allowed here?", "Passed checkpoint one safely", "Look at the admin flying lmao", "This garden plot prints cash!"];
+        function cycleSimulatedEngineChat() {
+            const box = document.getElementById('runtime-sim-chat'); if(!box) return;
+            const userRandom = "Player_" + Math.floor(Math.random()*900 + 100);
+            const textRandom = mockPhrasesPool[Math.floor(Math.random()*mockPhrasesPool.length)];
+            const div = document.createElement('div');
+            div.innerHTML = `<b style="color:#00aa44;">${userRandom}:</b> <span style="color:#000;">${textRandom}</span>`;
+            box.appendChild(div); box.scrollTop = box.scrollHeight;
+            if(box.childNodes.length > 25) box.removeChild(box.firstChild);
+        }
+        setInterval(() => { if(activeAppState !== "hub") cycleSimulatedEngineChat(); }, 4000);
+
+        /* --- MOBILE TOUCH RIG OVERLAYS --- */
+        let orbitAngleYaw = Math.PI; let orbitAnglePitch = 0.25; const orbitRadiusDistance = 9.5;
         let activeJoystickPointerId = null; let activeCameraPointerId = null;
         let pointerAnchorPositionX = 0; let pointerAnchorPositionY = 0;
         let vectorJoystickDirection = { x: 0, y: 0 };
@@ -979,8 +1896,7 @@
         const uiJumpActionBtn = document.getElementById('touch-jump-action');
 
         window.addEventListener('touchstart', (event) => {
-            if (activeAppState === "hub") return;
-            event.preventDefault();
+            if (activeAppState === "hub" || isDraggingAdminMenu) return;
             for (let i = 0; i < event.changedTouches.length; i++) {
                 const pointer = event.changedTouches[i];
                 const px = pointer.clientX; const py = pointer.clientY;
@@ -999,11 +1915,10 @@
                     pointerAnchorPositionX = px; pointerAnchorPositionY = py;
                 }
             }
-        }, { passive: false });
+        });
 
         window.addEventListener('touchmove', (event) => {
-            if (activeAppState === "hub") return;
-            event.preventDefault();
+            if (activeAppState === "hub" || isDraggingAdminMenu) return;
             for (let i = 0; i < event.changedTouches.length; i++) {
                 const pointer = event.changedTouches[i];
                 if (controlJoyActiveFlag && pointer.identifier === activeJoystickPointerId) {
@@ -1015,7 +1930,7 @@
                     pointerAnchorPositionX = pointer.clientX; pointerAnchorPositionY = pointer.clientY;
                 }
             }
-        }, { passive: false });
+        });
 
         window.addEventListener('touchend', (event) => {
             for (let i = 0; i < event.changedTouches.length; i++) {
@@ -1050,10 +1965,6 @@
 
         document.querySelectorAll('.side-tab').forEach(tab => {
             tab.addEventListener('click', () => {
-                // Force exit studio engine preview viewport when navigating away from studio tab completely
-                if(isStudioPreviewActive) {
-                    previewToggleBtn.click();
-                }
                 document.querySelectorAll('.side-tab').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.view-panel').forEach(v => v.classList.remove('active'));
                 tab.classList.add('active');
@@ -1064,27 +1975,38 @@
         document.getElementById('trigger-claim-bubox').addEventListener('click', () => {
             robuxBalance += 50000; document.getElementById('display-robux-total').innerText = robuxBalance.toLocaleString();
             saveEnvironmentSettingsToLocal();
+            triggerSystemUINotification("Robux Registry Credited");
         });
 
-        document.querySelectorAll('.swatch-item').forEach(swatch => {
+        document.querySelectorAll('#avatar-dynamic-swatches .swatch-item').forEach(swatch => {
             swatch.addEventListener('click', () => {
-                document.querySelectorAll('.swatch-item').forEach(s => s.classList.remove('active'));
-                swatch.classList.add('active');
-                selectedSkinToneHex = parseInt(swatch.getAttribute('data-hex'), 16);
-                pSkinMat.color.setHex(selectedSkinToneHex);
-                limbArmL.material = pSkinMat; limbArmR.material = pSkinMat; rbxHead.material = pSkinMat;
+                const targetPart = document.getElementById('avatar-body-part-select').value;
+                const hexVal = parseInt(swatch.getAttribute('data-hex'), 16);
+                skinToneHexConfig[targetPart] = hexVal;
+                partMaterialsMap[targetPart].color.setHex(hexVal);
                 saveEnvironmentSettingsToLocal();
+                triggerSystemUINotification(`Color Applied to ${targetPart}`);
             });
         });
 
         document.getElementById('launch-toh-btn').addEventListener('click', () => { launchGameSpace("toh", "Tower of Hell"); });
         document.getElementById('launch-cross-btn').addEventListener('click', () => { launchGameSpace("cross", "Crossy Baseplate"); });
         document.getElementById('launch-lava-btn').addEventListener('click', () => { launchGameSpace("lava", "Lava Rising"); });
-        document.getElementById('launch-studio-runtime-btn').addEventListener('click', () => { launchGameSpace("studio_run", "Studio Project Workspace"); });
+        document.getElementById('launch-speedrun-btn').addEventListener('click', () => { launchGameSpace("speedrun", "Speedrun Circuit"); });
+        document.getElementById('launch-city-btn').addEventListener('click', () => { launchGameSpace("city", "Cross City Plain"); });
+        
+        // NEW GAMES LAUNCH HANDLERS
+        document.getElementById('launch-garden-btn').addEventListener('click', () => { launchGameSpace("garden", "Grow a Garden"); });
+        document.getElementById('launch-npc-btn').addEventListener('click', () => { launchGameSpace("npc", "NPC Encounter"); });
+        document.getElementById('launch-die-btn').addEventListener('click', () => { launchGameSpace("die", "Choose Or Die"); });
+
+        document.getElementById('launch-studio-runtime-btn').addEventListener('click', () => { launchGameSpace("studio_run", "Studio Target Build"); });
 
         document.getElementById('btn-escape-match').addEventListener('click', () => {
             document.getElementById('game-play-overlay').style.display = 'none';
             document.getElementById('home-page-window').classList.remove('hidden');
+            document.getElementById('lbl-game-timer-line').style.display = 'none';
+            document.getElementById('lbl-game-extra-stat').style.display = 'none';
             activeAppState = "hub"; purgeStructuralEnvironmentMap();
         });
 
@@ -1094,49 +2016,55 @@
             document.getElementById('lbl-active-game-title').innerText = descriptiveTitle.toUpperCase();
             activeAppState = spaceKey;
             
-            if (spaceKey === "toh") { compileTowerOfHellSpace(); teleportPlayerPosition(0, 3, 8); }
-            else if (spaceKey === "cross") { compileCrossyBaseplateSpace(); teleportPlayerPosition(0, 3, 50); }
-            else if (spaceKey === "lava") { compileRisingLavaSpace(); teleportPlayerPosition(0, 3, 10); }
+            if (spaceKey === "toh") { compileTowerOfHellSpace(); teleportPlayerPosition(0, 3, 10); }
+            else if (spaceKey === "cross") { compileCrossyBaseplateSpace(); teleportPlayerPosition(0, 3, 60); }
+            else if (spaceKey === "lava") { compileRisingLavaSpace(); teleportPlayerPosition(0, 3, 12); }
+            else if (spaceKey === "speedrun") { compileSpeedrunSpace(); teleportPlayerPosition(0, 3, 80); }
+            else if (spaceKey === "city") { compileCitySandboxSpace(); teleportPlayerPosition(0, 3, 0); }
+            
+            // INTRODUCE GAME PHASES
+            else if (spaceKey === "garden") { compileGardenTycoonSpace(); teleportPlayerPosition(0, 3, 20); }
+            else if (spaceKey === "npc") { compileNPCDeadlyEncounterSpace(); teleportPlayerPosition(0, 3, 35); }
+            else if (spaceKey === "die") { compileChooseOrDieSpace(); teleportPlayerPosition(0, 3, 0); }
+
             else if (spaceKey === "studio_run") { compileStudioRuntimeSpace(); teleportPlayerPosition(0, 3, 0); }
         }
 
-        /* --- KINETIC SIMULATION PHYSICS ENGINE FRAMEWORK --- */
+        /* --- KINETIC SIMULATION PHYSICS ENGINE --- */
         const vecPlayerPosition = new THREE.Vector3(0, 2, 0);
         const vecPlayerVelocity = new THREE.Vector3();
-        const physicalConstGravity = -34.0; const magnitudeWalkSpeed = 9.5; const magnitudeJumpForce = 16.5; 
-
+        const physicalConstGravity = -36.0; 
+        
         let stateIsGrounded = false; let internalTemporalClockTicker = 0; const systemDeltaClock = new THREE.Clock();
+        let runGameSessionTimerStamp = 0;
 
         function teleportPlayerPosition(x, y, z) { vecPlayerPosition.set(x, y, z); vecPlayerVelocity.set(0, 0, 0); }
 
         function forceKillRespawnSequence() {
-            if (activeAppState === "toh") teleportPlayerPosition(0, 3, 8);
-            else if (activeAppState === "cross") teleportPlayerPosition(0, 3, 50);
+            triggerSystemUINotification("Respawn Instance Triggered");
+            if (localPlayerActiveCheckpointIndex >= 0) {
+                const cp = activeCheckpointsList.find(c => c.meta.id === localPlayerActiveCheckpointIndex);
+                if(cp) { teleportPlayerPosition(cp.mesh.position.x, cp.mesh.position.y + 2, cp.mesh.position.z); return; }
+            }
+            if (activeAppState === "toh") teleportPlayerPosition(0, 3, 10);
+            else if (activeAppState === "cross") teleportPlayerPosition(0, 3, 60);
             else if (activeAppState === "lava") {
                 const el = dynamicsTickerArray.find(d => d.type === "elevator");
-                if (el) { el.mesh.position.y = -1.0; el.box.setFromObject(el.mesh); }
-                teleportPlayerPosition(0, 3, 10);
+                if (el) { el.mesh.position.y = -1.5; el.box.setFromObject(el.mesh); }
+                teleportPlayerPosition(0, 3, 12);
             }
-            else if (activeAppState === "studio_run" || activeAppState === "studio_preview") teleportPlayerPosition(0, 3, 0);
+            else if (activeAppState === "speedrun") teleportPlayerPosition(0, 3, 80);
+            else if (activeAppState === "garden") teleportPlayerPosition(0, 3, 20);
+            else if (activeAppState === "npc") teleportPlayerPosition(0, 3, 35);
+            else if (activeAppState === "die") teleportPlayerPosition(0, 3, 0);
+            else if (activeAppState === "city" || activeAppState === "studio_run" || activeAppState === "studio_preview") teleportPlayerPosition(0, 3, 0);
         }
 
         function triggerWinSequenceBounty() {
-            robuxBalance += 150000; document.getElementById('display-robux-total').innerText = robuxBalance.toLocaleString();
-            saveEnvironmentSettingsToLocal(); document.getElementById('btn-escape-match').click();
-        }
-
-        function executeCustomUserScripts(deltaTime) {
-            if (!studioGlobalScriptSource || (activeAppState !== "studio_run" && activeAppState !== "studio_preview")) return;
-            platformsArray.forEach(p => {
-                if(p.meta && p.meta.id !== undefined) {
-                    try {
-                        // EXECUTING INTERPRETED SAFE BOUND POSITION TRANSFORMS
-                        if(studioGlobalScriptSource.includes("position.y += 0.1")) {
-                            p.mesh.position.y += 1.5 * deltaTime; p.box.setFromObject(p.mesh);
-                        }
-                    } catch(e){}
-                }
-            });
+            robuxBalance += 1500; document.getElementById('display-robux-total').innerText = robuxBalance.toLocaleString();
+            saveEnvironmentSettingsToLocal();
+            triggerSystemUINotification("Victory! Allocation +1,500 Robux Completed");
+            document.getElementById('btn-escape-match').click();
         }
 
         function processDynamicPhysicsElements(deltaTime) {
@@ -1149,22 +2077,113 @@
                 }
                 else if (element.type === "elevator") { element.mesh.position.y += element.riseSpeed * deltaTime; element.box.setFromObject(element.mesh); }
             });
+
+            // MULTIPLAYER BOT LOGIC BEHAVIORS SYSTEM PATTERNS
+            serverActiveBotsList.forEach(bot => {
+                bot.timerOffset += deltaTime;
+                if (bot.type === "competitor") {
+                    bot.mesh.position.z += Math.sin(bot.timerOffset)*1.5 * deltaTime;
+                    bot.mesh.position.z -= 4.0 * deltaTime; // Race forward toward finish lines
+                    if (bot.mesh.position.z < -65) bot.mesh.position.z = 60; 
+                } 
+                else if (bot.type === "roamer" || bot.type === "survivor" || bot.type === "gatherer") {
+                    bot.mesh.position.x += Math.sin(bot.timerOffset * 0.5) * 3 * deltaTime;
+                    bot.mesh.position.z += Math.cos(bot.timerOffset * 0.5) * 3 * deltaTime;
+                }
+                else if (bot.type === "chaser") {
+                    // Hostile tracking vector calculations
+                    let diffX = vecPlayerPosition.x - bot.mesh.position.x;
+                    let diffZ = vecPlayerPosition.z - bot.mesh.position.z;
+                    let length = Math.sqrt(diffX*diffX + diffZ*diffZ);
+                    if (length > 0.1 && length < 35) {
+                        bot.mesh.position.x += (diffX / length) * 5.5 * deltaTime;
+                        bot.mesh.position.z += (diffZ / length) * 5.5 * deltaTime;
+                    }
+                    // Touch hit validation
+                    if (length < 1.4 && !hackGodModeActive) { forceKillRespawnSequence(); }
+                }
+            });
+
+            // TYCOON TYPING DYNAMICS GENERATOR
+            if (activeAppState === "garden") {
+                tycoonPlotsMetadata.forEach(plot => {
+                    if (plot.stage === "growing") {
+                        plot.growthTimer += deltaTime;
+                        if (plot.growthTimer > 4.0) {
+                            plot.stage = "mature";
+                            plot.meshPlant.scale.set(1.5, 2.5, 1.5);
+                            plot.meshPlant.material = matNeonMaterial; // Light glow effect indicators
+                        } else {
+                            let s = (plot.growthTimer / 4.0) * 1.5;
+                            plot.meshPlant.scale.set(s, s*1.5, s);
+                        }
+                    }
+                });
+            }
+
+            // CHOOSE OR DIE LOOP PROCESSOR EVALUATOR
+            if (activeAppState === "die") {
+                chooseOrDieEvaluationTimer -= deltaTime;
+                if (chooseOrDieEvaluationTimer <= 0) {
+                    chooseOrDieEvaluationTimer = 5.0; // Reset countdown parameters
+                    document.getElementById('lbl-game-extra-stat').innerText = "TILES DECAYING!";
+                    
+                    // Dissolve incorrect colored floors
+                    platformsArray.forEach(tile => {
+                        if (tile.type === "choice_tile" && tile.meta.colorIndex !== chooseOrDieSafeMaterialColor) {
+                            tile.mesh.position.y = -50; // Temporarily drop down block transforms
+                        }
+                    });
+
+                    // Evaluate player stance validation safety zones
+                    setTimeout(() => {
+                        let standOnSafeTile = false;
+                        platformsArray.forEach(tile => {
+                            if (tile.type === "choice_tile" && tile.meta.colorIndex === chooseOrDieSafeMaterialColor) {
+                                let pBox = new THREE.Box3().setFromObject(pGroupContainer);
+                                if (pBox.intersectsBox(tile.box)) standOnSafeTile = true;
+                            }
+                        });
+
+                        if (!standOnSafeTile && !hackGodModeActive) { forceKillRespawnSequence(); }
+
+                        // Reassemble layout structures safely
+                        platformsArray.forEach(tile => { if (tile.type === "choice_tile") tile.mesh.position.y = -0.2; });
+                        
+                        const tileColors = [0xff0000, 0x00ff00, 0x0000ff, 0xffff00];
+                        chooseOrDieSafeMaterialColor = tileColors[Math.floor(Math.random() * tileColors.length)];
+                    }, 1800);
+                } else {
+                    document.getElementById('lbl-game-extra-stat').innerText = `SAFE HEX: #${chooseOrDieSafeMaterialColor.toString(16).toUpperCase()} IN ${Math.ceil(chooseOrDieEvaluationTimer)}s`;
+                }
+            }
         }
 
         function loop() {
             requestAnimationFrame(loop);
             const dt = Math.min(systemDeltaClock.getDelta(), 0.1);
 
-            // Allow rendering and player movement in studio preview viewport directly
-            if (activeAppState === "hub") {
-                pGroupContainer.position.set(0, 1.2, 0); pGroupContainer.rotation.y += dt * 0.65;
-                camera.position.set(0, 2.4, 3.6); camera.lookAt(0, 2.1, 0);
-                renderer.render(scene, camera); return;
+            // Velocity / Jump Matrix Calculations with Admin Hack Priorities
+            let actualWalkSpeedValue = adminOverrideWalkSpeed !== null ? adminOverrideWalkSpeed : (ownedInventoryGears.includes("speed_coil") ? 19.5 : 10.5);
+            let actualJumpForceValue = adminOverrideJumpForce !== null ? adminOverrideJumpForce : (ownedInventoryGears.includes("gravity_coil") ? 21.0 : 16.5);
+
+            if (activeAppState === "hub" || activeAppState === "studio_preview") {
+                pGroupContainer.position.set(0, 1.2, 0); pGroupContainer.rotation.y += dt * 0.5;
+                camera.position.set(0, 2.4, 4.0); camera.lookAt(0, 2.1, 0);
+                renderer.render(scene, camera);
+                if (unityPanelRenderer && document.getElementById('panel-studio').classList.contains('active')) {
+                    unityPanelRenderer.render(scene, unityPanelSceneCamera);
+                }
+                return;
+            }
+
+            if (activeAppState === "speedrun") {
+                runGameSessionTimerStamp += dt;
+                document.getElementById('lbl-game-timer-line').innerText = "TIME: " + runGameSessionTimerStamp.toFixed(2) + "s";
             }
 
             internalTemporalClockTicker += dt * 12.0;
             processDynamicPhysicsElements(dt);
-            executeCustomUserScripts(dt);
 
             let inputX = controlJoyActiveFlag ? vectorJoystickDirection.x : 0;
             let inputZ = controlJoyActiveFlag ? vectorJoystickDirection.y : 0;
@@ -1178,25 +2197,89 @@
             combinedMovementVector.addScaledVector(targetCamForward, -inputZ); combinedMovementVector.addScaledVector(targetCamRight, -inputX);
             if (combinedMovementVector.length() > 1) combinedMovementVector.normalize();
 
-            vecPlayerVelocity.x = combinedMovementVector.x * magnitudeWalkSpeed;
-            vecPlayerVelocity.z = combinedMovementVector.z * magnitudeWalkSpeed;
-            vecPlayerVelocity.y += physicalConstGravity * dt;
+            vecPlayerVelocity.x = combinedMovementVector.x * actualWalkSpeedValue;
+            vecPlayerVelocity.z = combinedMovementVector.z * actualWalkSpeedValue;
 
-            if (physicalJumpInputFlag) { if (stateIsGrounded) { vecPlayerVelocity.y = magnitudeJumpForce; stateIsGrounded = false; } physicalJumpInputFlag = false; }
+            // Admin Flight Engine Loop override parameters
+            if (adminFlightModeState) {
+                if (physicalJumpInputFlag) { vecPlayerVelocity.y = actualWalkSpeedValue * 0.8; physicalJumpInputFlag = false; }
+                else if (keyboardMap.s || (controlJoyActiveFlag && vectorJoystickDirection.y > 0.5)) { vecPlayerVelocity.y = -actualWalkSpeedValue * 0.4; }
+                else { vecPlayerVelocity.y = 0; }
+                stateIsGrounded = true; 
+            } else {
+                vecPlayerVelocity.y += physicalConstGravity * dt;
+                if (physicalJumpInputFlag) { 
+                    if (stateIsGrounded || hackInfJumpActive) { vecPlayerVelocity.y = actualJumpForceValue; stateIsGrounded = false; } 
+                    physicalJumpInputFlag = false; 
+                }
+            }
 
             vecPlayerPosition.addScaledVector(vecPlayerVelocity, dt);
-            if (vecPlayerPosition.y < -15.0) forceKillRespawnSequence();
+            if (vecPlayerPosition.y < -20.0) forceKillRespawnSequence();
+
+            // MAGNET GOAL TRUCKING EXPLOIT (#7)
+            if (hackMagnetGoalActive) {
+                let finishZone = platformsArray.find(p => p.type === "goal");
+                if (finishZone) {
+                    let dirToGoal = new THREE.Vector3().copy(finishZone.mesh.position).sub(vecPlayerPosition);
+                    if(dirToGoal.length() > 1) vecPlayerPosition.addScaledVector(dirToGoal.normalize(), 25 * dt);
+                }
+            }
 
             const hitboxPlayer = new THREE.Box3(
-                new THREE.Vector3(vecPlayerPosition.x - 0.45, vecPlayerPosition.y, vecPlayerPosition.z - 0.25),
-                new THREE.Vector3(vecPlayerPosition.x + 0.45, vecPlayerPosition.y + 1.95, vecPlayerPosition.z + 0.25)
+                new THREE.Vector3(vecPlayerPosition.x - 0.5, vecPlayerPosition.y, vecPlayerPosition.z - 0.3),
+                new THREE.Vector3(vecPlayerPosition.x + 0.5, vecPlayerPosition.y + 1.95, vecPlayerPosition.z + 0.3)
             );
-            stateIsGrounded = false;
+            
+            if (!adminFlightModeState) stateIsGrounded = false;
 
-            for (let hazard of hazardKillsArray) { if (hitboxPlayer.intersectsBox(hazard.box)) { forceKillRespawnSequence(); break; } }
+            // EVALUATE HAZARDS IF GODMODE IS NULLIFIED
+            if (!hackGodModeActive) {
+                for (let hazard of hazardKillsArray) { if (hitboxPlayer.intersectsBox(hazard.box)) { forceKillRespawnSequence(); break; } }
+            }
 
+            for (let cp of activeCheckpointsList) {
+                if (hitboxPlayer.intersectsBox(cp.box)) {
+                    if(localPlayerActiveCheckpointIndex < cp.meta.id) {
+                        localPlayerActiveCheckpointIndex = cp.meta.id;
+                        triggerSystemUINotification("Checkpoint Stage Saved");
+                    }
+                }
+            }
+
+            // EVALUATE PLOTS FOR TYCOON FARMING INTERACTION MODULES
             for (let block of platformsArray) {
                 if (hitboxPlayer.intersectsBox(block.box)) {
+                    
+                    if (block.type === "tycoon_plot") {
+                        let metaData = tycoonPlotsMetadata.find(p => p.block.meta.plotIndex === block.meta.plotIndex);
+                        if (metaData && metaData.stage === "empty") {
+                            metaData.stage = "growing"; metaData.growthTimer = 0;
+                            const plantMesh = new THREE.Mesh(new THREE.BoxGeometry(0.8, 1, 0.8), matPlantMaterial);
+                            plantMesh.position.set(block.mesh.position.x, 0.5, block.mesh.position.z);
+                            scene.add(plantMesh);
+                            metaData.meshPlant = plantMesh;
+                            triggerSystemUINotification("Matrix Planted on Plot");
+                        }
+                    }
+                    if (block.type === "tycoon_claim") {
+                        let collectionBounty = 0;
+                        tycoonPlotsMetadata.forEach(metaData => {
+                            if (metaData.stage === "mature") {
+                                collectionBounty += 250; metaData.stage = "empty";
+                                scene.remove(metaData.meshPlant); metaData.meshPlant = null;
+                            }
+                        });
+                        if (collectionBounty > 0) {
+                            tycoonGardenLevelCash += collectionBounty;
+                            document.getElementById('lbl-game-extra-stat').innerText = `CASH: $${tycoonGardenLevelCash}`;
+                            triggerSystemUINotification(`Harvested $${collectionBounty} Tycoon Cash`);
+                        }
+                    }
+
+                    // SKIP SOLID RESOLUTIONS IF NOCLOP EXPLOIT TOGGLED (#1)
+                    if (hackNoclipActive && block.type !== "goal") continue;
+
                     const overlapX = Math.min(hitboxPlayer.max.x, block.box.max.x) - Math.max(hitboxPlayer.min.x, block.box.min.x);
                     const overlapY = Math.min(hitboxPlayer.max.y, block.box.max.y) - Math.max(hitboxPlayer.min.y, block.box.min.y);
                     const overlapZ = Math.min(hitboxPlayer.max.z, block.box.max.z) - Math.max(hitboxPlayer.min.z, block.box.min.z);
@@ -1211,33 +2294,35 @@
                     } else {
                         vecPlayerPosition.z += (hitboxPlayer.min.z + hitboxPlayer.max.z) / 2 < (block.box.min.z + block.box.max.z) / 2 ? -overlapZ : overlapZ;
                     }
-                    hitboxPlayer.set(new THREE.Vector3(vecPlayerPosition.x - 0.45, vecPlayerPosition.y, vecPlayerPosition.z - 0.25), new THREE.Vector3(vecPlayerPosition.x + 0.45, vecPlayerPosition.y + 1.95, vecPlayerPosition.z + 0.25));
+                    hitboxPlayer.set(new THREE.Vector3(vecPlayerPosition.x - 0.5, vecPlayerPosition.y, vecPlayerPosition.z - 0.3), new THREE.Vector3(vecPlayerPosition.x + 0.5, vecPlayerPosition.y + 1.95, vecPlayerPosition.z + 0.3));
                 }
             }
 
-            if (activeAppState === "toh") { document.getElementById('lbl-game-stat-line').innerText = "STAGE TIER: " + Math.min(3, Math.max(1, Math.floor(vecPlayerPosition.y / 13) + 1)); }
-            else if (activeAppState === "cross") { document.getElementById('lbl-game-stat-line').innerText = "PROGRESS: " + Math.max(0, Math.floor((50 - vecPlayerPosition.z) / 100 * 100)) + "%"; }
+            if (activeAppState === "toh") { document.getElementById('lbl-game-stat-line').innerText = "STAGE TRACK: " + Math.min(3, Math.max(1, Math.floor(vecPlayerPosition.y / 11) + 1)); }
+            else if (activeAppState === "cross") { document.getElementById('lbl-game-stat-line').innerText = "PROGRESS: " + Math.max(0, Math.floor((60 - vecPlayerPosition.z) / 120 * 100)) + "%"; }
             else if (activeAppState === "lava") { document.getElementById('lbl-game-stat-line').innerText = "HEIGHT METERS: " + Math.floor(vecPlayerPosition.y) + "m"; }
+            else if (activeAppState === "speedrun") { document.getElementById('lbl-game-stat-line').innerText = "CIRCUIT OBSTACLE COURSE"; }
+            else if (activeAppState === "garden") { document.getElementById('lbl-game-stat-line').innerText = "TYCOON SIMULATION ZONE"; }
+            else if (activeAppState === "npc") { document.getElementById('lbl-game-stat-line').innerText = "ROGUE SECURITY CHASE"; }
+            else if (activeAppState === "die") { document.getElementById('lbl-game-stat-line').innerText = "HEX DISINTEGRATION SURVIVAL"; }
 
             pGroupContainer.position.copy(vecPlayerPosition);
             if (Math.abs(vecPlayerVelocity.x) > 0.1 || Math.abs(vecPlayerVelocity.z) > 0.1) pGroupContainer.rotation.y = Math.atan2(vecPlayerVelocity.x, vecPlayerVelocity.z);
 
             if (!stateIsGrounded) {
-                leftArmPivot.rotation.x = THREE.MathUtils.lerp(leftArmPivot.rotation.x, -Math.PI * 0.25, 0.15);
-                rightArmPivot.rotation.x = THREE.MathUtils.lerp(rightArmPivot.rotation.x, Math.PI * 0.25, 0.15);
+                leftArmPivot.rotation.x = -Math.PI * 0.2;
+                rightArmPivot.rotation.x = Math.PI * 0.2;
             } else if (Math.sqrt(vecPlayerVelocity.x*vecPlayerVelocity.x + vecPlayerVelocity.z*vecPlayerVelocity.z) > 0.2) {
                 const s = Math.sin(internalTemporalClockTicker * 1.3);
                 leftArmPivot.rotation.x = s * 0.75; rightArmPivot.rotation.x = -s * 0.75;
                 leftLegPivot.rotation.x = -s * 0.75; rightLegPivot.rotation.x = s * 0.75;
             } else {
-                leftArmPivot.rotation.x = THREE.MathUtils.lerp(leftArmPivot.rotation.x, 0, 0.2);
-                rightArmPivot.rotation.x = THREE.MathUtils.lerp(rightArmPivot.rotation.x, 0, 0.2);
-                leftLegPivot.rotation.x = THREE.MathUtils.lerp(leftLegPivot.rotation.x, 0, 0.2);
-                rightLegPivot.rotation.x = THREE.MathUtils.lerp(rightLegPivot.rotation.x, 0, 0.2);
+                leftArmPivot.rotation.x = 0; rightArmPivot.rotation.x = 0;
+                leftLegPivot.rotation.x = 0; rightLegPivot.rotation.x = 0;
             }
 
             camera.position.x = vecPlayerPosition.x - orbitRadiusDistance * Math.sin(orbitAngleYaw) * Math.cos(orbitAnglePitch);
-            camera.position.y = vecPlayerPosition.y + orbitRadiusDistance * Math.sin(orbitAnglePitch) + 1.25;
+            camera.position.y = vecPlayerPosition.y + orbitRadiusDistance * Math.sin(orbitAnglePitch) + 1.35;
             camera.position.z = vecPlayerPosition.z - orbitRadiusDistance * Math.cos(orbitAngleYaw) * Math.cos(orbitAnglePitch);
             camera.lookAt(vecPlayerPosition.x, vecPlayerPosition.y + 0.95, vecPlayerPosition.z);
             renderer.render(scene, camera);
@@ -1247,8 +2332,8 @@
             camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // Initialize Runtime
         loadSavedEnvironmentSettings();
+        initializeIntegratedUnityViewport();
         rebuildStudioObjectTreeUI();
         loop();
     </script>
